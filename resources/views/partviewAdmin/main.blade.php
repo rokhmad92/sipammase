@@ -7,7 +7,9 @@
     </div>
     @include('partviewAdmin.navbar')
     @include('partviewAdmin.sidebar')
-        @yield('content')
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
 </div>

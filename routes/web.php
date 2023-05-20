@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\berandaController;
+use App\Http\Controllers\pengajuanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard', [
-        'title' => 'Dashboard'
-    ]);
+Route::get('/', berandaController::class);
+Route::controller(pengajuanController::class)->group(function() {
+    Route::get('/pengajuan', 'index');
 });

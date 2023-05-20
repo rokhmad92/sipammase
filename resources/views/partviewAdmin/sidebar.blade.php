@@ -7,7 +7,7 @@
                     <img src="{{ asset('images') }}/logo.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Admin</a>
+                    <a href="#" class="d-block">Administrator</a>
                 </div>
             </div>
 
@@ -15,61 +15,61 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'Beranda') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Beranda</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/pengajuan" class="nav-link {{ ($title == 'Pengajuan Harmonisasi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>Pengajuan Harmonisasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'Administrasi Dan Analisis Konsepsi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-search"></i>
                                 <p>Administrasi Dan Analisis Konsepsi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'Rapat Harmonisasi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-receipt"></i>
                                 <p>Rapat Harmonisasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'Penyampaian Harmonisasi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-box"></i>
                                 <p class="text-sm">Penyampaian Harmonisasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'Grafik Harmonisasi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-chart-line"></i>
                                 <p>Grafik Harmonisasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'Agenda Rapat') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
                                 <p>Agenda Rapat</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'Master Data') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>Master Data</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'Profile') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user-plus"></i>
                                 <p>Profile</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{ ($title == 'User') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>User</p>
                             </a>

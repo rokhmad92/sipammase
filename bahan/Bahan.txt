@@ -1,0 +1,16 @@
+syarat Pengajuan :
+- Status Harmonisasi = Pengajuan, Selesai Harmonisasi, Dikembalikan
+- Kategori/Rancangan = Undang-Undang, Peraturan Pemerintah, Peraturan Presiden
+
+Syarat Penyampaian :
+- Posisi/status = Selesai Harmonisasi, Dikembalikan
+
+Bahan Rebuild :
+Dashboard Template : https://themewagon.github.io/corona-free-dark-bootstrap-admin-template/pages/ui-features/dropdowns.html#
+landingPage : https://e-legaldraftingjatim.kemenkumham.go.id/
+Refrensi : http://103.31.38.218/avatar/
+
+Refrensi OldWeb = https://e-status.rumahregulasi.com/index.php/login
+C-panel = https://rumahregulasi.com:2083/
+- Username = rume1218
+- Password = Sani1980**
