@@ -23,8 +23,8 @@
                         <div class="small-box bg-info">
                         <div class="inner">
                             <h3>0</h3>
-
-                            <p>Pengajuan Harmonisasi</p>
+        
+                            <p class="text-sm">Pengajuan Harmonisasi</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-exclamation"></i>
@@ -32,13 +32,13 @@
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-
+        
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-secondary">
                         <div class="inner">
                             <h3>0</h3>
-
-                            <p>Administrasi dan Analisis Konsepsi</p>
+        
+                            <p class="text-sm">Administrasi & Analisis Konsepsi</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-search"></i>
@@ -46,14 +46,14 @@
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-
+        
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-success">
                         <div class="inner">
                             <h3>0</h3>
-
-                            <p>Rapat Harmonisasi</p>
+        
+                            <p class="text-sm">Rapat Harmonisasi</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-users"></i>
@@ -61,14 +61,14 @@
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-
+        
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>0</h3>
-
-                            <p>Penyampaian Harmonisassi</p>
+        
+                            <p class="text-sm">Penyampaian Harmonisassi</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-folder-open"></i>
@@ -86,7 +86,7 @@
                                 <h3 class="card-title">Total Permohonan Harmonisasi</h3>
                             </div>
                             <div class="card-body">
-                                <table class="dataTable table table-bordered">
+                                <table class="dataTable table table-bordered table-responsive-sm">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-
+        
                 {{-- Status Harmonisasi --}}
                 <div class="row">
                     <div class="col-12">
@@ -117,7 +117,7 @@
                                 <h3 class="card-title">Status Harmonisasi</h3>
                             </div>
                             <div class="card-body">
-                                <table class="dataTable table table-bordered">
+                                <table class="dataTable table table-bordered table-responsive-sm">
                                     <thead>
                                         <tr>
                                             <th>No</th>

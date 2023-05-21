@@ -15,7 +15,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Beranda') ? 'active' : '' }}">
+                            <a href="/beranda" class="nav-link {{ ($title == 'Beranda') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Beranda</p>
                             </a>
@@ -23,7 +23,7 @@
                         <li class="nav-item">
                             <a href="/pengajuan" class="nav-link {{ ($title == 'Pengajuan Harmonisasi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
-                                <p>Pengajuan Harmonisasi</p>
+                                <p class="text-sm">Pengajuan Harmonisasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -57,25 +57,57 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Master Data') ? 'active' : '' }}">
+                            <a href="#" class="nav-link {{ ($title == 'Role' || $title == 'Tahun' || $title == 'Rancangan' || $title == 'Keterangan Pengajuan' || $title == 'PEMRAKARSA' || $title == 'Posisi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-database"></i>
-                                <p>Master Data</p>
+                                <p>Master Data <i class="fas fa-angle-left right"></i></p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/role" class="nav-link {{ ($title == 'Role') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i><p> Role</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/tahun" class="nav-link {{ ($title == 'Tahun') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i><p> Tahun</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/rancangan" class="nav-link {{ ($title == 'Rancangan') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i><p class="text-sm"> Rancangan Harmonisasi</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/kpengajuan" class="nav-link {{ ($title == 'Keterangan Pengajuan') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i><p> Keterangan Pengajuan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/pemrakarsa" class="nav-link {{ ($title == 'PEMRAKARSA') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i><p> Pemrakarsa</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/posisi" class="nav-link {{ ($title == 'Posisi Administrasi') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i><p> Posisi Administrasi</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Profile') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-user-plus"></i>
+                            <a href="/profile/{{ auth()->user()->username }}" class="nav-link {{ ($title == 'Profile') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>Profile</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link {{ ($title == 'User') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>User</p>
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>Users</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/logout" class="nav-link">
                                 <i class="nav-icon fas fa-door-open"></i>
                                 <p>Logout</p>
                             </a>

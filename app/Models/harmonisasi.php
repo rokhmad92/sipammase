@@ -28,7 +28,7 @@ class harmonisasi extends Model
         return $this->belongsTo(padministrasi::class);
     }
 
-    public function pemerkasa()
+    public function pemrakarsa()
     {
         return $this->belongsTo(pemrakarsa::class);
     }

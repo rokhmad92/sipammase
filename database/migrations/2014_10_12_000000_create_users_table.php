@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('rancangan_id')->constrained('rancangan');
             $table->unsignedBigInteger('pemrakarsa_id')->constrained('pemrakarsa');
             $table->unsignedBigInteger('role_id')->constrained('role');
+            $table->unsignedBigInteger('tahun_id')->constrained('tahun');
             $table->string('username', 20);
             $table->string('password');
             $table->string('namaPanjang', 70);

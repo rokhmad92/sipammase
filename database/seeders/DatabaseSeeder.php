@@ -59,17 +59,6 @@ class DatabaseSeeder extends Seeder
             ]);
         // end role
 
-        User::create([
-            'username' => 'sipammase',
-            'password' => bcrypt('sipammase'),
-            'rancangan_id' => 1,
-            'pemrakarsa_id' => 1,
-            'role_id' => 1,
-            'namaPanjang' => 'Administrator',
-            'alamat' => 'Makassar',
-            'email' => 'admin@sipammase.com'
-        ]);
-
         // tahun
             tahun::create([
                 'no' => 2023
@@ -81,6 +70,18 @@ class DatabaseSeeder extends Seeder
                 'no' => 2025
             ]);
         // end tahun
+
+        User::create([
+            'username' => 'sipammase',
+            'password' => bcrypt('sipammase'),
+            'rancangan_id' => 1,
+            'pemrakarsa_id' => 1,
+            'role_id' => 1,
+            'tahun_id' => 1,
+            'namaPanjang' => 'Administrator',
+            'alamat' => 'Makassar',
+            'email' => 'admin@sipammase.com'
+        ]);
 
         // keterangan pengajuan
             kpengajuan::create([

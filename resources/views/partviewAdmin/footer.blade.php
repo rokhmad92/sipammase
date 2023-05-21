@@ -10,6 +10,7 @@
 <script src="{{ asset('template') }}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <script src="{{ asset('template') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="{{ asset('template') }}/dist/js/adminlte.js"></script>
+<script src="{{ asset('template') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 {{-- datatables --}}
 <script src="{{ asset('template') }}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ asset('template') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -25,6 +26,13 @@
 <script>
     $(function () {
         $(".dataTable").DataTable();
+        bsCustomFileInput.init();
+        $('#inputGroupFile02').on('change',function(){
+            var fileName = $(this).val();
+            $(this).next('.custom-file-label').html(fileName);
+        })
+
+
 
         // $("#example3").DataTable({
         //     "responsive": true, "lengthChange": false, "autoWidth": false,
