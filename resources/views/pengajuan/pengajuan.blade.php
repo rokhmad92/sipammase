@@ -57,7 +57,10 @@
                                         <td>{{ $item->padministrasi->nama }}</td>
                                         <td>Masukan Masyarakat</td>
                                         <td>{{ $item->keterangan }}</td>
-                                        <td>Aksi</td>
+                                        <td class="text-center">
+                                            <a href="/pengajuan/edit/{{ $item->judul }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> <br>
+                                            <a href="/pengajuan/destroy/{{ $item->judul }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

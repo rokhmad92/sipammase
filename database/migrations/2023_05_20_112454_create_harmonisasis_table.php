@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('pemrakarsa_id')->constrained('pemrakarsa');
             $table->foreignId('kpengajuan_id')->constrained('kpengajuan');
             $table->unsignedBigInteger('padministrasi_id')->constrained('padministrasi');
-            $table->string('judul', 50);
+            $table->string('judul', 50)->unique();
             $table->date('tanggal');
             $table->string('keterangan', 100)->nullable();
             $table->string('masukan_masyarakat')->nullable();

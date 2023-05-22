@@ -17,11 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('pemrakarsa_id')->constrained('pemrakarsa');
             $table->unsignedBigInteger('role_id')->constrained('role');
             $table->unsignedBigInteger('tahun_id')->constrained('tahun');
-            $table->string('username', 20);
+            $table->string('username', 20)->unique();
             $table->string('password');
-            $table->string('namaPanjang', 70);
+            $table->string('namaPanjang', 70)->unique();
             $table->string('alamat', 80);
-            $table->string('email', 50);
+            $table->string('email', 50)->unique();
             $table->rememberToken();
             $table->timestamps();
         });

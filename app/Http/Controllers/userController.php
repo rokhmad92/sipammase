@@ -29,14 +29,16 @@ class userController extends Controller
             'namaPanjang' => 'required|max:70',
             'email' => 'required|email:rfc,dns',
             'alamat' => 'required|max:80',
-            'rancangan' => 'required|exists:rancangan,id',
-            'pemrakarsa' => 'required|exists:pemrakarsa,id',
+            'rancangan' => 'required|exists:rancangan,nama',
+            'pemrakarsa' => 'required|exists:pemrakarsa,nama',
             'tahun' => 'required|exists:tahun,no',
         ], [
             'confirmed' => 'Confirmasi Password Tidak Sama'
         ]);
         $data = $request->input();
         $tahun_id = tahun::where('no', $data['tahun'])->first('id');
+        $rancangan_id = rancangan::where('nama', $data['rancangan'])->first('id');
+        $pemrakarsa_id = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
 
         // password Check
         if ($data['new_password'] !== null) {
@@ -47,11 +49,11 @@ class userController extends Controller
                 'namaPanjang' => $data['namaPanjang'],
                 'email' => $data['email'],
                 'alamat' => $data['alamat'],
-                'rancangan_id' => $data['rancangan'],
-                'pemrakarsa_id' => $data['pemrakarsa'],
+                'rancangan_id' => $rancangan_id->id,
+                'pemrakarsa_id' => $pemrakarsa_id->id,
                 'tahun_id' => $tahun_id->id,
             ]);
-            return redirect('/profile/' . $data['username']);
+            return redirect('/users');
         } else {
             User::where('username', $username)
             ->update([
@@ -59,8 +61,8 @@ class userController extends Controller
                 'namaPanjang' => $data['namaPanjang'],
                 'email' => $data['email'],
                 'alamat' => $data['alamat'],
-                'rancangan_id' => $data['rancangan'],
-                'pemrakarsa_id' => $data['pemrakarsa'],
+                'rancangan_id' => $rancangan_id->id,
+                'pemrakarsa_id' => $pemrakarsa_id->id,
                 'tahun_id' => $tahun_id->id,
             ]);
             return redirect('/profile/' . $data['username']);
@@ -88,10 +90,10 @@ class userController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required|min:8|max:20',
+            'username' => 'required|min:8|max:20|unique:user,username',
             'password' => 'nullable|min:8|max:20',
-            'namaPanjang' => 'required|max:70',
-            'email' => 'required|email:rfc,dns',
+            'namaPanjang' => 'required|max:70|unique:user,namaPanjang',
+            'email' => 'required|email:rfc,dns|unique:user,email',
             'alamat' => 'required|max:80',
             'rancangan' => 'required|exists:rancangan,id',
             'role' => 'required|exists:role,id',
@@ -112,6 +114,68 @@ class userController extends Controller
             'role_id' => $data['role'],
             'tahun_id' => $tahun_id->id,
         ]);
+
+        return redirect('/users');
+    }
+
+    public function edit(User $user)
+    {
+        $rancangan = rancangan::all();
+        $pemrakarsa = pemrakarsa::all();
+        $role = role::all();
+        $users = $user;
+        return view('user.usersEdit', [
+            'title' => 'User Edit'
+        ], compact('rancangan', 'pemrakarsa', 'role', 'users'));
+    }
+
+    public function update($username, Request $request)
+    {
+        $request->validate([
+            'username' => 'required|min:8|max:20',
+            'password' => 'nullable|min:8|max:20',
+            'namaPanjang' => 'required|max:70',
+            'email' => 'required|email:rfc,dns',
+            'alamat' => 'required|max:80',
+            'rancangan' => 'required|exists:rancangan,id',
+            'pemrakarsa' => 'required|exists:pemrakarsa,id',
+            'role' => 'required|exists:role,id',
+        ]);
+        $data = $request->input();
+
+        // password Check
+        if ($data['password'] !== null) {
+            User::where('username', $username)
+            ->update([
+                'username' => $data['username'],
+                'password' => bcrypt($data['password']),
+                'namaPanjang' => $data['namaPanjang'],
+                'email' => $data['email'],
+                'alamat' => $data['alamat'],
+                'rancangan_id' => $data['rancangan'],
+                'pemrakarsa_id' => $data['pemrakarsa'],
+                'role_id' => $data['role']
+            ]);
+            return redirect('/users');
+        } else {
+            User::where('username', $username)
+            ->update([
+                'username' => $data['username'],
+                'namaPanjang' => $data['namaPanjang'],
+                'email' => $data['email'],
+                'alamat' => $data['alamat'],
+                'rancangan_id' => $data['rancangan'],
+                'pemrakarsa_id' => $data['pemrakarsa'],
+                'role_id' => $data['role']
+            ]);
+            return redirect('/users');
+        }
+    }
+
+    public function destroy($username)
+    {
+        User::where('username', $username)
+            ->delete();
 
         return redirect('/users');
     }

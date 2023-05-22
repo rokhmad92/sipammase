@@ -44,66 +44,68 @@
                                 <p class="text-sm">Penyampaian Harmonisasi</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Grafik Harmonisasi') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-chart-line"></i>
-                                <p>Grafik Harmonisasi</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Agenda Rapat') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-calendar-alt"></i>
-                                <p>Agenda Rapat</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Role' || $title == 'Tahun' || $title == 'Rancangan' || $title == 'Keterangan Pengajuan' || $title == 'PEMRAKARSA' || $title == 'Posisi') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>Master Data <i class="fas fa-angle-left right"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/role" class="nav-link {{ ($title == 'Role') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i><p> Role</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/tahun" class="nav-link {{ ($title == 'Tahun') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i><p> Tahun</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/rancangan" class="nav-link {{ ($title == 'Rancangan') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i><p class="text-sm"> Rancangan Harmonisasi</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/kpengajuan" class="nav-link {{ ($title == 'Keterangan Pengajuan') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i><p> Keterangan Pengajuan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/pemrakarsa" class="nav-link {{ ($title == 'PEMRAKARSA') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i><p> Pemrakarsa</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/posisi" class="nav-link {{ ($title == 'Posisi Administrasi') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i><p> Posisi Administrasi</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @admin(auth()->user())
+                            <li class="nav-item">
+                                <a href="#" class="nav-link {{ ($title == 'Grafik Harmonisasi') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-chart-line"></i>
+                                    <p>Grafik Harmonisasi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link {{ ($title == 'Agenda Rapat') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-calendar-alt"></i>
+                                    <p>Agenda Rapat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link {{ ($title == 'Role' || $title == 'Tahun' || $title == 'Rancangan' || $title == 'Keterangan Pengajuan' || $title == 'PEMRAKARSA' || $title == 'Posisi') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-database"></i>
+                                    <p>Master Data <i class="fas fa-angle-left right"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/role" class="nav-link {{ ($title == 'Role') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i><p> Role</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/tahun" class="nav-link {{ ($title == 'Tahun') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i><p> Tahun</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/rancangan" class="nav-link {{ ($title == 'Rancangan') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i><p class="text-sm"> Rancangan Harmonisasi</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/kpengajuan" class="nav-link {{ ($title == 'Keterangan Pengajuan') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i><p> Keterangan Pengajuan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/pemrakarsa" class="nav-link {{ ($title == 'PEMRAKARSA') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i><p> Pemrakarsa</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/posisi" class="nav-link {{ ($title == 'Posisi Administrasi') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i><p> Posisi Administrasi</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/users" class="nav-link {{ ($title == 'Users') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>Users</p>
+                                </a>
+                            </li>
+                        @endadmin
                         <li class="nav-item">
                             <a href="/profile/{{ auth()->user()->username }}" class="nav-link {{ ($title == 'Profile') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>Profile</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/users" class="nav-link {{ ($title == 'Users') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>Users</p>
                             </a>
                         </li>
                         <li class="nav-item">

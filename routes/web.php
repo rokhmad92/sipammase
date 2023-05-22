@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Basic Page
-Route::controller(basicController::class)->middleware('guest')->group(function() {
-    Route::get('/', 'login')->name('login');
-    Route::post('/', 'login_post');
+Route::controller(basicController::class)->group(function() {
+    Route::get('/', 'login')->name('login')->middleware('guest');
+    Route::post('/', 'login_post')->middleware('guest');
+    Route::get('/logout', [basicController::class, 'logout']);
 });
-Route::get('/logout', [basicController::class, 'logout']);
 
 // setelah login
 Route::get('/beranda', berandaController::class)->middleware('auth');
@@ -31,6 +31,8 @@ Route::controller(pengajuanController::class)->middleware('auth')->group(functio
     Route::get('/pengajuan', 'index');
     Route::get('/pengajuan/{rancangan}', 'tambah');
     Route::post('/pengajuan/{rancangan}', 'store');
+    Route::get('/pengajuan/edit/{harmonisasi:judul}', 'edit');
+    Route::get('/pengajuan/destroy/{harmonisasi:judul}', 'destroy');
 });
 
 // Master Data
@@ -69,6 +71,7 @@ Route::controller(userController::class)->middleware('auth')->group(function() {
     Route::get('/users', 'users');
     Route::get('/users/tambah', 'create');
     Route::post('/users/tambah', 'store');
-    Route::get('/users/{user:username}', 'update');
+    Route::get('/users/{user:username}', 'edit');
+    Route::post('/users/{user:username}', 'update');
     Route::get('/user/{user:username}', 'destroy');
 });

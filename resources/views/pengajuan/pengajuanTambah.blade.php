@@ -26,7 +26,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="form-group col-md-4">
                                             <label for="tahun">Tahun</label>
-                                            <input type="text" class="form-control @error('tahun') is-invalid @enderror" id="tahun" name="tahun">
+                                            <input type="text" class="form-control @error('tahun') is-invalid @enderror" id="tahun" name="tahun" value="{{ auth()->user()->tahun->no }}" readonly>
                                             @error('tahun')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -37,7 +37,7 @@
                                             <label for="pemrakarsa">PEMRAKARSA</label>
                                             <select class="form-control @error('pemrakarsa') is-invalid @enderror" id="pemrakarsa" name="pemrakarsa">
                                                 @foreach ($pemrakarsa as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
                                             @error('pemrakarsa')
@@ -55,7 +55,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="form-group col-5">
                                             <label for="judul">Judul Rancangan</label>
-                                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" placeholder="Judul" name="judul" autocomplete="off">
+                                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" placeholder="Judul" name="judul" autocomplete="off" value="{{ old('judul') }}">
                                             @error('judul')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -86,7 +86,7 @@
                                             <label for="status">Status Pengajuan Harmonisasi</label>
                                             <select class="form-control @error('status') is-invalid @enderror" id="status" name="status">
                                                 @foreach ($kpengajuan as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
                                             @error('status')
@@ -103,7 +103,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Keterangan</label>
-                                        <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" placeholder="Enter ..." name="keterangan"></textarea>
+                                        <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" placeholder="Enter ..." name="keterangan" value="{{ old('keterangan') }}"></textarea>
                                         @error('keterangan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -115,32 +115,20 @@
 
                             <h5 class="ml-md-2 mt-4">Upload Dokumen</h5>
 
-                            {{-- docx --}}
-                            {{-- <div class="form-group col mt-3">
-                                <label for="docx1">Masukan Masyarakat</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
-                                </div>
-                                <small class="ml-2 form-text text-muted">File Type : docx, xlsx, pdf | Max: 5 Mb</small>
-                            </div> --}}
-
                             <div class="form-group col mt-3">
                                 <label for="docx1">Surat Permohonan dan Urgensi dan Pokok Pikiran</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input @error('docx1') is-invalid @enderror" id="customFile1" name="docx1">
                                         <label class="custom-file-label" for="customFile1">Choose file</label>
-                                        @error('docx1')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                 </div>
-                                <small class="ml-2 form-text text-muted">File Type : docx, xlsx, pdf | Max: 5 Mb</small>
+                                <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
+                                @error('docx1')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group col mt-3">
@@ -149,14 +137,14 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input @error('docx2') is-invalid @enderror" id="customFile2" name="docx2">
                                         <label class="custom-file-label" for="customFile2">Choose file</label>
-                                        @error('docx2')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                 </div>
-                                <small class="ml-2 form-text text-muted">File Type : docx, xlsx, pdf | Max: 5 Mb</small>
+                                <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
+                                @error('docx2')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group col mt-3">
@@ -165,14 +153,14 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input @error('docx3') is-invalid @enderror" id="customFile3" name="docx3">
                                         <label class="custom-file-label" for="customFile3">Choose file</label>
-                                        @error('docx3')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                 </div>
-                                <small class="ml-2 form-text text-muted">File Type : docx, xlsx, pdf | Max: 5 Mb</small>
+                                <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
+                                @error('docx3')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group col mt-3">
@@ -181,14 +169,14 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input @error('docx4') is-invalid @enderror" id="customFile4" name="docx4">
                                         <label class="custom-file-label" for="customFile4">Choose file</label>
-                                        @error('docx4')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                 </div>
-                                <small class="ml-2 form-text text-muted">File Type : docx, xlsx, pdf | Max: 5 Mb</small>
+                                <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
+                                @error('docx4')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="form-group col mt-3">
@@ -197,14 +185,14 @@
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input @error('docx5') is-invalid @enderror" id="customFile5" name="docx5">
                                         <label class="custom-file-label" for="customFile5">Choose file</label>
-                                        @error('docx5')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                 </div>
-                                <small class="ml-2 form-text text-muted">File Type : docx, xlsx, pdf | Max: 5 Mb</small>
+                                <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
+                                @error('docx5')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-success inline">Simpan Data</button>

@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         {{-- form --}}
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col">

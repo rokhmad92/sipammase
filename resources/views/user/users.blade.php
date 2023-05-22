@@ -38,20 +38,24 @@
                             </thead>
                             <tbody>
                                 @foreach ($users as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->username }}</td>
-                                        <td>{{ $item->role->nama }}</td>
-                                        <td>{{ $item->namaPanjang }}</td>
-                                        <td>{{ $item->alamat }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->pemrakarsa->nama }}</td>
-                                        <td>{{ $item->rancangan->nama }}</td>
-                                        <td class="text-center">
-                                            <a href="/users/{{ $item->username }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> <br>
-                                            <a href="/user/{{ $item->username }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
-                                        </td>
-                                    </tr>
+                                    @if ($item->namaPanjang == 'Administrator')
+                                        {{-- <tr style="display: none;"></tr> --}}
+                                    @else
+                                        <tr>
+                                            <td>{{ $loop->iteration - 1 }}</td>
+                                            <td>{{ $item->username }}</td>
+                                            <td>{{ $item->role->nama }}</td>
+                                            <td>{{ $item->namaPanjang }}</td>
+                                            <td>{{ $item->alamat }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->pemrakarsa->nama }}</td>
+                                            <td>{{ $item->rancangan->nama }}</td>
+                                            <td class="text-center">
+                                                <a href="/users/{{ $item->username }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> <br>
+                                                <a href="/user/{{ $item->username }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
