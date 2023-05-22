@@ -13,7 +13,6 @@
 
 <section class="content">
     <div class="container-fluid">        
-        {{-- Tambah Pengajuan Harmonisasi --}}
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -26,7 +25,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="form-group col-md-5">
                                             <label for="username">Username</label>
-                                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ $getUser->username }}" autocomplete="off">
+                                            <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{ $getUser->username }}" autocomplete="off" readonly>
                                             @error('username')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -35,7 +34,7 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="namaPanjang">Nama Panjang</label>
-                                            <input type="text" class="form-control @error('namaPanjang') is-invalid @enderror" id="namaPanjang" name="namaPanjang" value="{{ $getUser->namaPanjang }}" autocomplete="off">
+                                            <input type="text" class="form-control @error('namaPanjang') is-invalid @enderror" id="namaPanjang" name="namaPanjang" value="{{ $getUser->namaPanjang }}" autocomplete="off" readonly>
                                             @error('namaPanjang')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

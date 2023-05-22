@@ -65,4 +65,10 @@ Route::controller(masterController::class)->middleware('auth')->group(function()
 Route::controller(userController::class)->middleware('auth')->group(function() {
     Route::get('/profile/{user:username}', 'index');
     Route::post('/profile/{user:username}', 'index_update');
+
+    Route::get('/users', 'users');
+    Route::get('/users/tambah', 'create');
+    Route::post('/users/tambah', 'store');
+    Route::get('/users/{user:username}', 'update');
+    Route::get('/user/{user:username}', 'destroy');
 });
