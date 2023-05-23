@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Administrasi Dan Analisis Konsepsi') ? 'active' : '' }}">
+                            <a href="/administrasi" class="nav-link {{ ($title == 'Administrasi Dan Analisis Konsepsi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-search"></i>
                                 <p>Administrasi Dan Analisis Konsepsi</p>
                             </a>

@@ -75,7 +75,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="form-group col-md-5">
                                             <label for="permohonan">Tanggal Permohonan</label>
-                                            <input type="date" class="form-control @error('permohonan') is-invalid @enderror" id="permohonan" name="permohonan">
+                                            <input type="date" class="form-control @error('permohonan') is-invalid @enderror" id="permohonan" name="permohonan" value="{{ old('permohonan') }}">
                                             @error('permohonan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -103,7 +103,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Keterangan</label>
-                                        <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" placeholder="Enter ..." name="keterangan" value="{{ old('keterangan') }}"></textarea>
+                                        <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" placeholder="Enter ..." name="keterangan">{{ old('keterangan') }}</textarea>
                                         @error('keterangan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

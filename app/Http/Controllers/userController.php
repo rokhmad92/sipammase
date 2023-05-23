@@ -53,7 +53,7 @@ class userController extends Controller
                 'pemrakarsa_id' => $pemrakarsa_id->id,
                 'tahun_id' => $tahun_id->id,
             ]);
-            return redirect('/users');
+            return redirect('/users')->with('success', 'Berhasil Update Data');
         } else {
             User::where('username', $username)
             ->update([
@@ -65,7 +65,7 @@ class userController extends Controller
                 'pemrakarsa_id' => $pemrakarsa_id->id,
                 'tahun_id' => $tahun_id->id,
             ]);
-            return redirect('/profile/' . $data['username']);
+            return redirect('/profile/' . $data['username'])->with('success', 'Berhasil Update Data');
         }
     }
 
@@ -115,7 +115,7 @@ class userController extends Controller
             'tahun_id' => $tahun_id->id,
         ]);
 
-        return redirect('/users');
+        return redirect('/users')->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function edit(User $user)
@@ -156,7 +156,7 @@ class userController extends Controller
                 'pemrakarsa_id' => $data['pemrakarsa'],
                 'role_id' => $data['role']
             ]);
-            return redirect('/users');
+            return redirect('/users')->with('success', 'Berhasil Update Data');
         } else {
             User::where('username', $username)
             ->update([
@@ -168,7 +168,7 @@ class userController extends Controller
                 'pemrakarsa_id' => $data['pemrakarsa'],
                 'role_id' => $data['role']
             ]);
-            return redirect('/users');
+            return redirect('/users')->with('success', 'Berhasil Update Data');
         }
     }
 
@@ -177,6 +177,6 @@ class userController extends Controller
         User::where('username', $username)
             ->delete();
 
-        return redirect('/users');
+        return redirect('/users')->with('success', 'Berhasil Hapus Data');
     }
 }

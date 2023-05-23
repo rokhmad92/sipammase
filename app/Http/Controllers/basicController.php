@@ -26,7 +26,7 @@ class basicController extends Controller
             return redirect()->intended('beranda');
         }
 
-        return back();
+        return back()->with('failed', 'Username atau Password Salah');
     }
 
     public function logout()

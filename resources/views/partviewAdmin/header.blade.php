@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    {{-- alert Notif --}}
+    <link rel="stylesheet" href="{{ asset('template') }}/plugins/toastr/toastr.min.css">
     {{-- my style --}}
     <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/gif" sizes="30x30">
+    <link rel="stylesheet" href="{{ asset('css') }}/style.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="background-color: #F4F6F9;">

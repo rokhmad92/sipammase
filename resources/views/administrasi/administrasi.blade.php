@@ -13,22 +13,9 @@
 
 <section class="content">
     <div class="container-fluid">        
-        {{-- Total pengajuan Harmonisasi --}}
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header text-right">
-                        <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-plus"></i> Tambah Harmonisasi
-                            </button>
-                            <div class="dropdown-menu">
-                                @foreach ($rancangan as $item)
-                                    <a class="dropdown-item" href="/pengajuan/{{ $item->nama }}">{{ $item->nama }}</a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
                     <div class="card-body">
                         <table class="dataTable table table-bordered table-responsive">
                             <thead>
@@ -40,7 +27,7 @@
                                     <th>Dokumen Pengajuan</th>
                                     <th>Status</th>
                                     <th>Posisi</th>
-                                    <th>Masukan Masyarakat</th>
+                                    <th>Dokumen LPA/AK</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -53,7 +40,7 @@
                                         <td>{{ $item->pemrakarsa->nama }}</td>
                                         <td>{{ $item->tanggal }}</td>
                                         @if ($item->docx1 == null && $item->docx2 == null && $item->docx3 == null && $item->docx4 == null && $item->docx5 == null)
-                                            <td>Belum ada dokumen</td>
+                                            <td><p class="badge badge-danger">Belum ada dokumen</p></td>
                                         @else
                                             <td>
                                                 <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx1) ? '' : 'd-none' }}" href="{{ $item->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
@@ -63,19 +50,23 @@
                                                 <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx5) ? '' : 'd-none' }}" href="{{ $item->docx5 }}" target="_blank">5. <i class="fas fa-download"></i></a>
                                             </td>
                                         @endif
-                                        <td>{{ $item->kpengajuan->nama }}</td>
-                                        @if ($item->padministrasi->nama == 'Pengajuan' || $item->padministrasi->nama == 'Administrasi Dan Analisis Konsep')
-                                            <td><p class="badge badge-info p-1">{{ $item->padministrasi->nama }}</p></td>
-                                        @elseif ($item->padministrasi->nama == 'Rapat Harmonisasi')
-                                            <td><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
-                                        @elseif ($item->padministrasi->nama == 'Penyampaian')
-                                            <td><p class="badge badge-secondary p-1">{{ $item->padministrasi->nama }}</p></td>
+                                        <td>{{ $item->status_administrasi }}</td>
+                                        <td><p class="badge badge-info p-1">{{ $item->padministrasi->nama }}</p></td>
+                                        @if ($item->doc_administrasi->docx1 == null && $item->doc_administrasi->docx2 == null && $item->doc_administrasi->docx3 == null && $item->doc_administrasi->docx4 == null && $item->doc_administrasi->docx5 == null)
+                                            <td><p class="badge badge-danger">Belum ada dokumen</p></td>
+                                        @else
+                                            <td>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx1) ? '' : 'd-none' }}" href="{{ $item->doc_administrasi->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx2) ? '' : 'd-none' }}" href="{{ $item->doc_administrasi->docx2 }}" target="_blank">2. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx3) ? '' : 'd-none' }}" href="{{ $item->doc_administrasi->docx3 }}" target="_blank">3. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx4) ? '' : 'd-none' }}" href="{{ $item->doc_administrasi->docx4 }}" target="_blank">4. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx5) ? '' : 'd-none' }}" href="{{ $item->doc_administrasi->docx5 }}" target="_blank">5. <i class="fas fa-download"></i></a>
+                                            </td>
                                         @endif
-                                        <td>Masukan Masyarakat</td>
                                         <td>{{ $item->keterangan }}</td>
                                         <td class="text-center">
-                                            <a href="/pengajuan/edit/{{ $item->judul }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> <br>
-                                            <a href="/pengajuan/destroy/{{ $item->judul }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                            <a href="/administrasi/{{ $item->judul }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> <br>
+                                            <a href="/administrasi/destroy/{{ $item->judul }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach

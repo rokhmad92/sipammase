@@ -106,9 +106,6 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Administrasi Dan Analisis Konsep'
             ]);
             padministrasi::create([
-                'nama' => 'Ditolak'
-            ]);
-            padministrasi::create([
                 'nama' => 'Rapat Harmonisasi'
             ]);
             padministrasi::create([

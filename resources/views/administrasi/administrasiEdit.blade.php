@@ -25,7 +25,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="form-group col-md-4">
                                             <label for="tahun">Tahun</label>
-                                            <input type="text" class="form-control @error('tahun') is-invalid @enderror" id="tahun" name="tahun" value="{{ auth()->user()->tahun->no }}" readonly>
+                                            <input type="text" class="form-control @error('tahun') is-invalid @enderror" id="tahun" value="{{ auth()->user()->tahun->no }}" readonly>
                                             @error('tahun')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -34,16 +34,7 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="pemrakarsa">PEMRAKARSA</label>
-                                            <select class="form-control @error('pemrakarsa') is-invalid @enderror" id="pemrakarsa" name="pemrakarsa">
-                                                <option value="{{ $getHarmonisasi->pemrakarsa->nama }}" selected>{{ $getHarmonisasi->pemrakarsa->nama }}</option>
-                                                @foreach ($pemrakarsa as $item)
-                                                    @if ($item->nama == $getHarmonisasi->pemrakarsa->nama)
-                                                        <option value="" style="display: none;"></option>
-                                                    @else
-                                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
+                                            <input type="text" class="form-control @error('tahun') is-invalid @enderror" id="tahun" value="{{ $getHarmonisasi->pemrakarsa->nama }}" readonly>
                                             @error('pemrakarsa')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -59,7 +50,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="form-group col-5">
                                             <label for="judul">Judul Rancangan</label>
-                                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" placeholder="Judul" name="judul" autocomplete="off" value="{{ $getHarmonisasi->judul }}">
+                                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" placeholder="Judul" value="{{ $getHarmonisasi->judul }}" readonly>
                                             @error('judul')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -68,7 +59,7 @@
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="rancangan">Rancangan Harmonisasi</label>
-                                            <input type="text" class="form-control" id="rancangan" name="rancangan" value="{{ $rancangan }}" readonly>
+                                            <input type="text" class="form-control" id="rancangan" value="{{ $rancangan }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +70,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="form-group col-md-5">
                                             <label for="permohonan">Tanggal Permohonan</label>
-                                            <input type="date" class="form-control @error('permohonan') is-invalid @enderror" id="permohonan" name="permohonan" value="{{ $getHarmonisasi->tanggal }}">
+                                            <input type="date" class="form-control @error('permohonan') is-invalid @enderror" id="permohonan" value="{{ $getHarmonisasi->tanggal }}" readonly>
                                             @error('permohonan')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -87,17 +78,10 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="status">Status Pengajuan Harmonisasi</label>
+                                            <label for="status">Status</label>
                                             <select class="form-control @error('status') is-invalid @enderror" id="status" name="status">
-                                                <option value="{{ $getHarmonisasi->kpengajuan->nama }}" selected>{{ $getHarmonisasi->kpengajuan->nama }}</option>
-
-                                                @foreach ($kpengajuan as $item)
-                                                    @if ($item->nama == $getHarmonisasi->kpengajuan->nama)
-                                                        <option value="" style="display: none;"></option>
-                                                    @else
-                                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                                    @endif
-                                                @endforeach
+                                                <option value="Di Terima">Di Terima</option>
+                                                <option value="Di Tolak">Di Tolak</option>
                                             </select>
                                             @error('status')
                                                 <div class="invalid-feedback">
@@ -110,33 +94,10 @@
                             </div>
 
                             <div class="row mt-3 ml-1">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Posisi Harmonisasi</label>
-                                        <select class="form-control @error('padministrasi') is-invalid @enderror" id="padministrasi" name="padministrasi">
-                                            <option value="{{ $getHarmonisasi->padministrasi->nama }}" selected>{{ $getHarmonisasi->padministrasi->nama }}</option>
-                                            @foreach ($padministrasi as $item)
-                                                @if ($item->nama == $getHarmonisasi->padministrasi->nama)
-                                                    <option value="" style="display: none;"></option>
-                                                @else
-                                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                        @error('padministrasi')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mt-3 ml-1">
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Keterangan</label>
-                                        <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" placeholder="Enter ..." name="keterangan">{{ $getHarmonisasi->keterangan }}</textarea>
+                                        <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" placeholder="Enter ..." name="keterangan">{{ $getHarmonisasi->doc_administrasi->keterangan }}</textarea>
                                         @error('keterangan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -146,7 +107,7 @@
                                 </div>
                             </div>
 
-                            @include('pengajuan.docEdit')
+                            @include('administrasi.docEdit')
 
                             <div class="mt-4">
                                 <button type="submit" class="btn btn-success inline">Simpan Data</button>

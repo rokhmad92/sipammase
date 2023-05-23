@@ -27,7 +27,7 @@ class masterController extends Controller
         ]);
 
         role::create($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function role_update($id, Request $request)
@@ -38,7 +38,7 @@ class masterController extends Controller
 
         role::where('id', $id)
                 ->update($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Update Data');
     }
 
     public function tahun()
@@ -56,7 +56,7 @@ class masterController extends Controller
         ]);
 
         tahun::create($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function tahun_update($id, Request $request)
@@ -67,7 +67,7 @@ class masterController extends Controller
 
         tahun::where('id', $id)
                 ->update($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Update Data');
     }
 
     public function rancangan()
@@ -85,7 +85,7 @@ class masterController extends Controller
         ]);
 
         rancangan::create($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function rancangan_update($id, Request $request)
@@ -96,7 +96,7 @@ class masterController extends Controller
 
         rancangan::where('id', $id)
                 ->update($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Update Data');
     }
 
     public function kpengajuan()
@@ -114,7 +114,7 @@ class masterController extends Controller
         ]);
 
         kpengajuan::create($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function kpengajuan_update($id, Request $request)
@@ -125,7 +125,7 @@ class masterController extends Controller
 
         kpengajuan::where('id', $id)
                 ->update($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Update Data');
     }
 
     public function pemrakarsa()
@@ -143,7 +143,7 @@ class masterController extends Controller
         ]);
 
         pemrakarsa::create($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function pemrakarsa_update($id, Request $request)
@@ -154,7 +154,7 @@ class masterController extends Controller
 
         pemrakarsa::where('id', $id)
                 ->update($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Update Data');
     }
 
     public function posisi()
@@ -172,7 +172,7 @@ class masterController extends Controller
         ]);
 
         padministrasi::create($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function posisi_update($id, Request $request)
@@ -183,6 +183,6 @@ class masterController extends Controller
 
         padministrasi::where('id', $id)
                 ->update($validateData);
-        return back();
+        return back()->with('success', 'Berhasil Update Data');
     }
 }

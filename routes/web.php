@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\administrasiController;
 use App\Http\Controllers\basicController;
 use App\Http\Controllers\berandaController;
 use App\Http\Controllers\masterController;
@@ -25,14 +26,31 @@ Route::controller(basicController::class)->group(function() {
     Route::get('/logout', [basicController::class, 'logout']);
 });
 
-// setelah login
 Route::get('/beranda', berandaController::class)->middleware('auth');
+
+// pengajuan
 Route::controller(pengajuanController::class)->middleware('auth')->group(function() {
     Route::get('/pengajuan', 'index');
     Route::get('/pengajuan/{rancangan}', 'tambah');
     Route::post('/pengajuan/{rancangan}', 'store');
     Route::get('/pengajuan/edit/{harmonisasi:judul}', 'edit');
+    Route::post('/pengajuan/edit/{harmonisasi:judul}', 'update');
     Route::get('/pengajuan/destroy/{harmonisasi:judul}', 'destroy');
+
+    // hapus dokumen
+    Route::get('/1/{harmonisasi:judul}', 'destroy1');
+    Route::get('/2/{harmonisasi:judul}', 'destroy2');
+    Route::get('/3/{harmonisasi:judul}', 'destroy3');
+    Route::get('/4/{harmonisasi:judul}', 'destroy4');
+    Route::get('/5/{harmonisasi:judul}', 'destroy5');
+});
+
+// Administrasi Dan Analisis
+Route::controller(administrasiController::class)->group(function() {
+    Route::get('/administrasi', 'index');
+    Route::get('/administrasi/{harmonisasi:judul}', 'show');
+    Route::post('/administrasi/{harmonisasi:judul}', 'update');
+    Route::get('/administrasi/destroy/{harmonisasi:judul}', 'destroy');
 });
 
 // Master Data
