@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('doc_administrasi', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('harmonisasi_id')->constrained('harmonisasi')->nullable();
             $table->string('keterangan', 100)->nullable();
             $table->string('docx1')->nullable();
             $table->string('docx2')->nullable();

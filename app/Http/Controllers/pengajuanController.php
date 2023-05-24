@@ -7,6 +7,7 @@ use App\Models\rancangan;
 use App\Models\kpengajuan;
 use App\Models\pemrakarsa;
 use App\Models\harmonisasi;
+use App\Models\doc_administrasi;
 use Illuminate\Http\Request;
 use App\Models\padministrasi;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +17,7 @@ class pengajuanController extends Controller
     public function index()
     {
         $rancangan = rancangan::all();
-        $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->get();
+        $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->get();
         return view('pengajuan.pengajuan', [
             'title' => 'Pengajuan Harmonisasi'
         ], compact('rancangan', 'harmonisasi'));
@@ -82,14 +83,14 @@ class pengajuanController extends Controller
 
     public function edit(Harmonisasi $harmonisasi)
     {
+        $posisi = ['Pengajuan', 'Administrasi Dan Analisis Konsep'];
         $getHarmonisasi = $harmonisasi;
         $kpengajuan = kpengajuan::all();
         $pemrakarsa = pemrakarsa::all();
-        $padministrasi = padministrasi::all();
         $rancangan = $harmonisasi->rancangan->nama;
         return view('pengajuan.pengajuanEdit', [
             'title' => 'Edit Pengajuan Harmonisasi'
-        ], compact('getHarmonisasi', 'kpengajuan', 'pemrakarsa', 'rancangan', 'padministrasi'));
+        ], compact('getHarmonisasi', 'kpengajuan', 'pemrakarsa', 'rancangan', 'posisi'));
     }
 
     public function update(Harmonisasi $harmonisasi, Request $request)
@@ -164,22 +165,48 @@ class pengajuanController extends Controller
             }
         // End check Doc
 
-        harmonisasi::where('judul', $harmonisasi->judul)
-        ->update([
-            'tahun_id' => $tahun_id->id,
-            'rancangan_id' => $rancangan_id->id,
-            'pemrakarsa_id' => $pemrakarsa_id->id,
-            'kpengajuan_id' => $kpengajuan_id->id,
-            'padministrasi_id' => $padministrasi_id->id,
-            'judul' => $data['judul'],
-            'tanggal' => $data['permohonan'],
-            'keterangan' => $data['keterangan'],
-            'docx1' => $docx1,
-            'docx2' => $docx2,
-            'docx3' => $docx3,
-            'docx4' => $docx4,
-            'docx5' => $docx5
-        ]);
+        if($data['padministrasi'] == 'Administrasi Dan Analisis Konsep' && $harmonisasi->doc_administrasi_id == null)
+        {
+            $harmonisasi_id = harmonisasi::where('id', $harmonisasi->id)->first();
+            $administrasi_id = doc_administrasi::create([
+                'harmonisasi_id' => $harmonisasi_id->id
+            ]);
+
+            harmonisasi::where('judul', $harmonisasi->judul)
+            ->update([
+                'tahun_id' => $tahun_id->id,
+                'rancangan_id' => $rancangan_id->id,
+                'pemrakarsa_id' => $pemrakarsa_id->id,
+                'kpengajuan_id' => $kpengajuan_id->id,
+                'padministrasi_id' => $padministrasi_id->id,
+                'doc_administrasi_id' => $administrasi_id->id,
+                'judul' => $data['judul'],
+                'tanggal' => $data['permohonan'],
+                'keterangan' => $data['keterangan'],
+                'docx1' => $docx1,
+                'docx2' => $docx2,
+                'docx3' => $docx3,
+                'docx4' => $docx4,
+                'docx5' => $docx5
+            ]);
+        } else {
+            harmonisasi::where('judul', $harmonisasi->judul)
+            ->update([
+                'tahun_id' => $tahun_id->id,
+                'rancangan_id' => $rancangan_id->id,
+                'pemrakarsa_id' => $pemrakarsa_id->id,
+                'kpengajuan_id' => $kpengajuan_id->id,
+                'padministrasi_id' => $padministrasi_id->id,
+                'judul' => $data['judul'],
+                'tanggal' => $data['permohonan'],
+                'keterangan' => $data['keterangan'],
+                'docx1' => $docx1,
+                'docx2' => $docx2,
+                'docx3' => $docx3,
+                'docx4' => $docx4,
+                'docx5' => $docx5
+            ]);
+        }
 
         return redirect('/pengajuan')->with('success', 'Berhasil Update Data');
     }
@@ -187,7 +214,7 @@ class pengajuanController extends Controller
     public function destroy($judul)
     {
         harmonisasi::where('judul', $judul)->delete();
-        return redirect('/pengajuan')->with('success', 'Berhasil Menghapus Data');
+        return back()->with('success', 'Berhasil Menghapus Data');
     }
 
     public function destroy1(Harmonisasi $harmonisasi)

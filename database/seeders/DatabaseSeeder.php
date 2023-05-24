@@ -111,6 +111,9 @@ class DatabaseSeeder extends Seeder
             padministrasi::create([
                 'nama' => 'Penyampaian'
             ]);
+            padministrasi::create([
+                'nama' => 'Selesai Harmonisasi'
+            ]);
         // end poisi administrasi
     }
 }

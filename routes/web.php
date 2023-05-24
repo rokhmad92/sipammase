@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\administrasiController;
-use App\Http\Controllers\basicController;
-use App\Http\Controllers\berandaController;
-use App\Http\Controllers\masterController;
-use App\Http\Controllers\pengajuanController;
-use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\userController;
+use App\Http\Controllers\basicController;
+use App\Http\Controllers\rapatController;
+use App\Http\Controllers\masterController;
+use App\Http\Controllers\berandaController;
+use App\Http\Controllers\pengajuanController;
+use App\Http\Controllers\penyampaianController;
+use App\Http\Controllers\administrasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +52,41 @@ Route::controller(administrasiController::class)->group(function() {
     Route::get('/administrasi', 'index');
     Route::get('/administrasi/{harmonisasi:judul}', 'show');
     Route::post('/administrasi/{harmonisasi:judul}', 'update');
-    Route::get('/administrasi/destroy/{harmonisasi:judul}', 'destroy');
+
+    // hapus dokumen
+    Route::get('/1/administrasi/{harmonisasi:judul}', 'destroy1');
+    Route::get('/2/administrasi/{harmonisasi:judul}', 'destroy2');
+    Route::get('/3/administrasi/{harmonisasi:judul}', 'destroy3');
+    Route::get('/4/administrasi/{harmonisasi:judul}', 'destroy4');
+    Route::get('/5/administrasi/{harmonisasi:judul}', 'destroy5');
+});
+
+// Rapat
+Route::controller(rapatController::class)->group(function() {
+    Route::get('/rapat', 'index');
+    Route::get('/rapat/{harmonisasi:judul}', 'show');
+    Route::post('/rapat/{harmonisasi:judul}', 'update');
+
+    // hapus dokumen
+    Route::get('/1/rapat/{harmonisasi:judul}', 'destroy1');
+    Route::get('/2/rapat/{harmonisasi:judul}', 'destroy2');
+    Route::get('/3/rapat/{harmonisasi:judul}', 'destroy3');
+    Route::get('/4/rapat/{harmonisasi:judul}', 'destroy4');
+    Route::get('/5/rapat/{harmonisasi:judul}', 'destroy5');
+});
+
+// penyampaian
+Route::controller(penyampaianController::class)->group(function() {
+    Route::get('/penyampaian', 'index');
+    Route::get('/penyampaian/{harmonisasi:judul}', 'show');
+    Route::post('/penyampaian/{harmonisasi:judul}', 'update');
+
+    // hapus dokumen
+    Route::get('/1/penyampaian/{harmonisasi:judul}', 'destroy1');
+    Route::get('/2/penyampaian/{harmonisasi:judul}', 'destroy2');
+    Route::get('/3/penyampaian/{harmonisasi:judul}', 'destroy3');
+    Route::get('/4/penyampaian/{harmonisasi:judul}', 'destroy4');
+    Route::get('/5/penyampaian/{harmonisasi:judul}', 'destroy5');
 });
 
 // Master Data

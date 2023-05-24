@@ -19,9 +19,11 @@ return new class extends Migration
             $table->foreignId('kpengajuan_id')->constrained('kpengajuan');
             $table->unsignedBigInteger('padministrasi_id')->constrained('padministrasi');
             $table->unsignedBigInteger('doc_administrasi_id')->constrained('doc_administrasi')->nullable();
-            $table->unsignedBigInteger('doc_penyampaian_id')->constrained('doc_penyampaian')->nullable();
             $table->unsignedBigInteger('doc_rapat_id')->constrained('doc_rapat')->nullable();
+            $table->unsignedBigInteger('doc_penyampaian_id')->constrained('doc_penyampaian')->nullable();
             $table->string('status_administrasi')->nullable();
+            $table->string('status_rapat')->nullable();
+            $table->string('status_penyampaian')->nullable();
             $table->string('judul', 50)->unique();
             $table->date('tanggal');
             $table->string('keterangan', 100)->nullable();

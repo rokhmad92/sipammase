@@ -27,7 +27,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Rancangan</th>
-                                    <th class="col-md-3">Aksi</th>
+                                    {{-- <th class="col-md-3">Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,10 +35,10 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td class="text-center">
+                                        {{-- <td class="text-center">
                                             <span class="badge badge-info" style="cursor: pointer;" data-toggle="modal" data-target="#modal-edit{{ $item->id }}"><i class="fas fa-edit"></i> Edit</span>
                                             <a href="/rancangan/{{ $item->id }}" onclick="return confirm('Tunggu Fitur Selesai')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>

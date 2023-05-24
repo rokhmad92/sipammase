@@ -33,13 +33,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Rapat Harmonisasi') ? 'active' : '' }}">
+                            <a href="/rapat" class="nav-link {{ ($title == 'Rapat Harmonisasi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-receipt"></i>
                                 <p>Rapat Harmonisasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ ($title == 'Penyampaian Harmonisasi') ? 'active' : '' }}">
+                            <a href="/penyampaian" class="nav-link {{ ($title == 'Penyampaian Harmonisasi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-box"></i>
                                 <p class="text-sm">Penyampaian Harmonisasi</p>
                             </a>
@@ -88,7 +88,7 @@
                                             <i class="far fa-circle nav-icon"></i><p> Pemrakarsa</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item d-none">
                                         <a href="/posisi" class="nav-link {{ ($title == 'Posisi Administrasi') ? 'active' : '' }}">
                                             <i class="far fa-circle nav-icon"></i><p> Posisi Administrasi</p>
                                         </a>

@@ -80,9 +80,9 @@
                                         <div class="form-group col-6">
                                             <label for="status">Status</label>
                                             <select class="form-control @error('status') is-invalid @enderror" id="status" name="status">
-                                            <option value="{{ $getHarmonisasi->status_administrasi }}" selected>{{ $getHarmonisasi->status_administrasi }}</option>
+                                            <option value="{{ $getHarmonisasi->status_penyampaian }}" selected>{{ $getHarmonisasi->status_penyampaian }}</option>
                                             @foreach ($status as $item)
-                                                @if ($item == $getHarmonisasi->status_administrasi || $item == $getHarmonisasi->status_administrasi)
+                                                @if ($item == $getHarmonisasi->status_administrasi || $item == $getHarmonisasi->status_penyampaian)
                                                     <option value="" style="display: none;"></option>
                                                 @else
                                                     <option value="{{ $item }}">{{ $item }}</option>
@@ -103,7 +103,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label>Keterangan</label>
-                                        <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" placeholder="Enter ..." name="keterangan">{{ $getHarmonisasi->doc_administrasi->keterangan }}</textarea>
+                                        <textarea class="form-control @error('keterangan') is-invalid @enderror" rows="3" placeholder="Enter ..." name="keterangan">{{ $getHarmonisasi->doc_penyampaian->keterangan }}</textarea>
                                         @error('keterangan')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -113,11 +113,11 @@
                                 </div>
                             </div>
 
-                            @include('administrasi.docEditAdministrasi')
+                            @include('penyampaian.docEditPenyampaian')
 
                             <div class="mt-4">
                                 <button type="submit" class="btn btn-success inline">Simpan Data</button>
-                                <a href="/administrasi" class="btn btn-secondary">Kembali</a>
+                                <a href="/pengajuan" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>

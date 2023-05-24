@@ -56,11 +56,11 @@
                                             <td>Belum ada dokumen</td>
                                         @else
                                             <td>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx1) ? '' : 'd-none' }}" href="{{ $item->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx2) ? '' : 'd-none' }}" href="{{ $item->docx2 }}" target="_blank">2. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx3) ? '' : 'd-none' }}" href="{{ $item->docx3 }}" target="_blank">3. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx4) ? '' : 'd-none' }}" href="{{ $item->docx4 }}" target="_blank">4. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx5) ? '' : 'd-none' }}" href="{{ $item->docx5 }}" target="_blank">5. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx1) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx2) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->docx2 }}" target="_blank">2. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx3) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->docx3 }}" target="_blank">3. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx4) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->docx4 }}" target="_blank">4. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx5) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->docx5 }}" target="_blank">5. <i class="fas fa-download"></i></a>
                                             </td>
                                         @endif
                                         <td>{{ $item->kpengajuan->nama }}</td>

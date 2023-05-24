@@ -115,13 +115,21 @@
                                         <label>Posisi Harmonisasi</label>
                                         <select class="form-control @error('padministrasi') is-invalid @enderror" id="padministrasi" name="padministrasi">
                                             <option value="{{ $getHarmonisasi->padministrasi->nama }}" selected>{{ $getHarmonisasi->padministrasi->nama }}</option>
+                                            @foreach ($posisi as $item)
+                                                @if ($item == $getHarmonisasi->padministrasi->nama)
+                                                    <option value="" style="display: none;"></option>
+                                                @else
+                                                    <option value="{{ $item }}">{{ $item }}</option>
+                                                @endif
+                                            @endforeach
+                                            {{-- <option value="{{ $getHarmonisasi->padministrasi->nama }}" selected>{{ $getHarmonisasi->padministrasi->nama }}</option>
                                             @foreach ($padministrasi as $item)
                                                 @if ($item->nama == $getHarmonisasi->padministrasi->nama)
                                                     <option value="" style="display: none;"></option>
                                                 @else
                                                     <option value="{{ $item->nama }}">{{ $item->nama }}</option>
                                                 @endif
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                         @error('padministrasi')
                                             <div class="invalid-feedback">
@@ -146,7 +154,7 @@
                                 </div>
                             </div>
 
-                            @include('pengajuan.docEdit')
+                            @include('pengajuan.docEditPengajuan')
 
                             <div class="mt-4">
                                 <button type="submit" class="btn btn-success inline">Simpan Data</button>
