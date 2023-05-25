@@ -65,7 +65,7 @@
                         <div class="inner">
                             <h3>{{ $totalPenyampaian }}</h3>
         
-                            <p class="text-sm">Penyampaian & Selesai Harmonisassi</p>
+                            <p class="text-sm">Penyampaian/Selesai Harmonisasi</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-folder-open"></i>

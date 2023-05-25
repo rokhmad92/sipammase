@@ -97,7 +97,9 @@ Route::get('/grafik', [dataController::class, 'index'])->middleware(['auth', 'is
 Route::controller(dataController::class)->group(function() {
     Route::get('/agenda', 'agenda');
     Route::post('/agenda', 'store');
-    // Route::get('/agenda', 'store');
+    Route::get('/agenda/{agenda:nama}', 'hapus');
+    Route::post('/agenda/{agenda:nama}', 'update');
+    Route::get('/agenda/hapus/{agenda:nama}', 'destroy');
 });
 
 // Master Data

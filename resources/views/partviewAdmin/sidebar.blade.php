@@ -52,7 +52,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link {{ ($title == 'Agenda Rapat') ? 'active' : '' }}">
+                                <a href="/agenda" class="nav-link {{ ($title == 'Agenda Rapat') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-calendar-alt"></i>
                                     <p>Agenda Rapat</p>
                                 </a>

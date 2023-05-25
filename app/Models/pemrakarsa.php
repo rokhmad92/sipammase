@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\agenda;
 use App\Models\harmonisasi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,6 +18,11 @@ class pemrakarsa extends Model
     public function harmonisasi()
     {
         return $this->hasMany(harmonisasi::class);
+    }
+
+    public function agenda()
+    {
+        return $this->hasMany(agenda::class);
     }
 
     public function users()
