@@ -25,7 +25,10 @@ class AppServiceProvider extends ServiceProvider
 
         // custom if blade
             Blade::if('admin', function($user) {
-                return $user->role->nama == 'Administrator' || $user->role_id == 2;
+                return $user->role->nama == 'Administrator' || $user->role->nama == 'Pokja';
+            });
+            Blade::if('isAdmin', function($user) {
+                return $user->role->nama == 'Administrator';
             });
         // END custom if blade
     }

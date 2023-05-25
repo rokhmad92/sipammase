@@ -17,9 +17,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header text-right">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
+                        {{-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
                             <i class="fas fa-plus"></i> Tambah Role
-                        </button>
+                        </button> --}}
                     </div>
                     <div class="card-body">
                         <table class="dataTable table table-bordered">
@@ -27,27 +27,27 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Role</th>
-                                    <th class="col-md-3">Aksi</th>
+                                    {{-- <th class="col-md-3">Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($role as $item)
-                                    @if ($item->nama == 'Administrator')
-                                        <tr>
+                                    {{-- @if ($item->nama == 'Administrator') --}}
+                                        {{-- <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->nama }}</td>
                                             <td class="text-center"><span class="badge badge-info">Tidak Ada Aksi</span></td>
-                                        </tr>
-                                    @else
+                                        </tr> --}}
+                                    {{-- @else --}}
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->nama }}</td>
-                                            <td class="text-center">
+                                            {{-- <td class="text-center">
                                                 <span class="badge badge-info" style="cursor: pointer;" data-toggle="modal" data-target="#modal-edit{{ $item->id }}"><i class="fas fa-edit"></i> Edit</span>
                                                 <a href="/role/{{ $item->id }}" onclick="return confirm('Tunggu Fitur Selesai')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
-                                            </td>
+                                            </td> --}}
                                         </tr>
-                                    @endif
+                                    {{-- @endif --}}
                                 @endforeach
                             </tbody>
                         </table>

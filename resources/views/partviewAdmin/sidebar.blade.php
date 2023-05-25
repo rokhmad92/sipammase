@@ -7,7 +7,7 @@
                     <img src="{{ asset('images') }}/logo.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Administrator</a>
+                    <a href="#" class="d-block">{{ auth()->user()->role->nama }}</a>
                 </div>
             </div>
 
@@ -26,6 +26,7 @@
                                 <p class="text-sm">Pengajuan Harmonisasi</p>
                             </a>
                         </li>
+                        @admin(auth()->user())
                         <li class="nav-item">
                             <a href="/administrasi" class="nav-link {{ ($title == 'Administrasi Dan Analisis Konsepsi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-search"></i>
@@ -44,9 +45,8 @@
                                 <p class="text-sm">Penyampaian Harmonisasi</p>
                             </a>
                         </li>
-                        @admin(auth()->user())
                             <li class="nav-item">
-                                <a href="#" class="nav-link {{ ($title == 'Grafik Harmonisasi') ? 'active' : '' }}">
+                                <a href="/grafik" class="nav-link {{ ($title == 'Grafik Harmonisasi') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-chart-line"></i>
                                     <p>Grafik Harmonisasi</p>
                                 </a>
@@ -95,12 +95,14 @@
                                     </li>
                                 </ul>
                             </li>
+                            @isAdmin(auth()->user())
                             <li class="nav-item">
                                 <a href="/users" class="nav-link {{ ($title == 'Users') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>Users</p>
                                 </a>
                             </li>
+                            @endisAdmin
                         @endadmin
                         <li class="nav-item">
                             <a href="/profile/{{ auth()->user()->username }}" class="nav-link {{ ($title == 'Profile') ? 'active' : '' }}">
@@ -109,7 +111,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/logout" class="nav-link">
+                            <a href="/logout" class="nav-link" onclick="return confirm('Yakin ingin logout?')">
                                 <i class="nav-icon fas fa-door-open"></i>
                                 <p>Logout</p>
                             </a>

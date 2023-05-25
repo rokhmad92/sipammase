@@ -8,6 +8,8 @@ use App\Models\kpengajuan;
 use App\Models\pemrakarsa;
 use App\Models\harmonisasi;
 use App\Models\doc_administrasi;
+use App\Models\doc_rapat;
+use App\Models\doc_penyampaian;
 use Illuminate\Http\Request;
 use App\Models\padministrasi;
 use Illuminate\Support\Facades\Storage;
@@ -211,9 +213,74 @@ class pengajuanController extends Controller
         return redirect('/pengajuan')->with('success', 'Berhasil Update Data');
     }
 
-    public function destroy($judul)
+    public function destroy(Harmonisasi $harmonisasi)
     {
-        harmonisasi::where('judul', $judul)->delete();
+        // hapus doc harmonisasi
+            Storage::delete($harmonisasi->docx1);
+            Storage::delete($harmonisasi->docx2);
+            Storage::delete($harmonisasi->docx3);
+            Storage::delete($harmonisasi->docx4);
+            Storage::delete($harmonisasi->docx5);
+        // hapus doc administrasi
+        if ($harmonisasi->doc_administrasi) {
+            if ($harmonisasi->doc_administrasi->docx1) {
+                Storage::delete($harmonisasi->doc_administrasi->docx1);
+            }
+            if ($harmonisasi->doc_administrasi->docx2) {
+                Storage::delete($harmonisasi->doc_administrasi->docx2);
+            }
+            if ($harmonisasi->doc_administrasi->docx3) {
+                Storage::delete($harmonisasi->doc_administrasi->docx3);
+            }
+            if ($harmonisasi->doc_administrasi->docx4) {
+                Storage::delete($harmonisasi->doc_administrasi->docx4);
+            }
+            if ($harmonisasi->doc_administrasi->docx5) {
+                Storage::delete($harmonisasi->doc_administrasi->docx5);
+            }
+        }
+        // hapus doc rapat
+        if ($harmonisasi->doc_rapat) {
+            if ($harmonisasi->doc_rapat->docx1) {
+                Storage::delete($harmonisasi->doc_rapat->docx1);
+            }
+            if ($harmonisasi->doc_rapat->docx2) {
+                Storage::delete($harmonisasi->doc_rapat->docx2);
+            }
+            if ($harmonisasi->doc_rapat->docx3) {
+                Storage::delete($harmonisasi->doc_rapat->docx3);
+            }
+            if ($harmonisasi->doc_rapat->docx4) {
+                Storage::delete($harmonisasi->doc_rapat->docx4);
+            }
+            if ($harmonisasi->doc_rapat->docx5) {
+                Storage::delete($harmonisasi->doc_rapat->docx5);
+            }
+        }
+        // hapus doc penyampaian
+        if ($harmonisasi->doc_penyampaian) {
+            # code...
+            if ($harmonisasi->doc_penyampaian->docx1) {
+                Storage::delete($harmonisasi->doc_penyampaian->docx1);
+            }
+            if ($harmonisasi->doc_penyampaian->docx2) {
+                Storage::delete($harmonisasi->doc_penyampaian->docx2);
+            }
+            if ($harmonisasi->doc_penyampaian->docx3) {
+                Storage::delete($harmonisasi->doc_penyampaian->docx3);
+            }
+            if ($harmonisasi->doc_penyampaian->docx4) {
+                Storage::delete($harmonisasi->doc_penyampaian->docx4);
+            }
+            if ($harmonisasi->doc_penyampaian->docx5) {
+                Storage::delete($harmonisasi->doc_penyampaian->docx5);
+            }
+        }
+        // hapus data
+            harmonisasi::where('judul', $harmonisasi->judul)->delete();
+            doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->delete();
+            doc_rapat::where('harmonisasi_id', $harmonisasi->id)->delete();
+            doc_penyampaian::where('harmonisasi_id', $harmonisasi->id)->delete();
         return back()->with('success', 'Berhasil Menghapus Data');
     }
 

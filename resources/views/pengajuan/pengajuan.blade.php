@@ -23,9 +23,16 @@
                                 <i class="fas fa-plus"></i> Tambah Harmonisasi
                             </button>
                             <div class="dropdown-menu">
-                                @foreach ($rancangan as $item)
-                                    <a class="dropdown-item" href="/pengajuan/{{ $item->nama }}">{{ $item->nama }}</a>
-                                @endforeach
+                                @if (auth()->user()->role->nama == 'Pemda')
+                                    <a class="dropdown-item" href="/pengajuan/RPERDA PEMDA">RPERDA PEMDA</a>
+                                    <a class="dropdown-item" href="/pengajuan/RPERKADA">RPERKADA</a>
+                                @elseif (auth()->user()->role->nama == 'DPRD')
+                                    <a class="dropdown-item" href="/pengajuan/RPERDA DPRD">RPERDA DPRD</a>
+                                @else
+                                    @foreach ($rancangan as $item)
+                                        <a class="dropdown-item" href="/pengajuan/{{ $item->nama }}">{{ $item->nama }}</a>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>

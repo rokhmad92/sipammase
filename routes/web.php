@@ -5,6 +5,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\basicController;
 use App\Http\Controllers\rapatController;
 use App\Http\Controllers\masterController;
+use App\Http\Controllers\dataController;
 use App\Http\Controllers\berandaController;
 use App\Http\Controllers\pengajuanController;
 use App\Http\Controllers\penyampaianController;
@@ -48,7 +49,7 @@ Route::controller(pengajuanController::class)->middleware('auth')->group(functio
 });
 
 // Administrasi Dan Analisis
-Route::controller(administrasiController::class)->group(function() {
+Route::controller(administrasiController::class)->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/administrasi', 'index');
     Route::get('/administrasi/{harmonisasi:judul}', 'show');
     Route::post('/administrasi/{harmonisasi:judul}', 'update');
@@ -62,7 +63,7 @@ Route::controller(administrasiController::class)->group(function() {
 });
 
 // Rapat
-Route::controller(rapatController::class)->group(function() {
+Route::controller(rapatController::class)->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/rapat', 'index');
     Route::get('/rapat/{harmonisasi:judul}', 'show');
     Route::post('/rapat/{harmonisasi:judul}', 'update');
@@ -76,7 +77,7 @@ Route::controller(rapatController::class)->group(function() {
 });
 
 // penyampaian
-Route::controller(penyampaianController::class)->group(function() {
+Route::controller(penyampaianController::class)->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/penyampaian', 'index');
     Route::get('/penyampaian/{harmonisasi:judul}', 'show');
     Route::post('/penyampaian/{harmonisasi:judul}', 'update');
@@ -89,8 +90,18 @@ Route::controller(penyampaianController::class)->group(function() {
     Route::get('/5/penyampaian/{harmonisasi:judul}', 'destroy5');
 });
 
+// grafik
+Route::get('/grafik', [dataController::class, 'index'])->middleware(['auth', 'isAdmin']);
+
+// agenda
+Route::controller(dataController::class)->group(function() {
+    Route::get('/agenda', 'agenda');
+    Route::post('/agenda', 'store');
+    // Route::get('/agenda', 'store');
+});
+
 // Master Data
-Route::controller(masterController::class)->middleware('auth')->group(function() {
+Route::controller(masterController::class)->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/role', 'role');
     Route::post('/role', 'role_store');
     Route::post('/role/{id}', 'role_update');
@@ -118,14 +129,14 @@ Route::controller(masterController::class)->middleware('auth')->group(function()
 });
 
 // Users
-Route::controller(userController::class)->middleware('auth')->group(function() {
+Route::controller(userController::class)->group(function() {
     Route::get('/profile/{user:username}', 'index');
     Route::post('/profile/{user:username}', 'index_update');
 
-    Route::get('/users', 'users');
-    Route::get('/users/tambah', 'create');
-    Route::post('/users/tambah', 'store');
-    Route::get('/users/{user:username}', 'edit');
-    Route::post('/users/{user:username}', 'update');
-    Route::get('/user/{user:username}', 'destroy');
+    Route::get('/users', 'users')->middleware(['auth', 'isAdmin']);
+    Route::get('/users/tambah', 'create')->middleware(['auth', 'isAdmin']);
+    Route::post('/users/tambah', 'store')->middleware(['auth', 'isAdmin']);
+    Route::get('/users/{user:username}', 'edit')->middleware(['auth', 'isAdmin']);
+    Route::post('/users/{user:username}', 'update')->middleware(['auth', 'isAdmin']);
+    Route::get('/user/{user:username}', 'destroy')->middleware(['auth', 'isAdmin']);
 });

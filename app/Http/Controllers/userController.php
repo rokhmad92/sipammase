@@ -90,8 +90,8 @@ class userController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required|min:8|max:20|unique:user,username',
-            'password' => 'nullable|min:8|max:20',
+            'username' => 'required|max:20|unique:user,username',
+            'password' => 'nullable|max:20',
             'namaPanjang' => 'required|max:70|unique:user,namaPanjang',
             'email' => 'required|email:rfc,dns|unique:user,email',
             'alamat' => 'required|max:80',
@@ -132,8 +132,8 @@ class userController extends Controller
     public function update($username, Request $request)
     {
         $request->validate([
-            'username' => 'required|min:8|max:20',
-            'password' => 'nullable|min:8|max:20',
+            'username' => 'required|max:20',
+            'password' => 'nullable|max:20',
             'namaPanjang' => 'required|max:70',
             'email' => 'required|email:rfc,dns',
             'alamat' => 'required|max:80',

@@ -15,6 +15,11 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (auth()->user()->role->nama == 'Pemda') {
+            abort(403);
+        } elseif (auth()->user()->role->nama == 'Pemda') {
+            abort(403);
+        }
         return $next($request);
     }
 }

@@ -17,9 +17,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header text-right">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
+                        {{-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
                             <i class="fas fa-plus"></i> Tambah Rancangan
-                        </button>
+                        </button> --}}
                     </div>
                     <div class="card-body">
                         <table class="dataTable table table-bordered">

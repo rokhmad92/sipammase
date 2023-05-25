@@ -6,7 +6,6 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('template') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('template') }}/plugins/chart.js/Chart.min.js"></script>
 <script src="{{ asset('template') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="{{ asset('template') }}/dist/js/adminlte.js"></script>
 <script src="{{ asset('template') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
