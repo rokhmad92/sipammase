@@ -24,8 +24,10 @@ use App\Http\Controllers\administrasiController;
 
 // Basic Page
 Route::controller(basicController::class)->group(function() {
-    Route::get('/', 'login')->name('login')->middleware('guest');
-    Route::post('/', 'login_post')->middleware('guest');
+    Route::get('/', 'index')->middleware('guest');
+    Route::get('/perancang', 'perancang')->middleware('guest');
+    Route::get('/login', 'login')->name('login')->middleware('guest');
+    Route::post('/login', 'login_post')->middleware('guest');
     Route::get('/logout', [basicController::class, 'logout']);
 });
 
@@ -141,4 +143,10 @@ Route::controller(userController::class)->group(function() {
     Route::get('/users/{user:username}', 'edit')->middleware(['auth', 'isAdmin']);
     Route::post('/users/{user:username}', 'update')->middleware(['auth', 'isAdmin']);
     Route::get('/user/{user:username}', 'destroy')->middleware(['auth', 'isAdmin']);
+});
+
+// perancang
+Route::controller(perancangController::class)->middleware(['auth', 'isAdmin'])->group(function() {
+    Route::get('/pendiri', 'index');
+    Route::post('/pendiri', 'store');
 });

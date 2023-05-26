@@ -37,7 +37,7 @@
             @elseif(Session::has('success'))
                 toastr.success('{{ Session::get('success') }}');
             @elseif($errors->any())
-                toastr.error('{{ Session::get('$errors->any()') }}');
+                toastr.error('Gagal Melakukan Aksi');
             @endif
 
 
