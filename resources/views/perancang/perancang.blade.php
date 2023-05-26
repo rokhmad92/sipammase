@@ -17,6 +17,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header text-right">
+                        {{-- <a href="/jabatan" class="btn btn-info" data-toggle="modal" data-target="#modal-default1">
+                            <i class="fas fa-medal"></i> Jabatan
+                        </a> --}}
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
                             <i class="fas fa-plus"></i> Tambah Perancang
                         </button>
@@ -29,7 +32,7 @@
                                     <th>Nama</th>
                                     <th>NIP</th>
                                     <th>Jabatan</th>
-                                    <th class="col-md-3">Foto</th>
+                                    <th class="col-md-2">Foto</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -38,9 +41,14 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->nip }}</td>
+                                            <td>{{ $item->jabatan }}</td>
+                                            <td class="text-center">
+                                                <img src="{{ asset('storage') }}/{{ $item->foto }}" alt="Foto" width="130">
+                                            </td>
                                             <td class="text-center">
                                                 <span class="badge badge-info" style="cursor: pointer;" data-toggle="modal" data-target="#modal-edit{{ $item->id }}"><i class="fas fa-edit"></i> Edit</span>
-                                                <a href="/role/{{ $item->id }}" onclick="return confirm('Tunggu Fitur Selesai')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                                <a href="/pendiri/{{ $item->id }}" onclick="return confirm('Tunggu Fitur Selesai')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
                                             </td>
                                         </tr>
                                     {{-- @endif --}}
@@ -63,7 +71,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group">
                         <label for="namaRole">Nama Perancang</label>
@@ -85,11 +93,12 @@
                     </div>
                     <div class="form-group">
                         <label for="jabatan">Jabatan</label>
-                        <select class="form-control" id="jabatan" name="jabatan">
-                            @foreach ($jabatan as $item)
-                                <option value="{{ $jabatan->id }}">{{ $jabatan->nama }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan" name="jabatan" required value="{{ old('jabatan') }}">
+                        @error('jabatan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="form-group mt-4">
                         <h5>Upload Foto</h5>
@@ -116,27 +125,60 @@
     </div>
 </div>
 
-{{-- @foreach ($perancang as $item)
+@foreach ($perancang as $item)
 <div class="modal fade" id="modal-edit{{ $item->id }}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Role</h4>
+                <h4 class="modal-title">Edit Perancang</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/role/{{ $item->id }}" method="POST">
+                <form action="/pendiri/{{ $item->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group">
-                        <label for="editRole">Edit Role</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="neditRole" name="nama" required maxlength="20" autocomplete="off" value="{{ $item->nama }}">
+                        <label for="perancangEdit">Nama Perancang</label>
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="perancangEdit" name="nama" required autocomplete="off" value="{{ $item->nama }}">
                         @error('nama')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="nipedit">NIP Perancang</label>
+                        <input type="text" class="form-control @error('nip') is-invalid @enderror" id="nipedit" name="nip" required autocomplete="off" value="{{ $item->nip }}">
+                        @error('nip')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="jabatan">Jabatan</label>
+                        <input type="text" class="form-control @error('jabatan') is-invalid @enderror" id="jabatan" name="jabatan" required value="{{ $item->jabatan }}">
+                        @error('jabatan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-group mt-4">
+                        <h5>Upload Foto</h5>
+                        <div class="col mb-5">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input @error('foto') is-invalid @enderror" id="upload" name="foto">
+                                <label class="custom-file-label" for="upload">Choose file</label>
+                                <small>Type : jpg, jpeg, png | Max : 5MB</small>
+                                @error('foto')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
             </div>
             <div class="modal-footer justify-content-between">
@@ -147,5 +189,5 @@
         </div>
     </div>
 </div>
-@endforeach --}}
+@endforeach
 @endsection

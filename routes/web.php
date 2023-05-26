@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\dataController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\basicController;
 use App\Http\Controllers\rapatController;
 use App\Http\Controllers\masterController;
-use App\Http\Controllers\dataController;
 use App\Http\Controllers\berandaController;
 use App\Http\Controllers\pengajuanController;
+use App\Http\Controllers\perancangController;
 use App\Http\Controllers\penyampaianController;
 use App\Http\Controllers\administrasiController;
 
@@ -149,4 +150,6 @@ Route::controller(userController::class)->group(function() {
 Route::controller(perancangController::class)->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/pendiri', 'index');
     Route::post('/pendiri', 'store');
+    Route::post('/pendiri/{perancang:id}', 'update');
+    Route::get('/pendiri/{id}', 'destroy');
 });

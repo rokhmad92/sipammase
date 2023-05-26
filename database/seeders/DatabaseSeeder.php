@@ -4,13 +4,14 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\kpengajuan;
-use App\Models\padministrasi;
 use App\Models\role;
 use App\Models\User;
 use App\Models\tahun;
+use App\Models\jabatan;
 use App\Models\rancangan;
+use App\Models\kpengajuan;
 use App\Models\pemrakarsa;
+use App\Models\padministrasi;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -115,5 +116,26 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Selesai Harmonisasi'
             ]);
         // end poisi administrasi
+
+        // jabatan
+            jabatan::create([
+                'nama' => 'Kepala Kantor Wilayah'
+            ]);
+            jabatan::create([
+                'nama' => 'Kepala Divisi Pelayanan Hukum Dan Hak Asasi Manusia'
+            ]);
+            jabatan::create([
+                'nama' => 'Kepala Bidang Hukum Merangkap Perancang Peraturan Perundang-undangan Ahli Madya'
+            ]);
+            jabatan::create([
+                'nama' => 'Kepala Subbidang Fasilitasi Pembentukan Produk Hukum Daerah Merangkap Perancang Peraturan Perundang-undangan Ahli Muda'
+            ]);
+            jabatan::create([
+                'nama' => 'Perancang Peraturan Perundang-undangan Ahli Madya'
+            ]);
+            jabatan::create([
+                'nama' => 'Perancang Peraturan Perundang-undangan Ahli Pertama'
+            ]);
+        // end jabatan
     }
 }

@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="{{ asset('template') }}/plugins/toastr/toastr.min.css">
     {{-- my style --}}
     <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/gif" sizes="30x30">
-    <link rel="stylesheet" href="{{ asset('css') }}/style.css">
+    <style>
+        .swiper {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="background-color: #F4F6F9;">

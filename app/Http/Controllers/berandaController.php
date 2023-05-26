@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\agenda;
 use App\Models\harmonisasi;
 use Illuminate\Http\Request;
 
@@ -17,9 +18,10 @@ class berandaController extends Controller
         $totalAdministrasi = harmonisasi::where('padministrasi_id', 2)->count();
         $totalRapat = harmonisasi::where('padministrasi_id', 3)->count();
         $totalPenyampaian = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
+        $agenda = agenda::whereNotNull('foto')->get('foto');
 
         return view('beranda', [
             'title' => 'Beranda'
-        ], compact('totalPengajuan', 'totalAdministrasi', 'totalRapat', 'totalPenyampaian', 'harmonisasi'));
+        ], compact('totalPengajuan', 'totalAdministrasi', 'totalRapat', 'totalPenyampaian', 'harmonisasi', 'agenda'));
     }
 }

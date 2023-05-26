@@ -1,4 +1,4 @@
-@extends('partviewAdmin.main')
+@extends('partviewAdmin.mainBeranda')
 
 @section('content')
         <!-- Content Header (Page header) -->
@@ -13,6 +13,23 @@
             </div>
         </div>
         <!-- /.content-header -->
+
+        {{-- swipe foto --}}
+        @if ($agenda)
+            <div class="swiper mt-1 mb-5 mx-3">
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    @foreach ($agenda as $item)
+                        <div class="swiper-slide">
+                            <img src="{{ asset('storage') }}/{{ $item->foto }}" alt="Foto" class="img-fluid" style="border-radius: 10px;">
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="swiper-pagination"></div>
+            </div>
+        @endif
+        {{-- End swipe foto --}}
 
         <!-- Main content -->
         <section class="content">

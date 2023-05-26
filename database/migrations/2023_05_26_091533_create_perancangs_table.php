@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('perancang', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jabatan_id')->constrained('jabatan');
+            $table->unsignedInteger('jabatan_id')->constrained('jabatan')->nullable();
             $table->string('nama', 100);
+            $table->string('jabatan', 150)->nullable();
             $table->string('nip', 50);
             $table->string('foto');
             $table->timestamps();
