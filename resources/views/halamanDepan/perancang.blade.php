@@ -12,7 +12,7 @@
                     <table class="table table-hover table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col" class="col-md-1">No</th>
+                                <th scope="col" class="col-sm-1">No</th>
                                 <th scope="col">Nama / NIP</th>
                                 <th scope="col">Jabatan</th>
                                 <th scope="col" class="col-md-2">Foto</th>

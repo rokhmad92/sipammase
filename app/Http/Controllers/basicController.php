@@ -36,16 +36,16 @@ class basicController extends Controller
 
     public function login()
     {
-        return view('halamanDepan.login', [
-            'title' => 'Login'
+        return view('login.login', [
+            'title' => 'Login SIPAMMASE'
         ]);
     }
 
     public function login_post(Request $request)
     {
         $validateData = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
+            'username' => 'required|max:20',
+            'password' => 'required|max:20'
         ]);
 
         if (Auth::attempt($validateData)) {

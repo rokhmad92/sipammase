@@ -178,9 +178,11 @@
                                 </div>
                             </div>
 
-                            <div class="auto-jsCalendar material-theme green" data-day-format="DDD"></div>
+                            <div class="d-flex">
+                                <div class="auto-jsCalendar material-theme green mx-auto" data-day-format="DDD"></div>
+                            </div>
 
-                            <div class="card card-danger">
+                            <div class="card card-danger mt-3">
                                 <div class="card-header">
                                     <h3 class="card-title">Jadwal Agenda Rapat</h3>
                                     <div class="card-tools">

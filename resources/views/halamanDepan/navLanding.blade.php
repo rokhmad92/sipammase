@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg" style="background-color: rgba(240,241,243, 0.5);{{ ($title == 'Daftar Perancang') ? '' : 'position: absolute;top: 0;left: 0;right: 0;z-index: 999;'}}">
-    @if ($title == 'Daftar Perancang')
+<nav class="navbar navbar-expand-lg" style="background-color: rgba(240,241,243, 0.5);{{ ($title !== 'Daftar Perancang') ? 'position: absolute;top: 0;left: 0;right: 0;z-index: 999;' : ''}}">
+    @if ($title !== 'Selamat Datang Di SIPAMMASE')
         <a class="navbar-brand mb-2" href="/" style="color: black;">
             <img src="{{ asset('images') }}/logo.png" width="23" height="30" class="d-inline-block align-top rounded-lg ml-2 mr-3" alt="Logo">
             Selamat Datang Di SIPAMMASE
