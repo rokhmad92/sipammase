@@ -9,8 +9,9 @@
 <script src="{{ asset('template') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="{{ asset('template') }}/dist/js/adminlte.js"></script>
 <script src="{{ asset('template') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-{{-- alert Notification --}}
+{{-- chart --}}
 <script src="{{ asset('template') }}/plugins/chart.js/Chart.min.js"></script>
+{{-- alert Notification --}}
 <script src="{{ asset('template') }}/plugins/toastr/toastr.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('template') }}/dist/js/demo.js"></script>

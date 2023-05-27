@@ -104,7 +104,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="/pendiri" class="nav-link {{ ($title == 'Perancang') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-users"></i>
+                                    <i class="nav-icon fas fa-user-nurse"></i>
                                     <p>Perancang</p>
                                 </a>
                             </li>

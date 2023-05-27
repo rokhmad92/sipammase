@@ -1,4 +1,8 @@
 @include('halamanDepan.headerLanding')
     @include('halamanDepan.navLanding')
         @yield('landing')
-@include('halamanDepan.footerLanding')
+@if($title == 'Daftar Perancang')
+    @include('halamanDepan.footerPerancang')
+@else
+    @include('halamanDepan.footerLanding')
+@endif

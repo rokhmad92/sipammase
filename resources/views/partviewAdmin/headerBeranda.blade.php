@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,6 +17,5 @@
     <link rel="stylesheet" href="{{ asset('template') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     {{-- my style --}}
     <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/gif" sizes="30x30">
-    <link rel="stylesheet" href="{{ asset('css') }}/style.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed" style="background-color: #F4F6F9;">

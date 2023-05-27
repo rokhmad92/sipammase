@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\agenda;
 use App\Models\harmonisasi;
+use App\Models\perancang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,16 +18,20 @@ class basicController extends Controller
         $totalRapat = harmonisasi::where('padministrasi_id', 3)->count();
         $totalPenyampaian = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
         $agenda = agenda::with('pemrakarsa')->latest()->get();
+        $agendaFoto = agenda::whereNotNull('foto')->get('foto');
+        $agendaCheck = agenda::whereNotNull('foto')->first('foto');
+
         return view('halamanDepan.landingpage', [
             'title' => 'Selamat Datang Di SIPAMMASE'
-        ], compact('totalPengajuan', 'totalAdministrasi', 'totalRapat', 'totalPenyampaian', 'harmonisasi', 'agenda'));
+        ], compact('totalPengajuan', 'totalAdministrasi', 'totalRapat', 'totalPenyampaian', 'harmonisasi', 'agenda', 'agendaCheck', 'agendaFoto'));
     }
 
     public function perancang()
     {
+        $perancang = perancang::all();
         return view('halamanDepan.perancang', [
             'title' => 'Daftar Perancang'
-        ]);
+        ], compact('perancang'));
     }
 
     public function login()

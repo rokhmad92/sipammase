@@ -4,31 +4,28 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <div class="row">
                     <img src="{{ asset('images') }}/dashboard.jpeg" alt="Beranda" class="img-fluid">
-                    <div class="col-sm-6 mt-3">
-                        <h1 class="m-0">{{ $title }}</h1>
-                    </div>
                 </div>
             </div>
         </div>
         <!-- /.content-header -->
 
         {{-- swipe foto --}}
-        @if ($agenda)
-            <div class="swiper mt-1 mb-5 mx-3">
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    @foreach ($agenda as $item)
-                        <div class="swiper-slide">
-                            <img src="{{ asset('storage') }}/{{ $item->foto }}" alt="Foto" class="img-fluid" style="border-radius: 10px;">
-                        </div>
-                    @endforeach
+            @if($agendaCheck)
+                <div class="swiper mx-3 mt-3 mb-5">
+                    <h3>Kegiatan Rapat</h3>
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        @foreach ($agenda as $item)
+                            <div class="swiper-slide">
+                                <img src="{{ asset('storage') }}/{{ $item->foto }}" alt="Foto" class="img-fluid" style="border-radius: 10px; object-fit: cover;height: 500px;width: 100%;">
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
-
-                <div class="swiper-pagination"></div>
-            </div>
-        @endif
+            @endif
         {{-- End swipe foto --}}
 
         <!-- Main content -->
@@ -64,7 +61,7 @@
         
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
-                        <div class="small-box bg-success">
+                        <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{ $totalRapat }}</h3>
         
@@ -78,7 +75,7 @@
         
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
-                        <div class="small-box bg-danger">
+                        <div class="small-box bg-success">
                         <div class="inner">
                             <h3>{{ $totalPenyampaian }}</h3>
         

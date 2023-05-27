@@ -5,13 +5,24 @@
         <div class="container-fluid">
             {{-- logo --}}
             <div class="row">
-                <img src="{{ asset('images') }}/dashboard.jpeg" alt="Beranda" class="img-fluid mx-auto">
+                <img src="{{ asset('images') }}/header.jpg" alt="Beranda" class="img-fluid mx-auto">
             </div>
 
             {{-- slide Foto --}}
-            <div class="row">
-                
-            </div>
+            @if($agendaCheck)
+                <div class="swiper mx-3 mt-5">
+                    <h3>Kegiatan Rapat</h3>
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        @foreach ($agendaFoto as $item)
+                            <div class="swiper-slide">
+                                <img src="{{ asset('storage') }}/{{ $item->foto }}" alt="Foto" class="img-fluid" style="border-radius: 10px; object-fit: cover; height: 500px; width: 100%;">
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            @endif
 
             {{-- Informasi Card --}}
             <div class="row mt-5">
@@ -42,7 +53,7 @@
                 </div>
     
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-danger">
                     <div class="inner">
                         <h3>{{ $totalRapat }}</h3>
     
@@ -55,7 +66,7 @@
                 </div>
     
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-danger">
+                    <div class="small-box bg-success">
                     <div class="inner">
                         <h3>{{ $totalPenyampaian }}</h3>
     
@@ -71,9 +82,34 @@
             <div class="row">
                 <div class="col-12 d-flex flex-wrap">
                         <div class="bd-highlight col">
-                            <div class="card">
+                            <div class="card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title">Grafik Harmonisasi</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="card card-info">
                                 <div class="card-header">
                                     <h3 class="card-title">Total Permohonan Harmonisasi</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <table class="dataTable table table-bordered table-responsive-sm">
@@ -98,10 +134,20 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="card">
+                        <div class="bd-highlight col">
+                            <div class="card card-secondary">
                                 <div class="card-header">
                                     <h3 class="card-title">Informasi Jam Layanan</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <table class="table table-hover">
@@ -131,12 +177,20 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="bd-highlight col">
-                            <div class="card">
+                            <div class="auto-jsCalendar material-theme green" data-day-format="DDD"></div>
+
+                            <div class="card card-danger">
                                 <div class="card-header">
                                     <h3 class="card-title">Jadwal Agenda Rapat</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <table class="dataTable table table-bordered table-responsive-sm">
@@ -166,8 +220,6 @@
                                 </div>
                             </div>
                             
-
-                            <div class="auto-jsCalendar material-theme green" data-day-format="DDD"></div>
                         </div>
                 </div>
             </div>
