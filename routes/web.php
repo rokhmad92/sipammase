@@ -26,10 +26,14 @@ use App\Http\Controllers\administrasiController;
 // Basic Page
 Route::controller(basicController::class)->group(function() {
     Route::get('/', 'index')->middleware('guest');
+    Route::post('/', 'index_filter')->middleware('guest');
     Route::get('/perancang', 'perancang')->middleware('guest');
     Route::get('/login', 'login')->name('login')->middleware('guest');
     Route::post('/login', 'login_post')->middleware('guest');
     Route::get('/logout', [basicController::class, 'logout']);
+
+    Route::get('/pengajuan/masukan/{harmonisasi:judul}', 'masukan')->middleware('guest');
+    Route::post('/pengajuan/masukan/{harmonisasi:judul}', 'masukan_store');
 });
 
 Route::get('/beranda', berandaController::class)->middleware('auth');
@@ -37,6 +41,7 @@ Route::get('/beranda', berandaController::class)->middleware('auth');
 // pengajuan
 Route::controller(pengajuanController::class)->middleware('auth')->group(function() {
     Route::get('/pengajuan', 'index');
+    Route::post('/pengajuan', 'index_filter');
     Route::get('/pengajuan/{rancangan}', 'tambah');
     Route::post('/pengajuan/{rancangan}', 'store');
     Route::get('/pengajuan/edit/{harmonisasi:judul}', 'edit');
@@ -54,6 +59,7 @@ Route::controller(pengajuanController::class)->middleware('auth')->group(functio
 // Administrasi Dan Analisis
 Route::controller(administrasiController::class)->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/administrasi', 'index');
+    Route::post('/administrasi', 'index_filter');
     Route::get('/administrasi/{harmonisasi:judul}', 'show');
     Route::post('/administrasi/{harmonisasi:judul}', 'update');
 
@@ -68,6 +74,7 @@ Route::controller(administrasiController::class)->middleware(['auth', 'isAdmin']
 // Rapat
 Route::controller(rapatController::class)->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/rapat', 'index');
+    Route::post('/rapat', 'index_filter');
     Route::get('/rapat/{harmonisasi:judul}', 'show');
     Route::post('/rapat/{harmonisasi:judul}', 'update');
 
@@ -82,6 +89,7 @@ Route::controller(rapatController::class)->middleware(['auth', 'isAdmin'])->grou
 // penyampaian
 Route::controller(penyampaianController::class)->middleware(['auth', 'isAdmin'])->group(function() {
     Route::get('/penyampaian', 'index');
+    Route::post('/penyampaian', 'index_filter');
     Route::get('/penyampaian/{harmonisasi:judul}', 'show');
     Route::post('/penyampaian/{harmonisasi:judul}', 'update');
 
@@ -94,7 +102,8 @@ Route::controller(penyampaianController::class)->middleware(['auth', 'isAdmin'])
 });
 
 // grafik
-Route::get('/grafik', [dataController::class, 'index'])->middleware(['auth', 'isAdmin']);
+// Route::get('/grafik', [dataController::class, 'index']);
+Route::post('/grafik', [dataController::class, 'index']);
 
 // agenda
 Route::controller(dataController::class)->group(function() {

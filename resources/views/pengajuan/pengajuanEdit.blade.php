@@ -36,13 +36,15 @@
                                             <label for="pemrakarsa">PEMRAKARSA</label>
                                             <select class="form-control @error('pemrakarsa') is-invalid @enderror" id="pemrakarsa" name="pemrakarsa">
                                                 <option value="{{ $getHarmonisasi->pemrakarsa->nama }}" selected>{{ $getHarmonisasi->pemrakarsa->nama }}</option>
-                                                @foreach ($pemrakarsa as $item)
-                                                    @if ($item->nama == $getHarmonisasi->pemrakarsa->nama)
-                                                        <option value="" style="display: none;"></option>
-                                                    @else
-                                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                                    @endif
-                                                @endforeach
+                                                @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                                    @foreach ($pemrakarsa as $item)
+                                                        @if ($item->nama == $getHarmonisasi->pemrakarsa->nama)
+                                                            <option value="" style="display: none;"></option>
+                                                        @else
+                                                            <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
                                             </select>
                                             @error('pemrakarsa')
                                                 <div class="invalid-feedback">

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tahun;
+use App\Models\rancangan;
+use App\Models\pemrakarsa;
 use App\Models\harmonisasi;
 use Illuminate\Http\Request;
 use App\Models\padministrasi;
@@ -12,10 +15,75 @@ class penyampaianController extends Controller
 {
     public function index()
     {
+        $post_tahun = '';
+        $post_harmonisasi = '';
+        $post_pemrakarsa = '';
+        $rancangan = rancangan::all();
+        $tahun = tahun::all();
+        $pemrakarsa = pemrakarsa::all();
         $harmonisasi = harmonisasi::with('pemrakarsa', 'padministrasi', 'kpengajuan')->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
         return view('penyampaian.penyampaian', [
             'title' => 'Penyampaian Harmonisasi'
-        ], compact('harmonisasi'));
+        ], compact('harmonisasi', 'post_tahun', 'post_harmonisasi', 'post_pemrakarsa', 'rancangan', 'tahun', 'pemrakarsa'));
+    }
+
+    public function index_filter(Request $request)
+    {
+        $rancangan = rancangan::all();
+        $tahun = tahun::all();
+        $pemrakarsa = pemrakarsa::all();
+        $data = $request->input();
+        $post_tahun = $request->input('tahun');
+        $post_harmonisasi = $request->input('harmonisasi');
+        $post_pemrakarsa = $request->input('pemrakarsa');
+        $checkUser = auth()->user()->pemrakarsa_id;
+
+        // filter tiga
+        if ($data['tahun'] && $data['harmonisasi'] && $data['pemrakarsa']) {
+            $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+            $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
+            $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+
+            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
+        }
+        // filter dua
+        elseif ($data['tahun'] && $data['harmonisasi']) {
+            $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+            $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
+
+            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
+        }
+        elseif ($data['tahun'] && $data['pemrakarsa']) {
+            $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+            $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+
+            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('tahun_id', $filter_tahun->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
+        }
+        elseif ($data['harmonisasi'] && $data['pemrakarsa']) {
+            $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
+            $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+
+            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('rancangan_id', $filter_rancangan->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
+        }
+        // Filter satu
+        elseif ($data['tahun']) {
+            $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('tahun_id', $filter_tahun->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
+        } 
+        elseif ($data['harmonisasi']) {
+            $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
+
+            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->get();
+        } 
+        elseif ($data['pemrakarsa']) {
+            $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+            
+            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
+        }
+
+        return view('penyampaian.penyampaian', [
+            'title' => 'Penyampaian Harmonisasi'
+        ], compact('rancangan', 'harmonisasi', 'tahun', 'pemrakarsa', 'post_tahun', 'post_harmonisasi', 'post_pemrakarsa', 'rancangan', 'tahun', 'pemrakarsa'));
     }
 
     public function show(harmonisasi $harmonisasi)

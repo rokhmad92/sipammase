@@ -10,28 +10,20 @@ use Illuminate\Support\Facades\Storage;
 
 class dataController extends Controller
 {
-    public function index ()
+    public function index(Request $request)
     {
-        // pemda
-        $pemdaPengajuan = harmonisasi::where('padministrasi_id', 1)->where('rancangan_id', 1)->count();
-        $pemdaAdministrasi = harmonisasi::where('padministrasi_id', 2)->where('rancangan_id', 1)->count();
-        $pemdaRapat = harmonisasi::where('padministrasi_id', 3)->where('rancangan_id', 1)->count();
-        $pemdaPenyampaian = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->where('rancangan_id', 1)->count();
+        $pemrakarsa = $request->input('grafik');
+        $get = pemrakarsa::where('nama', $pemrakarsa)->first('id');
 
-        // dprd
-        $dprdPengajuan = harmonisasi::where('padministrasi_id', 1)->where('rancangan_id', 2)->count();
-        $dprdAdministrasi = harmonisasi::where('padministrasi_id', 2)->where('rancangan_id', 2)->count();
-        $dprdRapat = harmonisasi::where('padministrasi_id', 3)->where('rancangan_id', 2)->count();
-        $dprdPenyampaian = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->where('rancangan_id', 2)->count();
+        $Pengajuan = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $get->id)->count();
+        $Administrasi = harmonisasi::where('padministrasi_id', 2)->where('pemrakarsa_id', $get->id)->count();
+        $Rapat = harmonisasi::where('padministrasi_id', 3)->where('pemrakarsa_id', $get->id)->count();
+        $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
+        $data = harmonisasi::where('pemrakarsa_id', $get->id)->get();
 
-        // RPERKADA
-        $rperkadaPengajuan = harmonisasi::where('padministrasi_id', 1)->where('rancangan_id', 3)->count();
-        $rperkadaAdministrasi = harmonisasi::where('padministrasi_id', 2)->where('rancangan_id', 3)->count();
-        $rperkadaRapat = harmonisasi::where('padministrasi_id', 3)->where('rancangan_id', 3)->count();
-        $rperkadaPenyampaian = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->where('rancangan_id', 3)->count();
         return view('grafik', [
             'title' => 'Grafik Harmonisasi'
-        ], compact('pemdaPengajuan', 'pemdaAdministrasi', 'pemdaRapat', 'pemdaPenyampaian', 'dprdPengajuan', 'dprdAdministrasi', 'dprdRapat', 'dprdPenyampaian', 'rperkadaPengajuan', 'rperkadaAdministrasi', 'rperkadaRapat', 'rperkadaPenyampaian'));
+        ], compact('Pengajuan', 'Administrasi', 'Rapat', 'Penyampaian', 'pemrakarsa', 'data'));
     }
 
     public function agenda()

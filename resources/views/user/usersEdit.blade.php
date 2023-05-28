@@ -109,14 +109,19 @@
                                         <div class="form-group col-md-5">
                                             <label for="role">Role</label>
                                             <select class="form-control" id="role" name="role">
+                                                <option value="{{ $users->role->id }}" selected>{{ $users->role->nama }}</option>
                                                 @foreach ($role as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    @if ($item->id == $users->role->id)
+                                                        <option value="" style="display: none;"></option>
+                                                    @else
+                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="passwordAdd">Password</label>
-                                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="passwordAdd" name="password">
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="passwordAdd" name="password" value="">
                                             @error('password')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('keterangan', 100)->nullable();
             $table->string('masukan_masyarakat')->nullable();
+            $table->string('keterangan_masyarakat')->nullable();
             $table->string('docx1')->nullable();
             $table->string('docx2')->nullable();
             $table->string('docx3')->nullable();

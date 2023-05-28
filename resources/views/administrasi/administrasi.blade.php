@@ -16,6 +16,73 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <div class="card-header">
+                        <h5>Filter</h5>
+                        <div class="d-flex flex-wrap">
+                            {{-- filtering --}}
+                            <form action="" method="POST">
+                            @csrf
+                            <div class="d-flex flex-wrap mt-3">
+                                <div class="form-group col-auto">
+                                    <label for="tahun">Tahun</label>
+                                    <select class="form-control filter" id="filter_tahun" name="tahun">
+                                        @if ($post_tahun)
+                                            <option value="{{ $post_tahun }}" selected>{{ $post_tahun }}</option>
+                                        @else
+                                            <option value="" selected></option>
+                                        @endif
+
+                                        @foreach ($tahun as $item)
+                                            @if ($item->no == $post_tahun)
+                                                <option value="" class="d-none"></option>
+                                            @else
+                                                <option value="{{ $item->no }}">{{ $item->no }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                                    <div class="form-group col-auto">
+                                        <label for="harmonisasi">Harmonisasi</label>
+                                        <select class="form-control filter" id="filter_harmonisasi" name="harmonisasi">
+                                            @if ($post_harmonisasi)
+                                                <option value="{{ $post_harmonisasi }}" selected>{{ $post_harmonisasi }}</option>
+                                            @else
+                                                <option value="" selected></option>
+                                            @endif
+
+                                            @foreach ($rancangan as $item)
+                                                @if ($item->nama == $post_harmonisasi)
+                                                    <option value="" class="d-none"></option>
+                                                @else
+                                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-auto">
+                                        <label for="pemrakarsa">Pemrakarsa</label>
+                                        <select class="form-control filter" id="filter_pemrakarsa" name="pemrakarsa">
+                                            @if ($post_pemrakarsa)
+                                                <option value="{{ $post_pemrakarsa }}" selected>{{ $post_pemrakarsa }}</option>
+                                            @else
+                                                <option value="" selected></option>
+                                            @endif
+
+                                            @foreach ($pemrakarsa as $item)
+                                                @if ($item->nama == $post_pemrakarsa)
+                                                    <option value="" class="d-none"></option>
+                                                @else
+                                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-secondary ml-2"><i class="fas fa-filter"></i> Filter</button>
+                                <a href="/administrasi" class="btn btn-danger ml-2"><i class="fas fa-filter"></i> Reset</a>
+                            </form>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <table class="dataTable table table-bordered table-responsive">
                             <thead>
