@@ -19,5 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/source/jsCalendar.css">
     {{-- my style --}}
     <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/gif" sizes="30x30">
+    <link rel="stylesheet" href="{{ asset('css') }}/style.css">
 </head>
 <body style="background-color: #F4F6F9;">
+<a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true"></a>

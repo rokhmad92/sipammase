@@ -114,6 +114,13 @@
                                                     <option value="{{ $item->nama }}">{{ $item->nama }}</option>
                                                 @endforeach
                                             </select>
+                                            <br>
+                                            <label for="grafikTahun">Tahun</label>
+                                            <select class="form-control filter" id="grafikTahun" name="grafikTahun">
+                                                @foreach ($tahun as $item)
+                                                    <option value="{{ $item->no }}">{{ $item->no }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <button type="submit" class="btn btn-success ml-2">Lihat Grafik</button>
                                     </form>
@@ -123,7 +130,7 @@
 
                             <div class="card card-info">
                                 <div class="card-header">
-                                    <h3 class="card-title">Total Permohonan Harmonisasi</h3>
+                                    <h3 class="card-title">Total Harmonisasi</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>

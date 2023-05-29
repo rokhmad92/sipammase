@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tahun;
 use App\Models\agenda;
-use App\Models\harmonisasi;
 use App\Models\pemrakarsa;
+use App\Models\harmonisasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,43 +14,51 @@ class dataController extends Controller
     public function index() 
     {
         $pemrakarsa = pemrakarsa::all();
+        $tahun = tahun::all();
         $Pengajuan = '';
         $Administrasi = '';
         $Rapat = '';
         $Penyampaian = '';
         $pemrakarsaGet = '';
+        $tahunGet = '';
 
         return view('grafik.grafik', [
             'title' => 'Grafik Harmonisasi'
-        ], compact('Pengajuan', 'Administrasi', 'Rapat', 'Penyampaian', 'pemrakarsa', 'pemrakarsaGet'));
+        ], compact('Pengajuan', 'Administrasi', 'Rapat', 'Penyampaian', 'pemrakarsa', 'pemrakarsaGet', 'tahun', 'tahunGet'));
     }
 
     public function grafikAdmin(Request $request)
     {
         $pemrakarsaGet = $request->input('grafikPemrakarsa');
+        $tahunGet = $request->input('grafikTahun');
         $pemrakarsa = pemrakarsa::all();
         $get = pemrakarsa::where('nama', $pemrakarsaGet)->first('id');
+        $tahun = tahun::all();
+        $tahunId = tahun::where('no', $tahunGet)->first('id');
 
-        $Pengajuan = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $get->id)->count();
-        $Administrasi = harmonisasi::where('padministrasi_id', 2)->where('pemrakarsa_id', $get->id)->count();
-        $Rapat = harmonisasi::where('padministrasi_id', 3)->where('pemrakarsa_id', $get->id)->count();
-        $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
+        $Pengajuan = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->count();
+        $Administrasi = harmonisasi::where('padministrasi_id', 2)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->count();
+        $Rapat = harmonisasi::where('padministrasi_id', 3)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->count();
+        $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
 
         return view('grafik.grafik', [
             'title' => 'Grafik Harmonisasi'
-        ], compact('Pengajuan', 'Administrasi', 'Rapat', 'Penyampaian', 'pemrakarsa', 'pemrakarsaGet'));
+        ], compact('Pengajuan', 'Administrasi', 'Rapat', 'Penyampaian', 'pemrakarsa', 'pemrakarsaGet', 'tahun', 'tahunGet'));
     }
 
     public function grafik(Request $request)
     {
         $pemrakarsa = $request->input('grafik');
+        $tahunGet = $request->input('grafikTahun');
         $get = pemrakarsa::where('nama', $pemrakarsa)->first('id');
+        $tahun = tahun::where('no', $tahunGet)->first('id');
 
-        $Pengajuan = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $get->id)->count();
-        $Administrasi = harmonisasi::where('padministrasi_id', 2)->where('pemrakarsa_id', $get->id)->count();
-        $Rapat = harmonisasi::where('padministrasi_id', 3)->where('pemrakarsa_id', $get->id)->count();
-        $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
-        $data = harmonisasi::where('pemrakarsa_id', $get->id)->get();
+        $Pengajuan = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->count();
+        $Administrasi = harmonisasi::where('padministrasi_id', 2)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->count();
+        $Rapat = harmonisasi::where('padministrasi_id', 3)->where('tahun_id', $tahun->id)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->count();
+        $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
+
+        $data = harmonisasi::where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->get();
 
         return view('grafik.grafikPublic', [
             'title' => 'Grafik Harmonisasi'

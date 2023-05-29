@@ -90,6 +90,11 @@
             </div>
         </div>
 
+        {{-- fooer --}}
+        <div style="position: absolute;bottom: 0; left:0; right: 0;">
+            <p style="color: #334155;">&copy; Copyright <strong>SIPAMMASE.</strong> All rights reserved</p>
+        </div>
+
 {{-- template script --}}
 <script src="{{ asset('template') }}/plugins/jquery/jquery.min.js"></script>
 <script src="{{ asset('template') }}/plugins/jquery-ui/jquery-ui.min.js"></script>

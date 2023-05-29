@@ -4,6 +4,8 @@
             <img src="{{ asset('images') }}/logo.png" width="23" height="30" class="d-inline-block align-top rounded-lg ml-2 mr-3" alt="Logo">
             Selamat Datang Di SIPAMMASE
         </a>
+    @else
+    <a href="#"></a>
     @endif
 
     <button class="navbar-toggler bg-light p-2 border" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

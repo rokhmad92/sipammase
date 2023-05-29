@@ -21,8 +21,25 @@
                         @csrf
                             <label for="pemrakarsa">Pilih Pemrakarsa</label>
                             <select class="form-control" id="pemrakarsa" name="grafikPemrakarsa">
+                                <option value="{{ $pemrakarsaGet }}" selected>{{ $pemrakarsaGet }}</option>
                                 @foreach ($pemrakarsa as $item)
-                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                                    @if ($item->nama == $pemrakarsaGet)
+                                        <option value="" class="d-none"></option>
+                                    @else
+                                        <option value="{{ $item->nama }}">{{ $item->nama }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            <br>
+                            <label for="grafikTahun">Pilih Tahun</label>
+                            <select class="form-control col-4" id="grafikTahun" name="grafikTahun">
+                                <option value="{{ $tahunGet }}" selected>{{ $tahunGet }}</option>
+                                @foreach ($tahun as $item)
+                                    @if ($item->no == $tahunGet)
+                                        <option value="" class="d-none"></option>
+                                    @else
+                                        <option value="{{ $item->no }}">{{ $item->no }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             <button type="submit" class="btn btn-success mt-3">Lihat Grafik</button>
