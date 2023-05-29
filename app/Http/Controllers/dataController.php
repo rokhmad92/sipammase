@@ -10,7 +10,37 @@ use Illuminate\Support\Facades\Storage;
 
 class dataController extends Controller
 {
-    public function index(Request $request)
+    public function index() 
+    {
+        $pemrakarsa = pemrakarsa::all();
+        $Pengajuan = '';
+        $Administrasi = '';
+        $Rapat = '';
+        $Penyampaian = '';
+        $pemrakarsaGet = '';
+
+        return view('grafik.grafik', [
+            'title' => 'Grafik Harmonisasi'
+        ], compact('Pengajuan', 'Administrasi', 'Rapat', 'Penyampaian', 'pemrakarsa', 'pemrakarsaGet'));
+    }
+
+    public function grafikAdmin(Request $request)
+    {
+        $pemrakarsaGet = $request->input('grafikPemrakarsa');
+        $pemrakarsa = pemrakarsa::all();
+        $get = pemrakarsa::where('nama', $pemrakarsaGet)->first('id');
+
+        $Pengajuan = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $get->id)->count();
+        $Administrasi = harmonisasi::where('padministrasi_id', 2)->where('pemrakarsa_id', $get->id)->count();
+        $Rapat = harmonisasi::where('padministrasi_id', 3)->where('pemrakarsa_id', $get->id)->count();
+        $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
+
+        return view('grafik.grafik', [
+            'title' => 'Grafik Harmonisasi'
+        ], compact('Pengajuan', 'Administrasi', 'Rapat', 'Penyampaian', 'pemrakarsa', 'pemrakarsaGet'));
+    }
+
+    public function grafik(Request $request)
     {
         $pemrakarsa = $request->input('grafik');
         $get = pemrakarsa::where('nama', $pemrakarsa)->first('id');
@@ -21,7 +51,7 @@ class dataController extends Controller
         $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
         $data = harmonisasi::where('pemrakarsa_id', $get->id)->get();
 
-        return view('grafik', [
+        return view('grafik.grafikPublic', [
             'title' => 'Grafik Harmonisasi'
         ], compact('Pengajuan', 'Administrasi', 'Rapat', 'Penyampaian', 'pemrakarsa', 'data'));
     }

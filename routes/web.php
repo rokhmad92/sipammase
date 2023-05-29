@@ -103,7 +103,9 @@ Route::controller(penyampaianController::class)->middleware(['auth', 'isAdmin'])
 
 // grafik
 // Route::get('/grafik', [dataController::class, 'index']);
-Route::post('/grafik', [dataController::class, 'index']);
+Route::get('/grafik', [dataController::class, 'index']);
+Route::post('/grafikAdmin', [dataController::class, 'grafikAdmin']);
+Route::post('/grafik', [dataController::class, 'grafik']);
 
 // agenda
 Route::controller(dataController::class)->group(function() {
