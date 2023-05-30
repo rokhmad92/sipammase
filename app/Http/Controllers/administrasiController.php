@@ -102,7 +102,7 @@ class administrasiController extends Controller
     {
         $request->validate([
             'status' => 'required',
-            'keterangan' => 'nullable|max:100',
+            'keterangan' => 'nullable',
             'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
             'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
             'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',

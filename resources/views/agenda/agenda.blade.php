@@ -99,7 +99,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label for="harmonisasi">Harmonisasi</label>
-                        <input type="text" class="form-control @error('harmonisasi') is-invalid @enderror" id="harmonisasi" name="harmonisasi" required maxlength="50" autocomplete="off">
+                        <input type="text" class="form-control @error('harmonisasi') is-invalid @enderror" id="harmonisasi" name="harmonisasi" required autocomplete="off">
                         @error('harmonisasi')
                             <div class="invalid-feedback">
                                 {{ $message }}

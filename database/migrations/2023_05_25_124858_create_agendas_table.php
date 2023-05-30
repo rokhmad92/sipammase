@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('agenda', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pemrakarsa_id')->constrained('pemrakarsa');
-            $table->string('nama')->unique();
-            $table->string('harmonisasi');
+            $table->text('nama')->unique();
+            $table->text('harmonisasi');
             $table->date('tanggal');
             $table->string('lokasi', 150);
             $table->string('foto')->nullable();

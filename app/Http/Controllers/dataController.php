@@ -100,9 +100,9 @@ class dataController extends Controller
     public function update(agenda $agenda, Request $request)
     {
         $request->validate([
-            'nama' => 'required|max:50',
+            'nama' => 'required',
             'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-            'harmonisasi' => 'required|max:50',
+            'harmonisasi' => 'required',
             'tanggal' => 'required',
             'lokasi' => 'required|max:100',
             'foto' => 'nullable|file|mimes:jpeg,jpg,png|max:5000'

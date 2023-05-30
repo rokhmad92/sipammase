@@ -187,22 +187,23 @@ class pengajuanController extends Controller
 
     public function update(Harmonisasi $harmonisasi, Request $request)
     {
+        $request->validate([
+            'tahun' => 'required|exists:tahun,no',
+            'pemrakarsa' => 'required|exists:pemrakarsa,nama',
+            'judul' => 'required',
+            'rancangan' => 'required',  
+            'permohonan' => 'required',
+            'padministrasi' => 'required|exists:padministrasi,nama',
+            'status' => 'required|exists:kpengajuan,nama',
+            'keterangan' => 'nullable',
+            'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+            'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+            'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+            'docx4' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+            'docx5' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+        ]);
+
         if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2) {
-            $request->validate([
-                'tahun' => 'required||exists:tahun,no',
-                'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-                'judul' => 'required|max:50',
-                'rancangan' => 'required',  
-                'permohonan' => 'required',
-                'padministrasi' => 'required|exists:padministrasi,nama',
-                'status' => 'required|exists:kpengajuan,nama',
-                'keterangan' => 'nullable|max:100',
-                'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-                'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-                'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-                'docx4' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-                'docx5' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            ]);
             $data = $request->input();
             $dataFile = $request->file();
             $rancangan_id = rancangan::where('nama', $data['rancangan'])->first();
@@ -301,20 +302,6 @@ class pengajuanController extends Controller
                 ]);
             }
         } else {
-            $request->validate([
-                'tahun' => 'required||exists:tahun,no',
-                'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-                'judul' => 'required|max:50',
-                'rancangan' => 'required',  
-                'permohonan' => 'required',
-                'status' => 'required|exists:kpengajuan,nama',
-                'keterangan' => 'nullable|max:100',
-                'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-                'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-                'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-                'docx4' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-                'docx5' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            ]);
             $data = $request->input();
             $dataFile = $request->file();
             $rancangan_id = rancangan::where('nama', $data['rancangan'])->first();
