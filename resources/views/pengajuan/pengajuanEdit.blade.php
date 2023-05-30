@@ -111,7 +111,8 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-3 ml-1">
+                            @admin(auth()->user())
+                            <div class="row mt-3 ml-1 ">
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Posisi Harmonisasi</label>
@@ -124,14 +125,6 @@
                                                     <option value="{{ $item }}">{{ $item }}</option>
                                                 @endif
                                             @endforeach
-                                            {{-- <option value="{{ $getHarmonisasi->padministrasi->nama }}" selected>{{ $getHarmonisasi->padministrasi->nama }}</option>
-                                            @foreach ($padministrasi as $item)
-                                                @if ($item->nama == $getHarmonisasi->padministrasi->nama)
-                                                    <option value="" style="display: none;"></option>
-                                                @else
-                                                    <option value="{{ $item->nama }}">{{ $item->nama }}</option>
-                                                @endif
-                                            @endforeach --}}
                                         </select>
                                         @error('padministrasi')
                                             <div class="invalid-feedback">
@@ -141,6 +134,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endadmin
 
                             <div class="row mt-3 ml-1">
                                 <div class="col">

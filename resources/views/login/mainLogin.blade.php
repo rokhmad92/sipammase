@@ -12,7 +12,7 @@
     {{-- my style --}}
     <link rel="icon" href="{{ asset('images') }}/logo.png" type="image/gif" sizes="30x30">
 </head>
-<body style="background-color: #F4F6F9;">
+<body style="background-color: #F4F6F9;" onload = "JavaScript:AutoRefresh(120000);">
     @if (session()->has('failed'))
         <div class="alert alert-danger alert-dismissible fade show position-absolute" role="alert" style="right:20px; z-index: 9;top: 80px">
             <strong><i class="fa-solid fa-x"></i> {{ session('failed') }}</strong>
@@ -36,5 +36,10 @@
 <script src="{{ asset('template') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="{{ asset('template') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="{{ asset('template') }}/dist/js/adminlte.js"></script>
+<script type = "text/JavaScript">
+    function AutoRefresh( t ) {
+        setTimeout("location.reload(true);", t);
+    }
+</script>
 </body>
 </html>

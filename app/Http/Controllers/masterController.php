@@ -70,6 +70,13 @@ class masterController extends Controller
         return back()->with('success', 'Berhasil Update Data');
     }
 
+    public function tahun_destroy($id)
+    {
+        tahun::where('id', $id)->delete();
+
+        return back()->with('success', 'Berhasil Hapus Data');
+    }
+
     public function rancangan()
     {
         $rancangan = rancangan::all();
@@ -81,7 +88,7 @@ class masterController extends Controller
     public function rancangan_store(Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50'
+            'nama' => 'required|max:70'
         ]);
 
         rancangan::create($validateData);
@@ -91,7 +98,7 @@ class masterController extends Controller
     public function rancangan_update($id, Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50'
+            'nama' => 'required|max:70'
         ]);
 
         rancangan::where('id', $id)
@@ -110,7 +117,7 @@ class masterController extends Controller
     public function kpengajuan_store(Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50'
+            'nama' => 'required|max:70'
         ]);
 
         kpengajuan::create($validateData);
@@ -120,12 +127,19 @@ class masterController extends Controller
     public function kpengajuan_update($id, Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50'
+            'nama' => 'required|max:70'
         ]);
 
         kpengajuan::where('id', $id)
                 ->update($validateData);
         return back()->with('success', 'Berhasil Update Data');
+    }
+
+    public function kpengajuan_destroy($id)
+    {
+        kpengajuan::where('id', $id)->delete();
+
+        return back()->with('success', 'Berhasil Hapus Data');
     }
 
     public function pemrakarsa()
@@ -139,7 +153,7 @@ class masterController extends Controller
     public function pemrakarsa_store(Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50'
+            'nama' => 'required|max:70'
         ]);
 
         pemrakarsa::create($validateData);
@@ -149,12 +163,19 @@ class masterController extends Controller
     public function pemrakarsa_update($id, Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50'
+            'nama' => 'required|max:70'
         ]);
 
         pemrakarsa::where('id', $id)
                 ->update($validateData);
         return back()->with('success', 'Berhasil Update Data');
+    }
+
+    public function pemrakarsa_destroy($id)
+    {
+        pemrakarsa::where('id', $id)->delete();
+
+        return back()->with('success', 'Berhasil Hapus Data');
     }
 
     public function posisi()
@@ -168,7 +189,7 @@ class masterController extends Controller
     public function posisi_store(Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50'
+            'nama' => 'required|max:70'
         ]);
 
         padministrasi::create($validateData);
@@ -178,7 +199,7 @@ class masterController extends Controller
     public function posisi_update($id, Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50'
+            'nama' => 'required|max:70'
         ]);
 
         padministrasi::where('id', $id)

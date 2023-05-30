@@ -9,6 +9,7 @@ use App\Models\rancangan;
 use App\Models\pemrakarsa;
 use App\Models\harmonisasi;
 use Illuminate\Http\Request;
+use App\Models\padministrasi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -22,7 +23,6 @@ class basicController extends Controller
         $rancangan = rancangan::all();
         $tahun = tahun::all();
         $pemrakarsa = pemrakarsa::all();
-        $harmonisasi = harmonisasi::with('padministrasi', 'kpengajuan', 'pemrakarsa')->get();
         $totalPengajuan = harmonisasi::where('padministrasi_id', 1)->count();
         $totalAdministrasi = harmonisasi::where('padministrasi_id', 2)->count();
         $totalRapat = harmonisasi::where('padministrasi_id', 3)->count();
@@ -30,6 +30,36 @@ class basicController extends Controller
         $agenda = agenda::with('pemrakarsa')->latest()->get();
         $agendaFoto = agenda::whereNotNull('foto')->get('foto');
         $agendaCheck = agenda::whereNotNull('foto')->first('foto');
+        $harmonisasi = harmonisasi::with('padministrasi', 'kpengajuan', 'pemrakarsa')->get();
+
+        return view('halamanDepan.landingpage', [
+            'title' => 'Selamat Datang Di SIPAMMASE'
+        ], compact('totalPengajuan', 'totalAdministrasi', 'totalRapat', 'totalPenyampaian', 'harmonisasi', 'agenda', 'agendaCheck', 'agendaFoto', 'rancangan', 'tahun', 'pemrakarsa', 'post_tahun', 'post_harmonisasi', 'post_pemrakarsa'));
+    }
+
+    public function show($get)
+    {
+        $post_tahun = '';
+        $post_harmonisasi = '';
+        $post_pemrakarsa = '';
+        $rancangan = rancangan::all();
+        $tahun = tahun::all();
+        $pemrakarsa = pemrakarsa::all();
+        $totalPengajuan = harmonisasi::where('padministrasi_id', 1)->count();
+        $totalAdministrasi = harmonisasi::where('padministrasi_id', 2)->count();
+        $totalRapat = harmonisasi::where('padministrasi_id', 3)->count();
+        $totalPenyampaian = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
+        $agenda = agenda::with('pemrakarsa')->latest()->get();
+        $agendaFoto = agenda::whereNotNull('foto')->get('foto');
+        $agendaCheck = agenda::whereNotNull('foto')->first('foto');
+
+        // get Data
+        $administrasi = padministrasi::where('nama', $get)->first('id');
+        if ($administrasi->id == 4) {
+            $harmonisasi = harmonisasi::with('padministrasi', 'tahun', 'kpengajuan', 'pemrakarsa')->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
+        } else {
+            $harmonisasi = harmonisasi::with('padministrasi', 'tahun', 'kpengajuan', 'pemrakarsa')->where('padministrasi_id', $administrasi->id)->get();
+        }
 
         return view('halamanDepan.landingpage', [
             'title' => 'Selamat Datang Di SIPAMMASE'

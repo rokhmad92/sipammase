@@ -72,11 +72,10 @@ class perancangController extends Controller
         return back()->with('success', 'Berhasil Menambahkan Data');
     }
 
-    public function destroy(perancang $perancang)
+    public function destroy($id)
     {
-        ($perancang->foto) ? Storage::delete($perancang->foto) : '';
-        perancang::where('nama', $perancang->nama)->delete();
+        perancang::where('id', $id)->delete();
 
-        return back()->with('success', 'Berhasil Hapus Foto');
+        return back()->with('success', 'Berhasil Hapus Data');
     }
 }

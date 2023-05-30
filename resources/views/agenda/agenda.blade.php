@@ -227,7 +227,7 @@
                                 @if ($item->foto)
                                     <div class="form-group col">
                                         <a target="_blank" class="badge badge-success mr-3" href="{{ asset('storage') }}/{{ $item->foto }}" style="cursor: pointer;"><i class="fas fa-download"></i> Lihat Foto</a>
-                                        <a class="badge badge-danger mt-2" href="/agenda/hapus/{{ $item->nama }}" style="cursor: pointer;"><i class="fas fa-trash"></i> Hapus Dokumen</a>
+                                        <a class="badge badge-danger mt-2" onclick="return confirm('Yakin ingin hapus Foto?')" href="/agenda/hapus/{{ $item->nama }}" style="cursor: pointer;"><i class="fas fa-trash"></i> Hapus Foto</a>
                                     </div>
                                 @endif
                             </div>

@@ -46,7 +46,8 @@
                     <div class="icon">
                         <i class="fas fa-exclamation"></i>
                     </div>
-                    </div>
+                    <a href="/show/Pengajuan" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
                 </div>
     
                 <div class="col-lg-3 col-6">
@@ -59,7 +60,8 @@
                     <div class="icon">
                         <i class="fas fa-search"></i>
                     </div>
-                    </div>
+                    <a href="/show/Administrasi Dan Analisis Konsep" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
                 </div>
     
                 <div class="col-lg-3 col-6">
@@ -72,7 +74,8 @@
                     <div class="icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    </div>
+                        <a href="/show/Rapat Harmonisasi" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
                 </div>
     
                 <div class="col-lg-3 col-6">
@@ -85,7 +88,8 @@
                     <div class="icon">
                         <i class="fas fa-folder-open"></i>
                     </div>
-                    </div>
+                        <a href="/show/Penyampaian" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
                 </div>
             </div>
 

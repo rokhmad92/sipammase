@@ -26,6 +26,8 @@ use App\Http\Controllers\administrasiController;
 // Basic Page
 Route::controller(basicController::class)->group(function() {
     Route::get('/', 'index')->middleware('guest');
+    Route::get('/show/{get}', 'show')->middleware('guest');
+    Route::get('/', 'index')->middleware('guest');
     Route::post('/', 'index_filter')->middleware('guest');
     Route::get('/perancang', 'perancang')->middleware('guest');
     Route::get('/login', 'login')->name('login')->middleware('guest');
@@ -33,27 +35,28 @@ Route::controller(basicController::class)->group(function() {
     Route::get('/logout', [basicController::class, 'logout']);
 
     Route::get('/pengajuan/masukan/{harmonisasi:judul}', 'masukan')->middleware('guest');
-    Route::post('/pengajuan/masukan/{harmonisasi:judul}', 'masukan_store');
+    Route::post('/pengajuan/masukan/{harmonisasi:judul}', 'masukan_store')->middleware('guest');
 });
 
-Route::get('/beranda', berandaController::class)->middleware('auth');
+Route::get('/beranda', [berandaController::class, 'index'])->middleware('auth');
+Route::get('/beranda/{get}', [berandaController::class, 'show'])->middleware('auth');
 
 // pengajuan
-Route::controller(pengajuanController::class)->middleware('auth')->group(function() {
-    Route::get('/pengajuan', 'index');
-    Route::post('/pengajuan', 'index_filter');
-    Route::get('/pengajuan/{rancangan}', 'tambah');
-    Route::post('/pengajuan/{rancangan}', 'store');
-    Route::get('/pengajuan/edit/{harmonisasi:judul}', 'edit');
-    Route::post('/pengajuan/edit/{harmonisasi:judul}', 'update');
-    Route::get('/pengajuan/destroy/{harmonisasi:judul}', 'destroy');
+Route::controller(pengajuanController::class)->group(function() {
+    Route::get('/pengajuan', 'index')->middleware('auth');
+    Route::post('/pengajuan', 'index_filter')->middleware('auth');
+    Route::get('/pengajuan/{rancangan}', 'tambah')->middleware('auth');
+    Route::post('/pengajuan/{rancangan}', 'store')->middleware('auth');
+    Route::get('/pengajuan/edit/{harmonisasi:judul}', 'edit')->middleware('auth');
+    Route::post('/pengajuan/edit/{harmonisasi:judul}', 'update')->middleware('auth');
+    Route::get('/pengajuan/destroy/{harmonisasi:judul}', 'destroy')->middleware(['auth', 'isAdmin']);
 
     // hapus dokumen
-    Route::get('/1/{harmonisasi:judul}', 'destroy1');
-    Route::get('/2/{harmonisasi:judul}', 'destroy2');
-    Route::get('/3/{harmonisasi:judul}', 'destroy3');
-    Route::get('/4/{harmonisasi:judul}', 'destroy4');
-    Route::get('/5/{harmonisasi:judul}', 'destroy5');
+    Route::get('/1/{harmonisasi:judul}', 'destroy1')->middleware('auth');
+    Route::get('/2/{harmonisasi:judul}', 'destroy2')->middleware('auth');
+    Route::get('/3/{harmonisasi:judul}', 'destroy3')->middleware('auth');
+    Route::get('/4/{harmonisasi:judul}', 'destroy4')->middleware('auth');
+    Route::get('/5/{harmonisasi:judul}', 'destroy5')->middleware('auth');
 });
 
 // Administrasi Dan Analisis
@@ -102,7 +105,6 @@ Route::controller(penyampaianController::class)->middleware(['auth', 'isAdmin'])
 });
 
 // grafik
-// Route::get('/grafik', [dataController::class, 'index']);
 Route::get('/grafik', [dataController::class, 'index']);
 Route::post('/grafikAdmin', [dataController::class, 'grafikAdmin']);
 Route::post('/grafik', [dataController::class, 'grafik']);
@@ -121,27 +123,32 @@ Route::controller(masterController::class)->middleware(['auth', 'isAdmin'])->gro
     Route::get('/role', 'role');
     Route::post('/role', 'role_store');
     Route::post('/role/{id}', 'role_update');
-    Route::get('/role/{id}', 'role_destroy');
+    // Route::get('/role/{id}', 'role_destroy');
     
     Route::get('/tahun', 'tahun');
     Route::post('/tahun', 'tahun_store');
     Route::post('/tahun/{id}', 'tahun_update');
+    Route::get('/tahun/{id}', 'tahun_destroy');
 
     Route::get('/rancangan', 'rancangan');
     Route::post('/rancangan', 'rancangan_store');
     Route::post('/rancangan/{id}', 'rancangan_update');
+    // Route::get('/role/{id}', 'role_destroy');
 
     Route::get('/kpengajuan', 'kpengajuan');
     Route::post('/kpengajuan', 'kpengajuan_store');
     Route::post('/kpengajuan/{id}', 'kpengajuan_update');
+    Route::get('/kpengajuan/{id}', 'kpengajuan_destroy');
 
     Route::get('/pemrakarsa', 'pemrakarsa');
     Route::post('/pemrakarsa', 'pemrakarsa_store');
     Route::post('/pemrakarsa/{id}', 'pemrakarsa_update');
+    Route::get('/pemrakarsa/{id}', 'pemrakarsa_destroy');
 
     Route::get('/posisi', 'posisi');
     Route::post('/posisi', 'posisi_store');
     Route::post('/posisi/{id}', 'posisi_update');
+    // Route::get('/role/{id}', 'role_destroy');
 });
 
 // Users

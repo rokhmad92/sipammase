@@ -37,7 +37,7 @@
                                         <td>{{ $item->nama }}</td>
                                         <td class="text-center">
                                             <span class="badge badge-info" style="cursor: pointer;" data-toggle="modal" data-target="#modal-edit{{ $item->id }}"><i class="fas fa-edit"></i> Edit</span>
-                                            <a href="/kpengajuan/{{ $item->id }}" onclick="return confirm('Tunggu Fitur Selesai')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
+                                            <a href="/kpengajuan/{{ $item->id }}" onclick="return confirm('Yakin ingin hapus data?')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
                                         </td>
                                     </tr>
                                 @endforeach

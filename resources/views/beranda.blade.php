@@ -5,7 +5,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <img src="{{ asset('images') }}/dashboard.jpeg" alt="Beranda" class="img-fluid">
+                    <img src="{{ asset('images') }}/dashboard.jpeg" alt="Beranda" class="img-fluid rounded-md">
                 </div>
             </div>
         </div>
@@ -43,6 +43,7 @@
                         <div class="icon">
                             <i class="fas fa-exclamation"></i>
                         </div>
+                            <a href="/beranda/Pengajuan" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
         
@@ -56,6 +57,7 @@
                         <div class="icon">
                             <i class="fas fa-search"></i>
                         </div>
+                            <a href="/beranda/Administrasi Dan Analisis Konsep" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
         
@@ -70,6 +72,7 @@
                         <div class="icon">
                             <i class="fas fa-users"></i>
                         </div>
+                            <a href="/beranda/Rapat Harmonisasi" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
         
@@ -84,6 +87,7 @@
                         <div class="icon">
                             <i class="fas fa-folder-open"></i>
                         </div>
+                            <a href="/beranda/Penyampaian" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>

@@ -35,13 +35,148 @@ class DatabaseSeeder extends Seeder
 
         // pemrakarsa
             pemrakarsa::create([
-                'nama' => 'PEMERINTAH DAERAH KOTA MAKASSAR'
+                'nama' => 'Pemerintah Daerah Kabupaten Bantaeng'
             ]);
             pemrakarsa::create([
-                'nama' => 'DPRD KOTA MAKASSAR'
+                'nama' => 'Pemerintah Daerah Kabupaten Barru'
             ]);
             pemrakarsa::create([
-                'nama' => 'KEPALA DAERAH'
+                'nama' => 'Pemerintah Daerah Kabupaten Bone'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Bulukumba'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Enrekang'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Gowa'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Jeneponto'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Kepulauan Selayar'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Luwu'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Luwu Timur'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Luwu Utara'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Maros'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Pangkep'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Pinrang'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Sidenreng Rappang'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Soppeng'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Takalar'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Tana Toraja'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Toraja Utara'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kabupaten Wajo'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kota Makassar'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kota Palopo'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Daerah Kota Parepare'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Bantaeng'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Barru'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Bone'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Bulukumba'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Enrekang'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Gowa'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Jeneponto'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Kepulauan Selayar'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Luwu'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Luwu Timur'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Luwu Utara'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Maros'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Pangkep'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Pinrang'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Sidenreng Rappang'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Sinjai'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Soppeng'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Tana Toraja'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Toraja Utara'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kabupaten Wajo'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kota Makassar'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kota Palopo'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Kota Parepare'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'Pemerintah Provinsi Sulawesi Selatan'
+            ]);
+            pemrakarsa::create([
+                'nama' => 'DPRD Provinsi Sulawesi Selatan'
             ]);
         // end pemrakarsa
 

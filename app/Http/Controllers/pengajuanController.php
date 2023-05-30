@@ -26,12 +26,10 @@ class pengajuanController extends Controller
         $pemrakarsa = pemrakarsa::all();
         $checkUser = auth()->user()->pemrakarsa_id;
 
-        if (auth()->user()->role_id == 3) {
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('pemrakarsa_id', $checkUser)->where('rancangan_id', 1)->orWhere('rancangan_id', 3)->get();
-        } elseif(auth()->user()->role_id == 4) {
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('rancangan_id', 2)->where('pemrakarsa_id', $checkUser)->get();
+        if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2) {
+            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->get();
         } else {
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->get();
+            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $checkUser)->get();
         }
 
         return view('pengajuan.pengajuan', [
@@ -50,54 +48,57 @@ class pengajuanController extends Controller
         $pemrakarsa = pemrakarsa::all();
         $checkUser = auth()->user()->pemrakarsa_id;
 
-        // filter tiga
-        if ($data['tahun'] && $data['harmonisasi'] && $data['pemrakarsa']) {
-            $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
-            $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
-            $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
-
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
-        }
-        // filter dua
-        elseif ($data['tahun'] && $data['harmonisasi']) {
-            $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
-            $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
-
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->get();
-        }
-        elseif ($data['tahun'] && $data['pemrakarsa']) {
-            $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
-            $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
-
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('tahun_id', $filter_tahun->id)->get();
-        }
-        elseif ($data['harmonisasi'] && $data['pemrakarsa']) {
-            $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
-            $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
-
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('rancangan_id', $filter_rancangan->id)->get();
-        }
-        // Filter satu
-        elseif ($data['tahun']) {
-            $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
-
-            if (auth()->user()->role_id == 3) {
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('tahun_id', $filter_tahun->id)->where('pemrakarsa_id', $checkUser)->where('rancangan_id', 1)->orWhere('rancangan_id', 3)->get();
-            } elseif(auth()->user()->role_id == 4) {
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('tahun_id', $filter_tahun->id)->where('rancangan_id', 2)->where('pemrakarsa_id', $checkUser)->get();
-            } else {
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('tahun_id', $filter_tahun->id)->get();
+        if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2) {
+            // filter tiga
+            if ($data['tahun'] && $data['harmonisasi'] && $data['pemrakarsa']) {
+                $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+                $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
+                $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+    
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
             }
-        } 
-        elseif ($data['harmonisasi']) {
-            $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
-
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('rancangan_id', $filter_rancangan->id)->get();
-        } 
-        elseif ($data['pemrakarsa']) {
-            $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
-            
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('padministrasi_id', 1)->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
+            // filter dua
+            elseif ($data['tahun'] && $data['harmonisasi']) {
+                $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+                $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
+    
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->get();
+            }
+            elseif ($data['tahun'] && $data['pemrakarsa']) {
+                $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+                $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+    
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('tahun_id', $filter_tahun->id)->get();
+            }
+            elseif ($data['harmonisasi'] && $data['pemrakarsa']) {
+                $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
+                $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+    
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('rancangan_id', $filter_rancangan->id)->get();
+            }
+            // Filter satu
+            elseif ($data['tahun']) {
+                $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+    
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('tahun_id', $filter_tahun->id)->get();
+            } 
+            elseif ($data['harmonisasi']) {
+                $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
+    
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->get();
+            } 
+            elseif ($data['pemrakarsa']) {
+                $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+                
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
+            }
+        } else {
+            // Filter satu
+            if ($data['tahun']) {
+                $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
+    
+                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $checkUser)->where('tahun_id', $filter_tahun->id)->get();
+            }
         }
 
         return view('pengajuan.pengajuan', [
@@ -129,7 +130,7 @@ class pengajuanController extends Controller
         $request->validate([
             'tahun' => 'required|exists:tahun,no',
             'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-            'judul' => 'required|max:50|unique:harmonisasi,judul',
+            'judul' => 'required|max:150|unique:harmonisasi,judul',
             'rancangan' => 'required',  
             'permohonan' => 'required',
             'status' => 'required|exists:kpengajuan,nama',
@@ -186,108 +187,194 @@ class pengajuanController extends Controller
 
     public function update(Harmonisasi $harmonisasi, Request $request)
     {
-        $request->validate([
-            'tahun' => 'required||exists:tahun,no',
-            'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-            'judul' => 'required|max:50',
-            'rancangan' => 'required',  
-            'permohonan' => 'required',
-            'padministrasi' => 'required|exists:padministrasi,nama',
-            'status' => 'required|exists:kpengajuan,nama',
-            'keterangan' => 'nullable|max:100',
-            'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            'docx4' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            'docx5' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-        ]);
-        $data = $request->input();
-        $dataFile = $request->file();
-        $rancangan_id = rancangan::where('nama', $data['rancangan'])->first();
-        $tahun_id = tahun::where('no', $data['tahun'])->first('id');
-        $pemrakarsa_id = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
-        $kpengajuan_id = kpengajuan::where('nama', $data['status'])->first('id');
-        $padministrasi_id = padministrasi::where('nama', $data['padministrasi'])->first('id');
-
-        // check Doc
-            if($request->file('docx1') && $harmonisasi->docx1 != null) {
-                Storage::delete($harmonisasi->docx1);
-                $docx1 = $dataFile['docx1']->store('document');
-            } elseif ($request->file('docx1')) {
-                $docx1 = $dataFile['docx1']->store('document');
-            } else {
-                $docx1 = $harmonisasi->docx1;
-            }
-
-            if($request->file('docx2')  && $harmonisasi->docx2 != null) {
-                Storage::delete($harmonisasi->docx2);
-                $docx2 = $dataFile['docx2']->store('document');
-            } elseif ($request->file('docx2')) {
-                $docx2 = $dataFile['docx2']->store('document');
-            } else {
-                $docx2 = $harmonisasi->docx2;
-            }
-
-            if($request->file('docx3')  && $harmonisasi->docx3 != null) {
-                Storage::delete($harmonisasi->docx3);
-                $docx3 = $dataFile['docx3']->store('document');
-            } elseif ($request->file('docx3')) {
-                $docx3 = $dataFile['docx3']->store('document');
-            } else {
-                $docx3 = $harmonisasi->docx3;
-            }
-
-            if($request->file('docx4')  && $harmonisasi->docx4 != null) {
-                Storage::delete($harmonisasi->docx4);
-                $docx4 = $dataFile['docx4']->store('document');
-            } elseif ($request->file('docx4')) {
-                $docx4 = $dataFile['docx4']->store('document');
-            } else {
-                $docx4 = $harmonisasi->docx4;
-            }
-
-            if($request->file('docx5')  && $harmonisasi->docx5 != null) {
-                Storage::delete($harmonisasi->docx5);
-                $docx5 = $dataFile['docx5']->store('document');
-            } elseif ($request->file('docx5')) {
-                $docx5 = $dataFile['docx5']->store('document');
-            } else {
-                $docx5 = $harmonisasi->docx5;
-            }
-        // End check Doc
-
-        if($data['padministrasi'] == 'Administrasi Dan Analisis Konsep' && $harmonisasi->doc_administrasi_id == null)
-        {
-            $harmonisasi_id = harmonisasi::where('id', $harmonisasi->id)->first();
-            $administrasi_id = doc_administrasi::create([
-                'harmonisasi_id' => $harmonisasi_id->id
+        if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2) {
+            $request->validate([
+                'tahun' => 'required||exists:tahun,no',
+                'pemrakarsa' => 'required|exists:pemrakarsa,nama',
+                'judul' => 'required|max:50',
+                'rancangan' => 'required',  
+                'permohonan' => 'required',
+                'padministrasi' => 'required|exists:padministrasi,nama',
+                'status' => 'required|exists:kpengajuan,nama',
+                'keterangan' => 'nullable|max:100',
+                'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx4' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx5' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
             ]);
+            $data = $request->input();
+            $dataFile = $request->file();
+            $rancangan_id = rancangan::where('nama', $data['rancangan'])->first();
+            $tahun_id = tahun::where('no', $data['tahun'])->first('id');
+            $pemrakarsa_id = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+            $kpengajuan_id = kpengajuan::where('nama', $data['status'])->first('id');
+            $padministrasi_id = padministrasi::where('nama', $data['padministrasi'])->first('id');
 
-            harmonisasi::where('judul', $harmonisasi->judul)
-            ->update([
-                'tahun_id' => $tahun_id->id,
-                'rancangan_id' => $rancangan_id->id,
-                'pemrakarsa_id' => $pemrakarsa_id->id,
-                'kpengajuan_id' => $kpengajuan_id->id,
-                'padministrasi_id' => $padministrasi_id->id,
-                'doc_administrasi_id' => $administrasi_id->id,
-                'judul' => $data['judul'],
-                'tanggal' => $data['permohonan'],
-                'keterangan' => $data['keterangan'],
-                'docx1' => $docx1,
-                'docx2' => $docx2,
-                'docx3' => $docx3,
-                'docx4' => $docx4,
-                'docx5' => $docx5
-            ]);
+            // check Doc
+                if($request->file('docx1') && $harmonisasi->docx1 != null) {
+                    Storage::delete($harmonisasi->docx1);
+                    $docx1 = $dataFile['docx1']->store('document');
+                } elseif ($request->file('docx1')) {
+                    $docx1 = $dataFile['docx1']->store('document');
+                } else {
+                    $docx1 = $harmonisasi->docx1;
+                }
+
+                if($request->file('docx2')  && $harmonisasi->docx2 != null) {
+                    Storage::delete($harmonisasi->docx2);
+                    $docx2 = $dataFile['docx2']->store('document');
+                } elseif ($request->file('docx2')) {
+                    $docx2 = $dataFile['docx2']->store('document');
+                } else {
+                    $docx2 = $harmonisasi->docx2;
+                }
+
+                if($request->file('docx3')  && $harmonisasi->docx3 != null) {
+                    Storage::delete($harmonisasi->docx3);
+                    $docx3 = $dataFile['docx3']->store('document');
+                } elseif ($request->file('docx3')) {
+                    $docx3 = $dataFile['docx3']->store('document');
+                } else {
+                    $docx3 = $harmonisasi->docx3;
+                }
+
+                if($request->file('docx4')  && $harmonisasi->docx4 != null) {
+                    Storage::delete($harmonisasi->docx4);
+                    $docx4 = $dataFile['docx4']->store('document');
+                } elseif ($request->file('docx4')) {
+                    $docx4 = $dataFile['docx4']->store('document');
+                } else {
+                    $docx4 = $harmonisasi->docx4;
+                }
+
+                if($request->file('docx5')  && $harmonisasi->docx5 != null) {
+                    Storage::delete($harmonisasi->docx5);
+                    $docx5 = $dataFile['docx5']->store('document');
+                } elseif ($request->file('docx5')) {
+                    $docx5 = $dataFile['docx5']->store('document');
+                } else {
+                    $docx5 = $harmonisasi->docx5;
+                }
+            // End check Doc
+
+            if($data['padministrasi'] == 'Administrasi Dan Analisis Konsep' && $harmonisasi->doc_administrasi_id == null)
+            {
+                $harmonisasi_id = harmonisasi::where('id', $harmonisasi->id)->first();
+                $administrasi_id = doc_administrasi::create([
+                    'harmonisasi_id' => $harmonisasi_id->id
+                ]);
+
+                harmonisasi::where('judul', $harmonisasi->judul)
+                ->update([
+                    'tahun_id' => $tahun_id->id,
+                    'rancangan_id' => $rancangan_id->id,
+                    'pemrakarsa_id' => $pemrakarsa_id->id,
+                    'kpengajuan_id' => $kpengajuan_id->id,
+                    'padministrasi_id' => $padministrasi_id->id,
+                    'doc_administrasi_id' => $administrasi_id->id,
+                    'judul' => $data['judul'],
+                    'tanggal' => $data['permohonan'],
+                    'keterangan' => $data['keterangan'],
+                    'docx1' => $docx1,
+                    'docx2' => $docx2,
+                    'docx3' => $docx3,
+                    'docx4' => $docx4,
+                    'docx5' => $docx5
+                ]);
+            } else {
+                harmonisasi::where('judul', $harmonisasi->judul)
+                ->update([
+                    'tahun_id' => $tahun_id->id,
+                    'rancangan_id' => $rancangan_id->id,
+                    'pemrakarsa_id' => $pemrakarsa_id->id,
+                    'kpengajuan_id' => $kpengajuan_id->id,
+                    'padministrasi_id' => $padministrasi_id->id,
+                    'judul' => $data['judul'],
+                    'tanggal' => $data['permohonan'],
+                    'keterangan' => $data['keterangan'],
+                    'docx1' => $docx1,
+                    'docx2' => $docx2,
+                    'docx3' => $docx3,
+                    'docx4' => $docx4,
+                    'docx5' => $docx5
+                ]);
+            }
         } else {
+            $request->validate([
+                'tahun' => 'required||exists:tahun,no',
+                'pemrakarsa' => 'required|exists:pemrakarsa,nama',
+                'judul' => 'required|max:50',
+                'rancangan' => 'required',  
+                'permohonan' => 'required',
+                'status' => 'required|exists:kpengajuan,nama',
+                'keterangan' => 'nullable|max:100',
+                'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx4' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx5' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+            ]);
+            $data = $request->input();
+            $dataFile = $request->file();
+            $rancangan_id = rancangan::where('nama', $data['rancangan'])->first();
+            $tahun_id = tahun::where('no', $data['tahun'])->first('id');
+            $pemrakarsa_id = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
+            $kpengajuan_id = kpengajuan::where('nama', $data['status'])->first('id');
+
+            // check Doc
+                if($request->file('docx1') && $harmonisasi->docx1 != null) {
+                    Storage::delete($harmonisasi->docx1);
+                    $docx1 = $dataFile['docx1']->store('document');
+                } elseif ($request->file('docx1')) {
+                    $docx1 = $dataFile['docx1']->store('document');
+                } else {
+                    $docx1 = $harmonisasi->docx1;
+                }
+
+                if($request->file('docx2')  && $harmonisasi->docx2 != null) {
+                    Storage::delete($harmonisasi->docx2);
+                    $docx2 = $dataFile['docx2']->store('document');
+                } elseif ($request->file('docx2')) {
+                    $docx2 = $dataFile['docx2']->store('document');
+                } else {
+                    $docx2 = $harmonisasi->docx2;
+                }
+
+                if($request->file('docx3')  && $harmonisasi->docx3 != null) {
+                    Storage::delete($harmonisasi->docx3);
+                    $docx3 = $dataFile['docx3']->store('document');
+                } elseif ($request->file('docx3')) {
+                    $docx3 = $dataFile['docx3']->store('document');
+                } else {
+                    $docx3 = $harmonisasi->docx3;
+                }
+
+                if($request->file('docx4')  && $harmonisasi->docx4 != null) {
+                    Storage::delete($harmonisasi->docx4);
+                    $docx4 = $dataFile['docx4']->store('document');
+                } elseif ($request->file('docx4')) {
+                    $docx4 = $dataFile['docx4']->store('document');
+                } else {
+                    $docx4 = $harmonisasi->docx4;
+                }
+
+                if($request->file('docx5')  && $harmonisasi->docx5 != null) {
+                    Storage::delete($harmonisasi->docx5);
+                    $docx5 = $dataFile['docx5']->store('document');
+                } elseif ($request->file('docx5')) {
+                    $docx5 = $dataFile['docx5']->store('document');
+                } else {
+                    $docx5 = $harmonisasi->docx5;
+                }
+            // End check Doc
+
             harmonisasi::where('judul', $harmonisasi->judul)
             ->update([
                 'tahun_id' => $tahun_id->id,
                 'rancangan_id' => $rancangan_id->id,
                 'pemrakarsa_id' => $pemrakarsa_id->id,
                 'kpengajuan_id' => $kpengajuan_id->id,
-                'padministrasi_id' => $padministrasi_id->id,
                 'judul' => $data['judul'],
                 'tanggal' => $data['permohonan'],
                 'keterangan' => $data['keterangan'],

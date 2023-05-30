@@ -137,7 +137,7 @@ class dataController extends Controller
     {
         Storage::delete($agenda->foto);
         agenda::where('nama', $agenda->nama)->update([
-            'foto' => ''
+            'foto' => null
         ]);
         return back()->with('success', 'Berhasil Hapus Foto');
     }
