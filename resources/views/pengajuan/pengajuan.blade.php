@@ -143,12 +143,14 @@
                                             </td>
                                         @endif
                                         <td>{{ $item->kpengajuan->nama }}</td>
-                                        @if ($item->padministrasi->nama == 'Pengajuan' || $item->padministrasi->nama == 'Administrasi Dan Analisis Konsep')
+                                        @if ($item->padministrasi->nama == 'Pengajuan')
                                             <td><p class="badge badge-info p-1">{{ $item->padministrasi->nama }}</p></td>
-                                        @elseif ($item->padministrasi->nama == 'Rapat Harmonisasi')
-                                            <td><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
-                                        @elseif ($item->padministrasi->nama == 'Penyampaian')
+                                        @elseif($item->padministrasi->nama == 'Administrasi Dan Analisis Konsep')
                                             <td><p class="badge badge-secondary p-1">{{ $item->padministrasi->nama }}</p></td>
+                                        @elseif ($item->padministrasi->nama == 'Rapat Harmonisasi')
+                                            <td><p class="badge badge-danger p-1">{{ $item->padministrasi->nama }}</p></td>
+                                        @elseif ($item->padministrasi->nama == 'Penyampaian' || $item->padministrasi->nama == 'Selesai Harmonisasi')
+                                            <td><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
                                         @endif
                                         @if ($item->masukan_masyarakat)
                                             <td>

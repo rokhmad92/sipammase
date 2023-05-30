@@ -95,7 +95,7 @@
 
             <div class="row">
                 <div class="col-12 d-flex flex-wrap">
-                        <div class="bd-highlight col">
+                        <div class="bd-highlight col-md-6">
                             <div class="card card-success">
                                 <div class="card-header">
                                     <h3 class="card-title">Grafik Harmonisasi</h3>
@@ -212,7 +212,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <table class="dataTable table table-bordered table-responsive-sm">
+                                    <table class="dataTable table table-bordered table-responsive">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -233,10 +233,12 @@
                                                         <td class="text-center">
                                                             <span class="badge badge-success mb-2 p-2" style="cursor: pointer;"><i class="fas fa-check"></i> Selesai</span> 
                                                         </td>
-                                                    @else
+                                                    @elseif ($item->padministrasi->nama == 'Pengajuan')
                                                         <td class="text-center">
                                                             <a href="/pengajuan/masukan/{{ $item->judul }}" class="badge badge-info mb-2 p-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> 
                                                         </td>
+                                                    @else
+                                                        <td></td>
                                                     @endif
                                                 </tr>
                                             @endforeach
@@ -246,7 +248,7 @@
                             </div>
                         </div>
 
-                        <div class="bd-highlight col">
+                        <div class="bd-highlight col-md-6">
                             <div class="card card-secondary">
                                 <div class="card-header">
                                     <h3 class="card-title">Informasi Jam Layanan</h3>
@@ -305,7 +307,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <table class="dataTable table table-bordered table-responsive-sm">
+                                    <table class="dataTable table table-bordered table-responsive">
                                         <thead>
                                             <tr>
                                                 <th>No</th>

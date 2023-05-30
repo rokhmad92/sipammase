@@ -130,11 +130,11 @@ class pengajuanController extends Controller
         $request->validate([
             'tahun' => 'required|exists:tahun,no',
             'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-            'judul' => 'required|max:150|unique:harmonisasi,judul',
+            'judul' => 'required|unique:harmonisasi,judul',
             'rancangan' => 'required',  
             'permohonan' => 'required',
             'status' => 'required|exists:kpengajuan,nama',
-            'keterangan' => 'nullable|max:100',
+            'keterangan' => 'nullable',
             'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
             'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
             'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',

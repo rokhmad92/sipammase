@@ -2,6 +2,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- ngrok --}}
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>{{ $title }}</title>
     {{-- template style --}}
     <link rel="stylesheet" href="{{ asset('template') }}/plugins/fontawesome-free/css/all.min.css">
@@ -90,7 +92,7 @@
                                             <label>Posisi Harmonisasi</label>
                                             <input type="text" class="form-control" value="{{ $harmonisasi->padministrasi->nama }}" readonly>
                                         </div>
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-6 {{ ($harmonisasi->padministrasi->nama == 'Pengajuan') ? '' : 'd-none'}}">
                                             <label>Masukan Masyarakat</label>
                                             <div class="input-group">
                                                 <div class="custom-file">

@@ -77,11 +77,11 @@ class dataController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nama' => 'required|max:50|unique:agenda,nama',
+            'nama' => 'required|unique:agenda,nama',
             'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-            'harmonisasi' => 'required|max:50',
+            'harmonisasi' => 'required',
             'tanggal' => 'required',
-            'lokasi' => 'required|max:100'
+            'lokasi' => 'required|max:150'
         ]);
 
         $data = $request->input();

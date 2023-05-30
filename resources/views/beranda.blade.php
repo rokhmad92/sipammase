@@ -5,7 +5,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row">
-                    <img src="{{ asset('images') }}/dashboard.jpeg" alt="Beranda" class="img-fluid rounded-md">
+                    <img src="{{ asset('images') }}/dashboard.jpeg" alt="Beranda" class="rounded-md" style="width: 100%;">
                 </div>
             </div>
         </div>

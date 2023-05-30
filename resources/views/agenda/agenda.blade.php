@@ -77,7 +77,7 @@
                 @csrf
                     <div class="form-group">
                         <label for="nama">Nama Rapat</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" required maxlength="50" autocomplete="off">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" required autocomplete="off">
                         @error('nama')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -149,7 +149,7 @@
                 @csrf
                     <div class="form-group">
                         <label for="nama">Nama Rapat</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" required maxlength="50" autocomplete="off" value="{{ $item->nama }}">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" required autocomplete="off" value="{{ $item->nama }}">
                         @error('nama')
                             <div class="invalid-feedback">
                                 {{ $message }}

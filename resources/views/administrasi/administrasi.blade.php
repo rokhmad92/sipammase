@@ -132,7 +132,7 @@
                                         @endif
                                         
                                         <td><p class="badge {{ ($item->status_administrasi == 'Di Tolak') ? 'badge-danger' : 'badge-success' }}">{{ $item->status_administrasi }}</p></td>
-                                        <td><p class="badge badge-info">{{ $item->padministrasi->nama }}</p></td>
+                                        <td><p class="badge badge-secondary">{{ $item->padministrasi->nama }}</p></td>
 
                                         <td>{{ $item->doc_administrasi->keterangan }}</td>
                                         <td class="text-center">

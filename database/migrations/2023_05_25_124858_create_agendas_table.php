@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('agenda', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pemrakarsa_id')->constrained('pemrakarsa');
-            $table->string('nama', 50)->unique();
-            $table->string('harmonisasi', 50);
+            $table->string('nama')->unique();
+            $table->string('harmonisasi');
             $table->date('tanggal');
-            $table->string('lokasi', 100);
+            $table->string('lokasi', 150);
             $table->string('foto')->nullable();
             $table->timestamps();
         });

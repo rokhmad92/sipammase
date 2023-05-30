@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('status_administrasi')->nullable();
             $table->string('status_rapat')->nullable();
             $table->string('status_penyampaian')->nullable();
-            $table->string('judul', 150)->unique();
+            $table->text('judul')->unique();
             $table->date('tanggal');
-            $table->string('keterangan', 100)->nullable();
+            $table->text('keterangan')->nullable();
             $table->string('masukan_masyarakat')->nullable();
             $table->string('keterangan_masyarakat')->nullable();
             $table->string('docx1')->nullable();
