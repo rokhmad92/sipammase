@@ -14,7 +14,7 @@ class berandaController extends Controller
      */
     public function index()
     {
-        $harmonisasi = harmonisasi::with('padministrasi', 'tahun', 'kpengajuan', 'pemrakarsa')->get();
+        $harmonisasi = harmonisasi::all();
         $totalPengajuan = harmonisasi::where('padministrasi_id', 1)->count();
         $totalAdministrasi = harmonisasi::where('padministrasi_id', 2)->count();
         $totalRapat = harmonisasi::where('padministrasi_id', 3)->count();
@@ -38,9 +38,9 @@ class berandaController extends Controller
         // get Data
         $administrasi = padministrasi::where('nama', $get)->first('id');
         if ($administrasi->id == 4) {
-            $harmonisasi = harmonisasi::with('padministrasi', 'tahun', 'kpengajuan', 'pemrakarsa')->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
+            $harmonisasi = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->get();
         } else {
-            $harmonisasi = harmonisasi::with('padministrasi', 'tahun', 'kpengajuan', 'pemrakarsa')->where('padministrasi_id', $administrasi->id)->get();
+            $harmonisasi = harmonisasi::where('padministrasi_id', $administrasi->id)->get();
         }
 
         return view('beranda', [

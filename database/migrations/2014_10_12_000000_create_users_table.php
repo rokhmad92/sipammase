@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('harmonisasi_id')->constrained('harmonisasi')->nullable();
             $table->unsignedBigInteger('rancangan_id')->constrained('rancangan');
             $table->unsignedBigInteger('pemrakarsa_id')->constrained('pemrakarsa');
             $table->unsignedBigInteger('role_id')->constrained('role');
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->string('username', 20)->unique();
             $table->string('password');
             $table->string('namaPanjang', 70)->unique();
-            $table->string('alamat', 80);
+            $table->string('alamat', 80)->default('Sulawesi Selatan');
             $table->string('email', 50)->unique();
             $table->rememberToken();
             $table->timestamps();

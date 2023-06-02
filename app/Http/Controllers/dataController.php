@@ -39,7 +39,7 @@ class dataController extends Controller
         $Pengajuan = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->count();
         $Administrasi = harmonisasi::where('padministrasi_id', 2)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->count();
         $Rapat = harmonisasi::where('padministrasi_id', 3)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->count();
-        $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
+        $Penyampaian = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahunId->id)->count();
 
         return view('grafik.grafik', [
             'title' => 'Grafik Harmonisasi'
@@ -56,7 +56,7 @@ class dataController extends Controller
         $Pengajuan = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->count();
         $Administrasi = harmonisasi::where('padministrasi_id', 2)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->count();
         $Rapat = harmonisasi::where('padministrasi_id', 3)->where('tahun_id', $tahun->id)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->count();
-        $Penyampaian = harmonisasi::where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->count();
+        $Penyampaian = harmonisasi::where('padministrasi_id', 4)->orWhere('padministrasi_id', 5)->where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->count();
 
         $data = harmonisasi::where('pemrakarsa_id', $get->id)->where('tahun_id', $tahun->id)->get();
 

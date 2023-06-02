@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Models\role;
 use App\Models\tahun;
 use App\Models\rancangan;
+use App\Models\harmonisasi;
 use App\Models\pemrakarsa;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function tahun()
     {
         return $this->belongsTo(tahun::class);
+    }
+
+    public function harmonisasi()
+    {
+        return $this->hasMany(harmonisasi::class);
     }
 }

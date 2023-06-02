@@ -117,8 +117,10 @@
                                     <th>Pemrakarsa</th>
                                     <th>Tanggal Permohonan</th>
                                     <th>Dokumen Pengajuan</th>
+                                    <th>Dokumen Harmonisasi</th>
                                     <th>Status</th>
                                     <th>Posisi</th>
+                                    <th>Proses</th>
                                     <th>Masukan Masyarakat</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
@@ -131,8 +133,9 @@
                                         <td>{{ $item->judul }}</td>
                                         <td>{{ $item->pemrakarsa->nama }}</td>
                                         <td>{{ $item->tanggal }}</td>
+                                        {{-- dokumen pengajuan --}}
                                         @if ($item->docx1 == null && $item->docx2 == null && $item->docx3 == null && $item->docx4 == null && $item->docx5 == null)
-                                            <td>Belum ada dokumen</td>
+                                            <td><p class="badge badge-danger">Belum ada dokumen</p></td>
                                         @else
                                             <td>
                                                 <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx1) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
@@ -142,7 +145,39 @@
                                                 <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->docx5) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->docx5 }}" target="_blank">5. <i class="fas fa-download"></i></a>
                                             </td>
                                         @endif
+
+                                        {{-- dokumen harmonisasi --}}
+                                        @if ($item->doc_administrasi_id == null && $item->doc_rapat_id == null && $item->doc_penyampaian_id == null)
+                                            <td><p class="badge badge-danger">Belum ada dokumen</p></td>
+                                        @else
+                                            <td>
+                                                @if ($item->doc_administrasi->docx1 !== null)
+                                                    <a class="badge badge-info mr-2 mt-1 p-1" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
+                                                @else
+                                                    <a class="badge badge-danger mr-2 mt-1 p-1" target="_blank">1. Belum ada dokumen</a>
+                                                @endif
+
+                                                @if ($item->doc_rapat_id == null)
+                                                    <a class="badge badge-danger mr-2 mt-1 p-1" target="_blank">2. Belum ada dokumen</a>
+                                                @elseif($item->doc_rapat->docx1 !== null)
+                                                    <a class="badge badge-info mr-2 mt-1 p-1" href="{{ asset('storage') }}/{{ $item->doc_rapat->docx1 }}" target="_blank">2. <i class="fas fa-download"></i></a>
+                                                @else
+                                                    <a class="badge badge-danger mr-2 mt-1 p-1" target="_blank">2. Belum ada dokumen</a>
+                                                @endif
+
+                                                @if ($item->doc_penyampaian_id == null)
+                                                    <a class="badge badge-danger mr-2 mt-1 p-1" target="_blank">3. Belum ada dokumen</a>
+                                                @elseif($item->doc_penyampaian->docx1 !== null)
+                                                    <a class="badge badge-info mr-2 mt-1 p-1" href="{{ asset('storage') }}/{{ $item->doc_penyampaian->docx1 }}" target="_blank">3. <i class="fas fa-download"></i></a>
+                                                @else
+                                                    <a class="badge badge-danger mr-2 mt-1 p-1" target="_blank">3. Belum ada dokumen</a>
+                                                @endif
+                                            </td>
+                                        @endif
+
                                         <td>{{ $item->kpengajuan->nama }}</td>
+
+                                        {{-- Posisi --}}
                                         @if ($item->padministrasi->nama == 'Pengajuan')
                                             <td><p class="badge badge-info p-1">{{ $item->padministrasi->nama }}</p></td>
                                         @elseif($item->padministrasi->nama == 'Administrasi Dan Analisis Konsep')
@@ -152,6 +187,17 @@
                                         @elseif ($item->padministrasi->nama == 'Penyampaian' || $item->padministrasi->nama == 'Selesai Harmonisasi')
                                             <td><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
                                         @endif
+
+                                        {{-- proses --}}
+                                        @if ($item->user)
+                                            <td>
+                                                {{ $item->user->namaPanjang }}
+                                            </td>
+                                        @else
+                                            <td>Belum Ada</td>
+                                        @endif
+
+                                        {{-- masukan masyarakat --}}
                                         @if ($item->masukan_masyarakat)
                                             <td>
                                                 <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->masukan_masyarakat) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->masukan_masyarakat }}" target="_blank"><i class="fas fa-download"></i> Masukan Masyarakat</a>
@@ -159,7 +205,18 @@
                                         @else
                                             <td>Belum Ada</td>
                                         @endif
-                                        <td>{{ $item->keterangan }}</td>
+
+                                        {{-- keterangan --}}
+                                        @if ($item->doc_penyampaian_id !== null)
+                                            <td>{{ $item->doc_penyampaian->keterangan }}</td>
+                                        @elseif($item->doc_rapat_id !== null)
+                                            <td>{{ $item->doc_rapat->keterangan }}</td>
+                                        @elseif($item->doc_administrasi_id !== null)
+                                            <td>{{ $item->doc_administrasi->keterangan }}</td>
+                                        @else
+                                            <td>{{ $item->keterangan }}</td>
+                                        @endif
+
                                         <td class="text-center">
                                             <a href="/pengajuan/edit/{{ $item->judul }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> <br>
                                             @admin(auth()->user())

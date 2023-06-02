@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\tahun;
+use App\Models\doc_rapat;
 use App\Models\rancangan;
 use App\Models\kpengajuan;
 use App\Models\pemrakarsa;
 use App\Models\harmonisasi;
-use App\Models\doc_administrasi;
-use App\Models\doc_rapat;
-use App\Models\doc_penyampaian;
 use Illuminate\Http\Request;
 use App\Models\padministrasi;
+use App\Models\doc_penyampaian;
+use App\Models\doc_administrasi;
 use Illuminate\Support\Facades\Storage;
 
 class pengajuanController extends Controller
@@ -27,9 +28,9 @@ class pengajuanController extends Controller
         $checkUser = auth()->user()->pemrakarsa_id;
 
         if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2) {
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->get();
+            $harmonisasi = harmonisasi::where('padministrasi_id', 1)->get();
         } else {
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $checkUser)->get();
+            $harmonisasi = harmonisasi::where('pemrakarsa_id', $checkUser)->get();
         }
 
         return view('pengajuan.pengajuan', [
@@ -55,49 +56,49 @@ class pengajuanController extends Controller
                 $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
                 $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
     
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
+                $harmonisasi = harmonisasi::where('padministrasi_id', 1)->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
             }
             // filter dua
             elseif ($data['tahun'] && $data['harmonisasi']) {
                 $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
                 $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
     
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->get();
+                $harmonisasi = harmonisasi::where('padministrasi_id', 1)->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->get();
             }
             elseif ($data['tahun'] && $data['pemrakarsa']) {
                 $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
                 $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
     
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('tahun_id', $filter_tahun->id)->get();
+                $harmonisasi = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('tahun_id', $filter_tahun->id)->get();
             }
             elseif ($data['harmonisasi'] && $data['pemrakarsa']) {
                 $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
                 $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
     
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('rancangan_id', $filter_rancangan->id)->get();
+                $harmonisasi = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('rancangan_id', $filter_rancangan->id)->get();
             }
             // Filter satu
             elseif ($data['tahun']) {
                 $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
     
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('tahun_id', $filter_tahun->id)->get();
+                $harmonisasi = harmonisasi::where('padministrasi_id', 1)->where('tahun_id', $filter_tahun->id)->get();
             } 
             elseif ($data['harmonisasi']) {
                 $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
     
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->get();
+                $harmonisasi = harmonisasi::where('padministrasi_id', 1)->where('rancangan_id', $filter_rancangan->id)->get();
             } 
             elseif ($data['pemrakarsa']) {
                 $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
                 
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
+                $harmonisasi = harmonisasi::where('padministrasi_id', 1)->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
             }
         } else {
             // Filter satu
             if ($data['tahun']) {
                 $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
     
-                $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $checkUser)->where('tahun_id', $filter_tahun->id)->get();
+                $harmonisasi = harmonisasi::where('pemrakarsa_id', $checkUser)->where('tahun_id', $filter_tahun->id)->get();
             }
         }
 
@@ -179,10 +180,11 @@ class pengajuanController extends Controller
         $getHarmonisasi = $harmonisasi;
         $kpengajuan = kpengajuan::all();
         $pemrakarsa = pemrakarsa::all();
+        $users = User::where('role_id', 2)->get();
         $rancangan = $harmonisasi->rancangan->nama;
         return view('pengajuan.pengajuanEdit', [
             'title' => 'Edit Pengajuan Harmonisasi'
-        ], compact('getHarmonisasi', 'kpengajuan', 'pemrakarsa', 'rancangan', 'posisi'));
+        ], compact('getHarmonisasi', 'kpengajuan', 'pemrakarsa', 'rancangan', 'posisi', 'users'));
     }
 
     public function update(Harmonisasi $harmonisasi, Request $request)
@@ -194,6 +196,7 @@ class pengajuanController extends Controller
             'rancangan' => 'required',  
             'permohonan' => 'required',
             'padministrasi' => 'required|exists:padministrasi,nama',
+            'proses' => 'nullable|exists:user,namaPanjang',
             'status' => 'required|exists:kpengajuan,nama',
             'keterangan' => 'nullable',
             'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
@@ -211,6 +214,12 @@ class pengajuanController extends Controller
             $pemrakarsa_id = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
             $kpengajuan_id = kpengajuan::where('nama', $data['status'])->first('id');
             $padministrasi_id = padministrasi::where('nama', $data['padministrasi'])->first('id');
+            $proses = User::where('namaPanjang', $data['proses'])->first('id');
+            if ($data['proses']) {
+                $proses_id = $proses->id;
+            } else {
+                $proses_id = null;
+            }
 
             // check Doc
                 if($request->file('docx1') && $harmonisasi->docx1 != null) {
@@ -274,6 +283,7 @@ class pengajuanController extends Controller
                     'kpengajuan_id' => $kpengajuan_id->id,
                     'padministrasi_id' => $padministrasi_id->id,
                     'doc_administrasi_id' => $administrasi_id->id,
+                    'user_id' => $proses_id,
                     'judul' => $data['judul'],
                     'tanggal' => $data['permohonan'],
                     'keterangan' => $data['keterangan'],
@@ -291,6 +301,7 @@ class pengajuanController extends Controller
                     'pemrakarsa_id' => $pemrakarsa_id->id,
                     'kpengajuan_id' => $kpengajuan_id->id,
                     'padministrasi_id' => $padministrasi_id->id,
+                    'user_id' => $proses_id,
                     'judul' => $data['judul'],
                     'tanggal' => $data['permohonan'],
                     'keterangan' => $data['keterangan'],

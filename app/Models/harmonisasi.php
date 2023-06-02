@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\tahun;
 use App\Models\rancangan;
 use App\Models\kpengajuan;
@@ -16,6 +17,8 @@ class harmonisasi extends Model
 
     protected $guarded = ['id'];
     protected $table = 'harmonisasi';
+
+    protected $with = ['kpengajuan', 'padministrasi', 'pemrakarsa', 'rancangan', 'tahun', 'doc_administrasi', 'doc_penyampaian', 'doc_rapat', 'user'];
 
     public function kpengajuan()
     {
@@ -55,5 +58,10 @@ class harmonisasi extends Model
     public function doc_rapat()
     {
         return $this->belongsTo(doc_rapat::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

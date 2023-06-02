@@ -95,6 +95,7 @@
                                     <th>Dokumen Kegiatan</th>
                                     <th>Status</th>
                                     <th>Posisi</th>
+                                    <th>Proses</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -107,6 +108,7 @@
                                         <td>{{ $item->pemrakarsa->nama }}</td>
                                         <td>{{ $item->tanggal }}</td>
 
+                                        {{-- dokumen pengajuan --}}
                                         @if ( $item->docx3 == null && $item->docx4 == null)
                                             <td><p class="badge badge-danger">Belum ada dokumen</p></td>
                                         @elseif ($item->rancangan->nama == 'RPERDA PEMDA' || $item->rancangan->nama == 'RPERKADA')
@@ -119,20 +121,38 @@
                                             </td>
                                         @endif
 
-                                        @if ($item->doc_rapat->docx1 == null && $item->doc_rapat->docx2 == null && $item->doc_rapat->docx3 == null && $item->doc_rapat->docx4 == null && $item->doc_rapat->docx5 == null)
+                                        {{-- dokumen kegiatan --}}
+                                        @if ($item->doc_administrasi_id == null && $item->doc_rapat_id == null && $item->doc_penyampaian_id == null)
                                             <td><p class="badge badge-danger">Belum ada dokumen</p></td>
                                         @else
                                             <td>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_rapat->docx1) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_rapat->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_rapat->docx2) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_rapat->docx2 }}" target="_blank">2. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_rapat->docx3) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_rapat->docx3 }}" target="_blank">3. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_rapat->docx4) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_rapat->docx4 }}" target="_blank">4. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_rapat->docx5) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_rapat->docx5 }}" target="_blank">5. <i class="fas fa-download"></i></a>
+                                                @if ($item->doc_administrasi->docx1 !== null)
+                                                    <a class="badge badge-info mr-2 mt-1 p-1" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
+                                                @else
+                                                    <a class="badge badge-danger mr-2 mt-1 p-1" target="_blank">1. Belum ada dokumen</a>
+                                                @endif
+
+                                                @if ($item->doc_rapat_id == null)
+                                                    <a class="badge badge-danger mr-2 mt-1 p-1" target="_blank">2. Belum ada dokumen</a>
+                                                @elseif($item->doc_rapat->docx1 !== null)
+                                                    <a class="badge badge-info mr-2 mt-1 p-1" href="{{ asset('storage') }}/{{ $item->doc_rapat->docx1 }}" target="_blank">2. <i class="fas fa-download"></i></a>
+                                                @else
+                                                    <a class="badge badge-danger mr-2 mt-1 p-1" target="_blank">2. Belum ada dokumen</a>
+                                                @endif
                                             </td>
                                         @endif
 
                                         <td><p class="badge {{ ($item->status_rapat == 'Di Tolak') ? 'badge-danger' : '' }}">{{ $item->status_rapat }}</p></td>
                                         <td><p class="badge badge-danger">{{ $item->padministrasi->nama }}</p></td>
+
+                                        {{-- proses --}}
+                                        @if ($item->user)
+                                            <td>
+                                                {{ $item->user->namaPanjang }}
+                                            </td>
+                                        @else
+                                            <td>Belum Ada</td>
+                                        @endif
 
                                         <td>{{ $item->doc_rapat->keterangan }}</td>
                                         <td class="text-center">

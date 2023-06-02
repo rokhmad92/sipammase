@@ -219,6 +219,7 @@
                                                 <th>Judul</th>
                                                 <th>Pemrakarsa</th>
                                                 <th>Tanggal</th>
+                                                <th>Status</th>
                                                 <th>Masukan</th>
                                             </tr>
                                         </thead>
@@ -229,6 +230,19 @@
                                                     <td>{{ $item->judul }}</td>
                                                     <td>{{ $item->pemrakarsa->nama }}</td>
                                                     <td>{{ $item->tanggal }}</td>
+
+                                                    {{-- Posisi --}}
+                                                    @if ($item->padministrasi->nama == 'Pengajuan')
+                                                        <td class="text-center"><p class="badge badge-info p-1">{{ $item->padministrasi->nama }}</p></td>
+                                                    @elseif($item->padministrasi->nama == 'Administrasi Dan Analisis Konsep')
+                                                        <td class="text-center"><p class="badge badge-secondary p-1">{{ $item->padministrasi->nama }}</p></td>
+                                                    @elseif ($item->padministrasi->nama == 'Rapat Harmonisasi')
+                                                        <td class="text-center"><p class="badge badge-danger p-1">{{ $item->padministrasi->nama }}</p></td>
+                                                    @elseif ($item->padministrasi->nama == 'Penyampaian' || $item->padministrasi->nama == 'Selesai Harmonisasi')
+                                                        <td class="text-center"><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
+                                                    @endif
+
+                                                    {{-- Masukan --}}
                                                     @if ($item->masukan_masyarakat)
                                                         <td class="text-center">
                                                             <span class="badge badge-success mb-2 p-2" style="cursor: pointer;"><i class="fas fa-check"></i> Selesai</span> 

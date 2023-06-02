@@ -20,7 +20,7 @@
     // chart
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'bar',
             data : {
                 datasets: [{
                     label: '{{ $pemrakarsaGet }}',

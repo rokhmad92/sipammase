@@ -30,7 +30,7 @@ class basicController extends Controller
         $agenda = agenda::with('pemrakarsa')->latest()->get();
         $agendaFoto = agenda::whereNotNull('foto')->get('foto');
         $agendaCheck = agenda::whereNotNull('foto')->first('foto');
-        $harmonisasi = harmonisasi::with('padministrasi', 'kpengajuan', 'pemrakarsa')->get();
+        $harmonisasi = harmonisasi::all();
 
         return view('halamanDepan.landingpage', [
             'title' => 'Selamat Datang Di SIPAMMASE'
@@ -89,42 +89,42 @@ class basicController extends Controller
             $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
             $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
 
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
+            $harmonisasi = harmonisasi::where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
         }
         // filter dua
         elseif ($data['tahun'] && $data['harmonisasi']) {
             $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
             $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
 
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->get();
+            $harmonisasi = harmonisasi::where('rancangan_id', $filter_rancangan->id)->where('tahun_id', $filter_tahun->id)->get();
         }
         elseif ($data['tahun'] && $data['pemrakarsa']) {
             $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
             $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
 
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('tahun_id', $filter_tahun->id)->get();
+            $harmonisasi = harmonisasi::where('pemrakarsa_id', $filter_pemrakarsa->id)->where('tahun_id', $filter_tahun->id)->get();
         }
         elseif ($data['harmonisasi'] && $data['pemrakarsa']) {
             $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
             $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
 
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->where('rancangan_id', $filter_rancangan->id)->get();
+            $harmonisasi = harmonisasi::where('pemrakarsa_id', $filter_pemrakarsa->id)->where('rancangan_id', $filter_rancangan->id)->get();
         }
         // Filter satu
         elseif ($data['tahun']) {
             $filter_tahun = tahun::where('no', $data['tahun'])->first('id');
 
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('tahun_id', $filter_tahun->id)->get();
+            $harmonisasi = harmonisasi::where('tahun_id', $filter_tahun->id)->get();
         } 
         elseif ($data['harmonisasi']) {
             $filter_rancangan = rancangan::where('nama', $data['harmonisasi'])->first('id');
 
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('rancangan_id', $filter_rancangan->id)->get();
+            $harmonisasi = harmonisasi::where('rancangan_id', $filter_rancangan->id)->get();
         } 
         elseif ($data['pemrakarsa']) {
             $filter_pemrakarsa = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
             
-            $harmonisasi = harmonisasi::with(['rancangan', 'tahun', 'pemrakarsa', 'padministrasi', 'kpengajuan'])->where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
+            $harmonisasi = harmonisasi::where('pemrakarsa_id', $filter_pemrakarsa->id)->get();
         }
 
         return view('halamanDepan.landingpage', [

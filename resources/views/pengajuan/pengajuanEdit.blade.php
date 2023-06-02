@@ -112,28 +112,67 @@
                             </div>
 
                             @admin(auth()->user())
-                            <div class="row mt-3 ml-1 ">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Posisi Harmonisasi</label>
-                                        <select class="form-control @error('padministrasi') is-invalid @enderror" id="padministrasi" name="padministrasi">
-                                            <option value="{{ $getHarmonisasi->padministrasi->nama }}" selected>{{ $getHarmonisasi->padministrasi->nama }}</option>
-                                            @foreach ($posisi as $item)
-                                                @if ($item == $getHarmonisasi->padministrasi->nama)
-                                                    <option value="" style="display: none;"></option>
-                                                @else
-                                                    <option value="{{ $item }}">{{ $item }}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                        @error('padministrasi')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="form-group col-5">
+                                                <label>Posisi Harmonisasi</label>
+                                                <select class="form-control @error('padministrasi') is-invalid @enderror" id="padministrasi" name="padministrasi">
+                                                    <option value="{{ $getHarmonisasi->padministrasi->nama }}" selected>{{ $getHarmonisasi->padministrasi->nama }}</option>
+                                                    @foreach ($posisi as $item)
+                                                        @if ($item == $getHarmonisasi->padministrasi->nama)
+                                                            <option value="" style="display: none;"></option>
+                                                        @else
+                                                            <option value="{{ $item }}">{{ $item }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
+                                                @error('padministrasi')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
-                                        @enderror
+
+                                            @if (auth()->user()->role_id == 2)
+                                                <div class="form-group col-6">
+                                                    <label>Proses</label>
+                                                    @if ($getHarmonisasi->user)
+                                                        <input type="text" class="form-control" value="{{ $getHarmonisasi->user->namaPanjang }}" name="proses" readonly>
+                                                        @else
+                                                        <input type="text" class="form-control" name="proses" readonly>
+                                                    @endif
+                                                </div>
+                                            @else
+                                                <div class="form-group col-6">
+                                                    <label>Proses</label>
+                                                    <select class="form-control @error('proses') is-invalid @enderror" id="proses" name="proses">
+                                                        @if ($getHarmonisasi->user)
+                                                            <option value="{{ $getHarmonisasi->user->namaPanjang }}" selected>{{ $getHarmonisasi->user->namaPanjang }}</option>
+                                                            @foreach ($users as $item)
+                                                                @if ($item->namaPanjang == $getHarmonisasi->user->namaPanjang)
+                                                                    <option value="" style="display: none;"></option>
+                                                                @else
+                                                                    <option value="{{ $item->namaPanjang }}">{{ $item->namaPanjang }}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                            <option value=""></option>
+                                                            @foreach ($users as $item)
+                                                                <option value="{{ $item->namaPanjang }}">{{ $item->namaPanjang }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                    @error('proses')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endadmin
 
                             <div class="row mt-3 ml-1">

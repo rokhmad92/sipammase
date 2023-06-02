@@ -3,7 +3,7 @@
 
 <div class="collapse" id="collapseExample1">
     <div class="form-group col mt-3">
-        <label>Dokumen 1</label>
+        <label>Dokumen Penyampaian</label>
         <div class="input-group">
             <div class="custom-file">
                 <input type="file" class="custom-file-input @error('docx1') is-invalid @enderror" id="customFile1" name="docx1">
@@ -18,7 +18,7 @@
         @enderror
     </div>
 
-    <div class="form-group col mt-3">
+    {{-- <div class="form-group col mt-3">
         <label>Dokumen 2</label>
         <div class="input-group">
             <div class="custom-file">
@@ -80,7 +80,7 @@
                 {{ $message }}
             </div>
         @enderror
-    </div>
+    </div> --}}
 </div>
 
 {{-- lihat atau hapus --}}
@@ -95,14 +95,14 @@
 
     @if ($getHarmonisasi->doc_penyampaian->docx1)
         <div class="form-group col mt-3">
-            <label for="docx1">Surat Permohonan dan Urgensi dan Pokok Pikiran</label>
+            <label for="docx1">Dokumen Penyampaian</label>
             <br>
             <a target="_blank" class="badge badge-info mr-3" href="{{ asset('storage') }}/{{ $getHarmonisasi->doc_penyampaian->docx1 }}" style="cursor: pointer;"><i class="fas fa-download"></i> Lihat Dokumen</a>
             <a class="badge badge-danger mt-2" href="/1/penyampaian/{{ $getHarmonisasi->judul }}" style="cursor: pointer;"><i class="fas fa-trash"></i> Hapus Dokumen</a>
         </div>
     @endif
 
-    @if ($getHarmonisasi->doc_penyampaian->docx2)
+    {{-- @if ($getHarmonisasi->doc_penyampaian->docx2)
         <div class="form-group col mt-4">
             <label>Na</label>
             <br>
@@ -137,5 +137,5 @@
             <a target="_blank" class="badge badge-info mr-3" href="{{ asset('storage') }}/{{ $getHarmonisasi->doc_penyampaian->docx5 }}" style="cursor: pointer;"><i class="fas fa-download"></i> Lihat Dokumen</a>
             <a class="badge badge-danger mt-2" href="/5/penyampaian/{{ $getHarmonisasi->judul }}" style="cursor: pointer;"><i class="fas fa-trash"></i> Hapus Dokumen</a>
         </div>
-    @endif
+    @endif --}}
 </div>

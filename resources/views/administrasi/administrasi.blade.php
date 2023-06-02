@@ -95,6 +95,7 @@
                                     <th>Dokumen LPA/AK</th>
                                     <th>Status</th>
                                     <th>Posisi</th>
+                                    <th>Proses</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -107,6 +108,7 @@
                                         <td>{{ $item->pemrakarsa->nama }}</td>
                                         <td>{{ $item->tanggal }}</td>
 
+                                        {{-- dokumen pengajuan --}}
                                         @if ($item->docx1 == null && $item->docx2 == null && $item->docx3 == null && $item->docx4 == null && $item->docx5 == null)
                                             <td><p class="badge badge-danger">Belum ada dokumen</p></td>
                                         @else
@@ -119,20 +121,30 @@
                                             </td>
                                         @endif
 
+                                        {{-- dokumen lpa/ak --}}
                                         @if ($item->doc_administrasi->docx1 == null && $item->doc_administrasi->docx2 == null && $item->doc_administrasi->docx3 == null && $item->doc_administrasi->docx4 == null && $item->doc_administrasi->docx5 == null)
                                             <td><p class="badge badge-danger">Belum ada dokumen</p></td>
                                         @else
                                             <td>
                                                 <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx1) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx1 }}" target="_blank">1. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx2) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx2 }}" target="_blank">2. <i class="fas fa-download"></i></a>
+                                                {{-- <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx2) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx2 }}" target="_blank">2. <i class="fas fa-download"></i></a>
                                                 <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx3) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx3 }}" target="_blank">3. <i class="fas fa-download"></i></a>
                                                 <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx4) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx4 }}" target="_blank">4. <i class="fas fa-download"></i></a>
-                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx5) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx5 }}" target="_blank">5. <i class="fas fa-download"></i></a>
+                                                <a class="badge badge-info mr-2 mt-1 p-1 {{ ($item->doc_administrasi->docx5) ? '' : 'd-none' }}" href="{{ asset('storage') }}/{{ $item->doc_administrasi->docx5 }}" target="_blank">5. <i class="fas fa-download"></i></a> --}}
                                             </td>
                                         @endif
                                         
                                         <td><p class="badge {{ ($item->status_administrasi == 'Di Tolak') ? 'badge-danger' : 'badge-success' }}">{{ $item->status_administrasi }}</p></td>
                                         <td><p class="badge badge-secondary">{{ $item->padministrasi->nama }}</p></td>
+
+                                        {{-- proses --}}
+                                        @if ($item->user)
+                                            <td>
+                                                {{ $item->user->namaPanjang }}
+                                            </td>
+                                        @else
+                                            <td>Belum Ada</td>
+                                        @endif
 
                                         <td>{{ $item->doc_administrasi->keterangan }}</td>
                                         <td class="text-center">
