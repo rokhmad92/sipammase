@@ -108,10 +108,19 @@ class dataController extends Controller
             'foto' => 'nullable|file|mimes:jpeg,jpg,png|max:5000'
         ]);
         $data = $request->input();
-        $dataFile = $request->file();
+        $dataFile = $request->file('foto');
 
         $pemrakarsa_id = pemrakarsa::where('nama', $data['pemrakarsa'])->first('id');
-        ($dataFile['foto']) ? $foto = $dataFile['foto']->store('images') : $foto = '';
+        if($request->file('foto')) {
+            if ($request->input('oldImage')) {
+                Storage::delete($request->input('oldImage'));
+            }
+            $foto = $request->file('foto')->store('image');
+            $img = $foto;
+        } else {
+            $img = $request->input('oldImage');
+        }
+        // ($dataFile['foto']) ? $foto = $dataFile['foto']->store('images') : $foto = '';
 
         agenda::where('nama', $agenda->nama)
             ->update([
@@ -120,7 +129,7 @@ class dataController extends Controller
                 'harmonisasi' => $data['harmonisasi'],
                 'tanggal' => $data['tanggal'],
                 'lokasi' => $data['lokasi'],
-                'foto' => $foto
+                'foto' => $img
             ]);
 
         return back()->with('success', 'Berhasil Menambahkan Data');

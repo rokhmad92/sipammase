@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('lokasi', 150);
             $table->string('foto')->nullable();
+            $table->boolean('aktif')->nullable();
             $table->timestamps();
         });
     }

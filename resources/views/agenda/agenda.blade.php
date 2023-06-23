@@ -32,6 +32,7 @@
                                     <th>Tanggal</th>
                                     <th>Lokasi</th>
                                     <th>Gambar</th>
+                                    <th>Aktif</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -45,10 +46,11 @@
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->lokasi }}</td>
                                         @if ($item->foto)
-                                            <td><a href="{{ asset('storage') }}/{{ $item->foto }}" target="_blank"><p class="badge badge-success"><i class="fas fa-image"></i> Lihat Gambar</p></a></td>
+                                        <td><a href="{{ asset('storage') }}/{{ $item->foto }}" target="_blank"><p class="badge badge-success"><i class="fas fa-image"></i> Lihat Gambar</p></a></td>
                                         @else
-                                            <td><p class="badge badge-danger">Tidak Ada Gambar</p></td>
+                                        <td><p class="badge badge-danger">Tidak Ada Gambar</p></td>
                                         @endif
+                                        <td>aktif</td>
                                         <td class="text-center">
                                             <span class="badge badge-info" style="cursor: pointer;" data-toggle="modal" data-target="#modal-edit{{ $item->id }}"><i class="fas fa-edit"></i> Edit</span>
                                             <a href="/agenda/{{ $item->nama }}" onclick="return confirm('Yakin Ingin menghapus Data')" class="badge badge-danger mt-2"><i class="fas fa-trash"></i> Hapus</a>
@@ -228,11 +230,14 @@
                                     <div class="form-group col">
                                         <a target="_blank" class="badge badge-success mr-3" href="{{ asset('storage') }}/{{ $item->foto }}" style="cursor: pointer;"><i class="fas fa-download"></i> Lihat Foto</a>
                                         <a class="badge badge-danger mt-2" onclick="return confirm('Yakin ingin hapus Foto?')" href="/agenda/hapus/{{ $item->nama }}" style="cursor: pointer;"><i class="fas fa-trash"></i> Hapus Foto</a>
+                                        <input type="text" value="{{ $item->foto }}" class="d-none" name="oldImage">
                                     </div>
                                 @endif
                             </div>
                         </div>
                     </div>
+
+                    <input type="checkbox" name="aktif"><span class="text-md ml-2">Aktif</span>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
