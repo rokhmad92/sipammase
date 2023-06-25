@@ -32,7 +32,7 @@
                                     <th>Tanggal</th>
                                     <th>Lokasi</th>
                                     <th>Gambar</th>
-                                    <th>Aktif</th>
+                                    <th>Tampil</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -46,11 +46,17 @@
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->lokasi }}</td>
                                         @if ($item->foto)
-                                        <td><a href="{{ asset('storage') }}/{{ $item->foto }}" target="_blank"><p class="badge badge-success"><i class="fas fa-image"></i> Lihat Gambar</p></a></td>
+                                            <td><a href="{{ asset('storage') }}/{{ $item->foto }}" target="_blank"><p class="badge badge-success"><i class="fas fa-image"></i> Lihat Gambar</p></a></td>
                                         @else
-                                        <td><p class="badge badge-danger">Tidak Ada Gambar</p></td>
+                                            <td><p class="badge badge-danger"><i class="far fa-times-circle"></i> Tidak Ada Gambar</p></td>
                                         @endif
-                                        <td>aktif</td>
+                                        <td class="text-center">
+                                            @if ($item->aktif == true)
+                                                <a href="/nonaktif/{{ $item->id }}" class="badge badge-success" style="color: white;"><i class="fas fa-check"></i> Aktif</a>
+                                            @else
+                                                <a href="/aktif/{{ $item->id }}" class="badge badge-danger" style="color: white;"><i class="far fa-times-circle"></i> Nonaktif</a>
+                                            @endif
+                                        </td>
                                         <td class="text-center">
                                             <span class="badge badge-info" style="cursor: pointer;" data-toggle="modal" data-target="#modal-edit{{ $item->id }}"><i class="fas fa-edit"></i> Edit</span>
                                             <a href="/agenda/{{ $item->nama }}" onclick="return confirm('Yakin Ingin menghapus Data')" class="badge badge-danger mt-2"><i class="fas fa-trash"></i> Hapus</a>
@@ -65,6 +71,7 @@
         </div>
 </section>
 
+{{-- tambah Data --}}
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -136,6 +143,7 @@
     </div>
 </div>
 
+{{-- Edit Data --}}
 @foreach ($agenda as $item)
 <div class="modal fade" id="modal-edit{{ $item->id }}">
     <div class="modal-dialog">
@@ -236,8 +244,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <input type="checkbox" name="aktif"><span class="text-md ml-2">Aktif</span>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -248,4 +254,5 @@
     </div>
 </div>
 @endforeach
+
 @endsection

@@ -128,20 +128,27 @@ class pengajuanController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'tahun' => 'required|exists:tahun,no',
-            'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-            'judul' => 'required|unique:harmonisasi,judul',
-            'rancangan' => 'required',  
-            'permohonan' => 'required',
-            'status' => 'required|exists:kpengajuan,nama',
-            'keterangan' => 'nullable',
-            'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            'docx4' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-            'docx5' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
-        ]);
+        $harmonisasi = $request->input('rancangan');
+        if ($harmonisasi == 'RPERDA DPRD') {
+
+        } elseif ($harmonisasi == 'RPERDA PEMDA') {
+            $request->validate([
+                'tahun' => 'required|exists:tahun,no',
+                'pemrakarsa' => 'required|exists:pemrakarsa,nama',
+                'judul' => 'required|unique:harmonisasi,judul',
+                'rancangan' => 'required',  
+                'permohonan' => 'required',
+                'status' => 'required|exists:kpengajuan,nama',
+                'keterangan' => 'nullable',
+                'docx1' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx2' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx3' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx4' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+                'docx5' => 'nullable|mimes:pdf,doc,docx,xlsx,xls,csv|max:5000|file',
+            ]);
+        } elseif ($harmonisasi == 'RPERKADA') {
+
+        }
         $data = $request->input();
         $dataFile = $request->file();
         $rancangan_id = rancangan::where('nama', $data['rancangan'])->first();

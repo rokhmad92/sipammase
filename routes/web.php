@@ -116,6 +116,8 @@ Route::controller(dataController::class)->group(function() {
     Route::get('/agenda/{agenda:nama}', 'hapus');
     Route::post('/agenda/{agenda:nama}', 'update');
     Route::get('/agenda/hapus/{agenda:nama}', 'destroy');
+    Route::get('/aktif/{id}', 'aktif');
+    Route::get('/nonaktif/{id}', 'nonaktif');
 });
 
 // Master Data

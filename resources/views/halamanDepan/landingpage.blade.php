@@ -18,9 +18,20 @@
                 <img src="{{ asset('images') }}/header.jpg" alt="Beranda" class="img-fluid mx-auto">
             </div>
 
+            {{-- runnig text --}}
+            @if($kegiatan)
+                <div class="row col-12 bg-primary mx-auto mt-4 rounded">
+                        <marquee behavior="scroll" direction="left" class="text-lg text-white p-3">
+                            @foreach ($kegiatan as $item)
+                                <span style="margin-left: 60px;">{{ $item->pemrakarsa->nama }}, {{ $item->harmonisasi }}, {{ $item->tanggal }}</span>
+                            @endforeach
+                        </marquee>
+                </div>
+            @endif
+
             {{-- slide Foto --}}
             @if($agendaCheck)
-                <div class="swiper mx-3 mt-5">
+                <div class="swiper mx-3 mt-4">
                     <h3>Kegiatan Rapat</h3>
                     <div class="swiper-wrapper">
                         <!-- Slides -->

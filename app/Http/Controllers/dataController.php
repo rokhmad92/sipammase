@@ -150,4 +150,22 @@ class dataController extends Controller
         ]);
         return back()->with('success', 'Berhasil Hapus Foto');
     }
+
+    public function aktif($id)
+    {
+        agenda::where('id', $id)->update([
+            'aktif' => true
+        ]);
+
+        return back()->with('success', 'Berhasil aktifkan agenda');
+    }
+
+    public function nonaktif($id)
+    {
+        agenda::where('id', $id)->update([
+            'aktif' => false
+        ]);
+
+        return back()->with('success', 'Berhasil nonaktifkan agenda');
+    }
 }
