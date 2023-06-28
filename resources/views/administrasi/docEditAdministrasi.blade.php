@@ -95,7 +95,7 @@
 
     @if ($getHarmonisasi->doc_administrasi->docx1)
         <div class="form-group col mt-3">
-            <label for="docx1">Dokumen Administrasi</label>
+            <label for="docx1">Dokumen LPA/AK</label>
             <br>
             <a target="_blank" class="badge badge-info mr-3" href="{{ asset('storage') }}/{{ $getHarmonisasi->doc_administrasi->docx1 }}" style="cursor: pointer;"><i class="fas fa-download"></i> Lihat Dokumen</a>
         </div>
