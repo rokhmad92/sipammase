@@ -19,7 +19,7 @@
             </div>
 
             {{-- runnig text --}}
-            @if($kegiatan)
+            @if($kegiatanCheck != null)
                 <div class="row col-12 bg-primary mx-auto mt-4 rounded">
                         <marquee behavior="scroll" direction="left" class="text-lg text-white p-3">
                             @foreach ($kegiatan as $item)

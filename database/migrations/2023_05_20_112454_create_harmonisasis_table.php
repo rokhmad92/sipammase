@@ -22,6 +22,10 @@ return new class extends Migration
             $table->unsignedBigInteger('doc_administrasi_id')->constrained('doc_administrasi')->nullable();
             $table->unsignedBigInteger('doc_rapat_id')->constrained('doc_rapat')->nullable();
             $table->unsignedBigInteger('doc_penyampaian_id')->constrained('doc_penyampaian')->nullable();
+            $table->unsignedBigInteger('surat_pemda_id')->constrained('surat_pemda')->nullable();
+            $table->unsignedBigInteger('surat_dprd_id')->constrained('surat_dprd')->nullable();
+            $table->unsignedBigInteger('surat_rperkada_id')->constrained('surat_rperkada')->nullable();
+
             $table->string('status_administrasi')->nullable();
             $table->string('status_rapat')->nullable();
             $table->string('status_penyampaian')->nullable();
@@ -30,11 +34,6 @@ return new class extends Migration
             $table->text('keterangan')->nullable();
             $table->string('masukan_masyarakat')->nullable();
             $table->string('keterangan_masyarakat')->nullable();
-            $table->string('docx1')->nullable();
-            $table->string('docx2')->nullable();
-            $table->string('docx3')->nullable();
-            $table->string('docx4')->nullable();
-            $table->string('docx5')->nullable();
             $table->timestamps();
         });
     }

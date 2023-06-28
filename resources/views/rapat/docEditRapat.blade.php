@@ -1,5 +1,5 @@
-{{-- upload --}}
-<h5 class="ml-md-2 mt-4" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">Upload Dokumen Kegiatan <i class="fas fa-caret-down"></i></h5>
+{{-- Edit --}}
+<h5 class="ml-md-2 mt-4" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">Edit Dokumen Kegiatan <i class="fas fa-caret-down"></i></h5>
 
 <div class="collapse" id="collapseExample1">
     <div class="form-group col mt-3">
@@ -12,7 +12,7 @@
         </div>
         <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
         @error('docx1')
-            <div class="invalid-feedback">
+            <div class="text-sm text-danger ml-2">
                 {{ $message }}
             </div>
         @enderror
@@ -28,7 +28,7 @@
         </div>
         <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
         @error('docx2')
-            <div class="invalid-feedback">
+            <div class="text-sm text-danger ml-2">
                 {{ $message }}
             </div>
         @enderror
@@ -44,7 +44,7 @@
         </div>
         <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
         @error('docx3')
-            <div class="invalid-feedback">
+            <div class="text-sm text-danger ml-2">
                 {{ $message }}
             </div>
         @enderror
@@ -60,7 +60,7 @@
         </div>
         <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
         @error('docx4')
-            <div class="invalid-feedback">
+            <div class="text-sm text-danger ml-2">
                 {{ $message }}
             </div>
         @enderror
@@ -76,15 +76,15 @@
         </div>
         <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
         @error('docx5')
-            <div class="invalid-feedback">
+            <div class="text-sm text-danger ml-2">
                 {{ $message }}
             </div>
         @enderror
     </div> --}}
 </div>
 
-{{-- lihat atau hapus --}}
-<h5 class="ml-md-2 mt-4" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Lihat Atau Hapus Dokumen <i class="fas fa-caret-down"></i></h5>
+{{-- lihat --}}
+<h5 class="ml-md-2 mt-4" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Lihat Dokumen <i class="fas fa-caret-down"></i></h5>
 
 <div class="collapse" id="collapseExample">
     @if ($getHarmonisasi->doc_rapat->docx1 == null && $getHarmonisasi->doc_rapat->docx2 == null && $getHarmonisasi->doc_rapat->docx3 == null && $getHarmonisasi->doc_rapat->docx4 == null && $getHarmonisasi->doc_rapat->docx5 == null)
@@ -98,7 +98,6 @@
             <label for="docx1">Dokumen Kegiatan</label>
             <br>
             <a target="_blank" class="badge badge-info mr-3" href="{{ asset('storage') }}/{{ $getHarmonisasi->doc_rapat->docx1 }}" style="cursor: pointer;"><i class="fas fa-download"></i> Lihat Dokumen</a>
-            <a class="badge badge-danger mt-2" href="/1/rapat/{{ $getHarmonisasi->judul }}" style="cursor: pointer;"><i class="fas fa-trash"></i> Hapus Dokumen</a>
         </div>
     @endif
 

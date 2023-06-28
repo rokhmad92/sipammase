@@ -31,11 +31,12 @@ class basicController extends Controller
         $agendaFoto = agenda::whereNotNull('foto')->get('foto');
         $agendaCheck = agenda::whereNotNull('foto')->first('foto');
         $kegiatan = agenda::where('aktif', true)->get();
+        $kegiatanCheck = agenda::where('aktif', true)->first('id');
         $harmonisasi = harmonisasi::all();
 
         return view('halamanDepan.landingpage', [
             'title' => 'Selamat Datang Di SIPAMMASE'
-        ], compact('totalPengajuan', 'totalAdministrasi', 'totalRapat', 'totalPenyampaian', 'harmonisasi', 'agenda', 'agendaCheck', 'agendaFoto', 'rancangan', 'tahun', 'pemrakarsa', 'post_tahun', 'post_harmonisasi', 'post_pemrakarsa', 'kegiatan'));
+        ], compact('totalPengajuan', 'totalAdministrasi', 'totalRapat', 'totalPenyampaian', 'harmonisasi', 'agenda', 'agendaCheck', 'agendaFoto', 'rancangan', 'tahun', 'pemrakarsa', 'post_tahun', 'post_harmonisasi', 'post_pemrakarsa', 'kegiatan', 'kegiatanCheck'));
     }
 
     public function show($get)

@@ -117,7 +117,7 @@
                             {{-- dprd --}}
                             @if ($rancangan == 'RPERDA DPRD')
                                 <div class="form-group col mt-3">
-                                    <label for="docx1">Surat Permohonan</label>
+                                    <label>Surat Permohonan</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input @error('docx1') is-invalid @enderror" id="customFile1" name="docx1">
@@ -126,55 +126,55 @@
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx1')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx2">Na</label>
+                                    <label>Na</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx2" class="custom-file-input @error('docx2') is-invalid @enderror" id="customFile2" name="docx2">
+                                            <input type="file" class="custom-file-input @error('docx2') is-invalid @enderror" id="customFile2" name="docx2">
                                             <label class="custom-file-label" for="customFile2">Choose file</label>
                                         </div>
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx2')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx3">DRAFT RANPERDA</label>
+                                    <label>DRAFT RANPERDA</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx3" class="custom-file-input @error('docx3') is-invalid @enderror" id="customFile3" name="docx3">
+                                            <input type="file" class="custom-file-input @error('docx3') is-invalid @enderror" id="customFile3" name="docx3">
                                             <label class="custom-file-label" for="customFile3">Choose file</label>
                                         </div>
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx3')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx4">SK Propemperda</label>
+                                    <label>SK Propemperda</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx4" class="custom-file-input @error('docx4') is-invalid @enderror" id="customFile4" name="docx4">
+                                            <input type="file" class="custom-file-input @error('docx4') is-invalid @enderror" id="customFile4" name="docx4">
                                             <label class="custom-file-label" for="customFile4">Choose file</label>
                                         </div>
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx4')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
@@ -182,7 +182,7 @@
                             {{-- pemda --}}
                             @elseif($rancangan == 'RPERDA PEMDA')
                                 <div class="form-group col mt-3">
-                                    <label for="docx1">Surat Permohonan</label>
+                                    <label>Surat Permohonan</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input @error('docx1') is-invalid @enderror" id="customFile1" name="docx1">
@@ -191,88 +191,89 @@
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx1')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx2">Na</label>
+                                    <label>Na</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx2" class="custom-file-input @error('docx2') is-invalid @enderror" id="customFile2" name="docx2">
+                                            <input type="file" class="custom-file-input @error('docx2') is-invalid @enderror" id="customFile2" name="docx2">
                                             <label class="custom-file-label" for="customFile2">Choose file</label>
                                         </div>
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx2')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx3">SK Tim</label>
+                                    <label>SK Tim</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx3" class="custom-file-input @error('docx3') is-invalid @enderror" id="customFile3" name="docx3">
+                                            <input type="file" class="custom-file-input @error('docx3') is-invalid @enderror" id="customFile3" name="docx3">
                                             <label class="custom-file-label" for="customFile3">Choose file</label>
                                         </div>
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx3')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx4">DRAFT RANPERDA PDF</label>
+                                    <label>DRAFT RANPERDA PDF</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx4" class="custom-file-input @error('docx4') is-invalid @enderror" id="customFile4" name="docx4">
+                                            <input type="file" class="custom-file-input @error('docx4') is-invalid @enderror" id="customFile4" name="docx4">
                                             <label class="custom-file-label" for="customFile4">Choose file</label>
                                         </div>
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf | Max: 5 Mb</small>
                                     @error('docx4')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx4">DRAFT RANPERDA DOC</label>
+                                    <label>DRAFT RANPERDA DOC</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx4" class="custom-file-input @error('docx4') is-invalid @enderror" id="customFile4" name="docx4">
-                                            <label class="custom-file-label" for="customFile4">Choose file</label>
-                                        </div>
-                                    </div>
-                                    <small class="ml-2 form-text text-muted">File Type : doc, docx | Max: 5 Mb</small>
-                                    @error('docx4')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group col mt-3">
-                                    <label for="docx5">SK Propemperda/SK Bersama jika di Luar Propemperda</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" id="docx5" class="custom-file-input @error('docx5') is-invalid @enderror" id="customFile5" name="docx5">
+                                            <input type="file" class="custom-file-input @error('docx5') is-invalid @enderror" id="customFile5" name="docx5">
                                             <label class="custom-file-label" for="customFile5">Choose file</label>
                                         </div>
                                     </div>
-                                    <small class="ml-2 form-text text-muted">catatan: antara SK Propemperda dan SK Bersama menjadi alternatif saling menggantikan.</small>
-                                    <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
+                                    <small class="ml-2 form-text text-muted">File Type : doc, docx | Max: 5 Mb</small>
                                     @error('docx5')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group col mt-3">
+                                    <label>SK Propemperda/SK Bersama jika di Luar Propemperda</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input @error('docx6') is-invalid @enderror" id="customFile6" name="docx6">
+                                            <label class="custom-file-label" for="customFile6">Choose file</label>
+                                        </div>
+                                    </div>
+                                    <small class="ml-2 form-text text-muted">
+                                        catatan: antara SK Propemperda dan SK Bersama menjadi alternatif saling menggantikan.<br>File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb
+                                    </small>
+                                    @error('docx6')
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
@@ -280,7 +281,7 @@
                             {{-- RPERKADA --}}
                             @elseif($rancangan == 'RPERKADA')
                                 <div class="form-group col mt-3">
-                                    <label for="docx1">Surat Permohonan</label>
+                                    <label>Surat Permohonan</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input @error('docx1') is-invalid @enderror" id="customFile1" name="docx1">
@@ -289,39 +290,39 @@
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx1')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx2">Penjelasan/Keterangan</label>
+                                    <label>Penjelasan/Keterangan</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx2" class="custom-file-input @error('docx2') is-invalid @enderror" id="customFile2" name="docx2">
+                                            <input type="file" class="custom-file-input @error('docx2') is-invalid @enderror" id="customFile2" name="docx2">
                                             <label class="custom-file-label" for="customFile2">Choose file</label>
                                         </div>
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx2')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
 
                                 <div class="form-group col mt-3">
-                                    <label for="docx3">DRAFT RANPERKADA</label>
+                                    <label>DRAFT RANPERKADA</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" id="docx3" class="custom-file-input @error('docx3') is-invalid @enderror" id="customFile3" name="docx3">
+                                            <input type="file" class="custom-file-input @error('docx3') is-invalid @enderror" id="customFile3" name="docx3">
                                             <label class="custom-file-label" for="customFile3">Choose file</label>
                                         </div>
                                     </div>
                                     <small class="ml-2 form-text text-muted">File Type : pdf, doc, docx, xlsx, xls, csv | Max: 5 Mb</small>
                                     @error('docx3')
-                                        <div class="invalid-feedback">
+                                        <div class="text-sm text-danger ml-2">
                                             {{ $message }}
                                         </div>
                                     @enderror

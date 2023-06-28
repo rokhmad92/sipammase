@@ -191,48 +191,48 @@ class administrasiController extends Controller
         return redirect('/administrasi')->with('success', 'Berhasil Update Data');
     }
 
-    public function destroy1(Harmonisasi $harmonisasi)
-    {
-        Storage::delete($harmonisasi->doc_administrasi->docx1);
-        doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
-            'docx1' => ''
-        ]);
-        return back()->with('success', 'Berhasil Menghapus Dokumen');
-    }
+    // public function destroy1(Harmonisasi $harmonisasi)
+    // {
+    //     Storage::delete($harmonisasi->doc_administrasi->docx1);
+    //     doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
+    //         'docx1' => ''
+    //     ]);
+    //     return back()->with('success', 'Berhasil Menghapus Dokumen');
+    // }
 
-    public function destroy2(Harmonisasi $harmonisasi)
-    {
-        Storage::delete($harmonisasi->doc_administrasi->docx2);
-        doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
-            'docx2' => ''
-        ]);
-        return back()->with('success', 'Berhasil Menghapus Dokumen');
-    }
+    // public function destroy2(Harmonisasi $harmonisasi)
+    // {
+    //     Storage::delete($harmonisasi->doc_administrasi->docx2);
+    //     doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
+    //         'docx2' => ''
+    //     ]);
+    //     return back()->with('success', 'Berhasil Menghapus Dokumen');
+    // }
 
-    public function destroy3(Harmonisasi $harmonisasi)
-    {
-        Storage::delete($harmonisasi->doc_administrasi->docx3);
-        doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
-            'docx3' => ''
-        ]);
-        return back()->with('success', 'Berhasil Menghapus Dokumen');
-    }
+    // public function destroy3(Harmonisasi $harmonisasi)
+    // {
+    //     Storage::delete($harmonisasi->doc_administrasi->docx3);
+    //     doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
+    //         'docx3' => ''
+    //     ]);
+    //     return back()->with('success', 'Berhasil Menghapus Dokumen');
+    // }
 
-    public function destroy4(Harmonisasi $harmonisasi)
-    {
-        Storage::delete($harmonisasi->doc_administrasi->docx4);
-        doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
-            'docx4' => ''
-        ]);
-        return back()->with('success', 'Berhasil Menghapus Dokumen');
-    }
+    // public function destroy4(Harmonisasi $harmonisasi)
+    // {
+    //     Storage::delete($harmonisasi->doc_administrasi->docx4);
+    //     doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
+    //         'docx4' => ''
+    //     ]);
+    //     return back()->with('success', 'Berhasil Menghapus Dokumen');
+    // }
 
-    public function destroy5(Harmonisasi $harmonisasi)
-    {
-        Storage::delete($harmonisasi->doc_administrasi->docx5);
-        doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
-            'docx5' => ''
-        ]);
-        return back()->with('success', 'Berhasil Menghapus Dokumen');
-    }
+    // public function destroy5(Harmonisasi $harmonisasi)
+    // {
+    //     Storage::delete($harmonisasi->doc_administrasi->docx5);
+    //     doc_administrasi::where('harmonisasi_id', $harmonisasi->id)->update([
+    //         'docx5' => ''
+    //     ]);
+    //     return back()->with('success', 'Berhasil Menghapus Dokumen');
+    // }
 }

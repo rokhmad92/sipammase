@@ -150,16 +150,16 @@
                                                         @if ($getHarmonisasi->user)
                                                             <option value="{{ $getHarmonisasi->user->namaPanjang }}" selected>{{ $getHarmonisasi->user->namaPanjang }}</option>
                                                             @foreach ($users as $item)
-                                                                @if ($item->namaPanjang == $getHarmonisasi->user->namaPanjang)
+                                                                @if ($item == $getHarmonisasi->user->namaPanjang)
                                                                     <option value="" style="display: none;"></option>
                                                                 @else
-                                                                    <option value="{{ $item->namaPanjang }}">{{ $item->namaPanjang }}</option>
+                                                                    <option value="{{ $item }}">{{ $item }}</option>
                                                                 @endif
                                                             @endforeach
                                                         @else
                                                             <option value=""></option>
                                                             @foreach ($users as $item)
-                                                                <option value="{{ $item->namaPanjang }}">{{ $item->namaPanjang }}</option>
+                                                                <option value="{{ $item }}">{{ $item }}</option>
                                                             @endforeach
                                                         @endif
                                                     </select>

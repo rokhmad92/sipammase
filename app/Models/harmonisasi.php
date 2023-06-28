@@ -18,7 +18,7 @@ class harmonisasi extends Model
     protected $guarded = ['id'];
     protected $table = 'harmonisasi';
 
-    protected $with = ['kpengajuan', 'padministrasi', 'pemrakarsa', 'rancangan', 'tahun', 'doc_administrasi', 'doc_penyampaian', 'doc_rapat', 'user'];
+    protected $with = ['kpengajuan', 'padministrasi', 'pemrakarsa', 'rancangan', 'tahun', 'doc_administrasi', 'doc_penyampaian', 'doc_rapat', 'user', 'surat_dprd', 'surat_pemda', 'surat_rperkada'];
 
     public function kpengajuan()
     {
@@ -58,6 +58,21 @@ class harmonisasi extends Model
     public function doc_rapat()
     {
         return $this->belongsTo(doc_rapat::class);
+    }
+
+    public function surat_dprd()
+    {
+        return $this->belongsTo(surat_dprd::class);
+    }
+
+    public function surat_pemda()
+    {
+        return $this->belongsTo(surat_pemda::class);
+    }
+
+    public function surat_rperkada()
+    {
+        return $this->belongsTo(surat_rperkada::class);
     }
 
     public function user()
