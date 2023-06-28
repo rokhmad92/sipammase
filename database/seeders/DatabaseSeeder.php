@@ -755,7 +755,7 @@ class DatabaseSeeder extends Seeder
                 'nama' => 'Rapat Harmonisasi'
             ]);
             padministrasi::create([
-                'nama' => 'Penyampaian'
+                'nama' => 'Penyampaian Harmonisasi'
             ]);
             padministrasi::create([
                 'nama' => 'Selesai Harmonisasi'

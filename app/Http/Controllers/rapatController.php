@@ -92,7 +92,7 @@ class rapatController extends Controller
     {
         $getHarmonisasi = $harmonisasi;
         $rancangan = $harmonisasi->rancangan->nama;
-        $status = ['Penyampaian', 'Di Tolak'];
+        $status = ['Penyampaian Harmonisasi', 'Di Tolak'];
         return view('rapat.rapatEdit', [
             'title' => 'Edit Rapat Harmonisasi'
         ], compact('getHarmonisasi', 'rancangan', 'status'));
@@ -169,8 +169,8 @@ class rapatController extends Controller
             // 'docx5' => $docx5
         ]);
 
-        if ($data['status'] == 'Penyampaian') {
-            $padministrasi_id = padministrasi::where('nama', 'Penyampaian')->first('id');
+        if ($data['status'] == 'Penyampaian Harmonisasi') {
+            $padministrasi_id = padministrasi::where('nama', 'Penyampaian Harmonisasi')->first('id');
             $harmonisasi_id = harmonisasi::where('id', $harmonisasi->id)->first();
             $penyampaian_id = doc_penyampaian::create([
                 'harmonisasi_id' => $harmonisasi_id->id

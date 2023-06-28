@@ -160,17 +160,19 @@
                                             <td class="text-center">
                                                 <p class="badge badge-danger">Di Tolak</p>
                                             </td>
-                                        @elseif($item->status_penyampaian == 'Selesai Harmonisasi')
-                                            <td class="text-center">
-                                                <p class="badge badge-primary">{{ $item->status_penyampaian }}</p>
-                                            </td>
-                                        @else
+                                        @elseif($item->status_penyampaian == null)
                                             <td class="text-center">
                                                 <p class="badge badge-primary">Di Proses</p>
                                             </td>
+                                        @else
+                                            <td class="text-center">
+                                                <p class="badge {{ $item->status_penyampaian == 'Dikembalikan' ? 'badge-danger' : 'badge-primary' }}">{{ $item->status_penyampaian }}</p>
+                                            </td>
                                         @endif
 
-                                        <td><p class="badge badge-success">{{ $item->padministrasi->nama }}</p></td>
+                                        <td class="text-center">
+                                            <p class="badge badge-success">{{ $item->padministrasi->nama }}</p>
+                                        </td>
 
                                         {{-- proses --}}
                                         @if ($item->user)

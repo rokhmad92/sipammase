@@ -90,10 +90,11 @@ class penyampaianController extends Controller
     {
         $getHarmonisasi = $harmonisasi;
         $rancangan = $harmonisasi->rancangan->nama;
+        $statusPenyampaian = ['Selesai Harmonisasi', 'Di Tolak', 'Dikembalikan'];
         $status = ['Selesai Harmonisasi', 'Di Tolak'];
         return view('penyampaian.penyampaianEdit', [
             'title' => 'Edit Penyampaian Harmonisasi'
-        ], compact('getHarmonisasi', 'rancangan', 'status'));
+        ], compact('getHarmonisasi', 'rancangan', 'status', 'statusPenyampaian'));
     }
 
     public function update(harmonisasi $harmonisasi, Request $request)

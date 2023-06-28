@@ -81,13 +81,23 @@
                                             <label for="status">Status</label>
                                             <select class="form-control @error('status') is-invalid @enderror" id="status" name="status">
                                             <option value="{{ $getHarmonisasi->status_penyampaian }}" selected>{{ $getHarmonisasi->status_penyampaian }}</option>
-                                            @foreach ($status as $item)
-                                                @if ($item == $getHarmonisasi->status_administrasi || $item == $getHarmonisasi->status_penyampaian)
-                                                    <option value="" style="display: none;"></option>
-                                                @else
-                                                    <option value="{{ $item }}">{{ $item }}</option>
-                                                @endif
-                                            @endforeach
+                                            @if ($getHarmonisasi->status_penyampaian)
+                                                @foreach ($status as $item)
+                                                    @if ($item == $getHarmonisasi->status_administrasi || $item == $getHarmonisasi->status_penyampaian)
+                                                        <option value="" style="display: none;"></option>
+                                                    @else
+                                                        <option value="{{ $item }}">{{ $item }}</option>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                @foreach ($statusPenyampaian as $item)
+                                                    @if ($item == $getHarmonisasi->status_administrasi || $item == $getHarmonisasi->status_penyampaian)
+                                                        <option value="" style="display: none;"></option>
+                                                    @else
+                                                        <option value="{{ $item }}">{{ $item }}</option>
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                             </select>
                                             @error('status')
                                                 <div class="invalid-feedback">
@@ -117,7 +127,7 @@
 
                             <div class="mt-4">
                                 <button type="submit" class="btn btn-success inline">Simpan Data</button>
-                                <a href="/pengajuan" class="btn btn-secondary">Kembali</a>
+                                <a href="/penyampaian" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>

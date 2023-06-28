@@ -199,13 +199,13 @@
                                                 <td class="text-center">
                                                     <p class="badge badge-danger">Di Tolak</p>
                                                 </td>
-                                            @elseif($item->status_penyampaian == 'Selesai Harmonisasi')
+                                            @elseif($item->status_penyampaian == null)
                                                 <td class="text-center">
-                                                    <p class="badge badge-primary">{{ $item->status_penyampaian }}</p>
+                                                    <p class="badge badge-primary">Di Proses</p>
                                                 </td>
                                             @else
                                                 <td class="text-center">
-                                                    <p class="badge badge-primary">Di Proses</p>
+                                                    <p class="badge {{ $item->status_penyampaian == 'Dikembalikan' ? 'badge-danger' : 'badge-primary' }}">{{ $item->status_penyampaian }}</p>
                                                 </td>
                                             @endif
                                         @elseif ($item->status_rapat != null)
@@ -236,13 +236,13 @@
 
                                         {{-- Posisi --}}
                                         @if ($item->padministrasi->nama == 'Pengajuan')
-                                            <td><p class="badge badge-info p-1">{{ $item->padministrasi->nama }}</p></td>
+                                            <td class="text-center"><p class="badge badge-info p-1">{{ $item->padministrasi->nama }}</p></td>
                                         @elseif($item->padministrasi->nama == 'Administrasi Dan Analisis Konsep')
-                                            <td><p class="badge badge-secondary p-1">{{ $item->padministrasi->nama }}</p></td>
+                                            <td class="text-center"><p class="badge badge-secondary p-1">{{ $item->padministrasi->nama }}</p></td>
                                         @elseif ($item->padministrasi->nama == 'Rapat Harmonisasi')
-                                            <td><p class="badge badge-danger p-1">{{ $item->padministrasi->nama }}</p></td>
-                                        @elseif ($item->padministrasi->nama == 'Penyampaian' || $item->padministrasi->nama == 'Selesai Harmonisasi')
-                                            <td><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
+                                            <td class="text-center"><p class="badge badge-danger p-1">{{ $item->padministrasi->nama }}</p></td>
+                                        @elseif ($item->padministrasi->nama == 'Penyampaian Harmonisasi' || $item->padministrasi->nama == 'Selesai Harmonisasi')
+                                            <td class="text-center"><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
                                         @endif
 
                                         {{-- proses --}}
