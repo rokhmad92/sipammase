@@ -73,12 +73,14 @@
                             <div class="row mt-3">
                                 <div class="col">
                                     <div class="d-flex justify-content-between">
-                                        <div class="form-group col-md-5">
-                                            <label for="rancangan">Rancangan Harmonisasi</label>
-                                            <select class="form-control" id="rancangan" name="rancangan">
-                                                <option value="{{ $getUser->rancangan->nama }}">{{ $getUser->rancangan->nama }}</option>
-                                            </select>
-                                        </div>
+                                        @if ($getUser->admin == false)
+                                            <div class="form-group col-md-5">
+                                                <label for="rancangan">Rancangan Harmonisasi</label>
+                                                <select class="form-control" id="rancangan" name="rancangan">
+                                                    <option value="{{ $getUser->rancangan->nama }}">{{ $getUser->rancangan->nama }}</option>
+                                                </select>
+                                            </div>
+                                        @endif
                                         <div class="form-group col-6">
                                             <label for="tahun">Tahun</label>
                                             <select class="form-control" id="tahun" name="tahun">
@@ -96,14 +98,16 @@
                                 </div>
                             </div>
 
-                            <div class="row ml-1 mt-3 mb-4">
-                                <div class="form-group col-md-6">
-                                    <label for="PEMRAKARSA">Pemrakarsa</label>
-                                    <select class="form-control" id="PEMRAKARSA" name="pemrakarsa">
-                                        <option value="{{ $getUser->pemrakarsa->nama }}">{{ $getUser->pemrakarsa->nama }}</option>
-                                    </select>
+                            @if ($getUser->admin == false)
+                                <div class="row ml-1 mt-3 mb-4">
+                                    <div class="form-group col-md-6">
+                                        <label for="PEMRAKARSA">Pemrakarsa</label>
+                                        <select class="form-control" id="PEMRAKARSA" name="pemrakarsa">
+                                            <option value="{{ $getUser->pemrakarsa->nama }}">{{ $getUser->pemrakarsa->nama }}</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
                             <h4>Ganti Password</h4>
                             <div class="row mb-3 mt-3">

@@ -95,25 +95,54 @@ class userController extends Controller
             'namaPanjang' => 'required|max:70|unique:user,namaPanjang',
             'email' => 'required|unique:user,email',
             'alamat' => 'required|max:80',
-            'rancangan' => 'required|exists:rancangan,id',
             'role' => 'required|exists:role,id',
-            'pemrakarsa' => 'required|exists:pemrakarsa,id',
+            'rancangan' => 'required',
+            'pemrakarsa' => 'required',
         ]);
         $data = $request->input();
         $date = Carbon::now()->format('Y');
         $tahun_id = tahun::where('no', $date)->first('id');
 
-        User::create([
-            'username' => $data['username'],
-            'password' => bcrypt($data['password']),
-            'namaPanjang' => $data['namaPanjang'],
-            'email' => $data['email'],
-            'alamat' => $data['alamat'],
-            'rancangan_id' => $data['rancangan'],
-            'pemrakarsa_id' => $data['pemrakarsa'],
-            'role_id' => $data['role'],
-            'tahun_id' => $tahun_id->id,
-        ]);
+        if($data['role'] == 1 || $data['role'] == 2)
+        {
+            User::create([
+                'username' => $data['username'],
+                'password' => bcrypt($data['password']),
+                'namaPanjang' => $data['namaPanjang'],
+                'email' => $data['email'],
+                'alamat' => $data['alamat'],
+                'role_id' => $data['role'],
+                'tahun_id' => $tahun_id->id,
+                'rancangan_id' => 1,
+                'pemrakarsa_id' => 1,
+                'admin' => true
+            ]);
+        } elseif ($data['rancangan'] == 'semua' || $data['pemrakarsa'] == 'semua' && $data['role'] == 3 || $data['role'] == 4)
+        {
+            User::create([
+                'username' => $data['username'],
+                'password' => bcrypt($data['password']),
+                'namaPanjang' => $data['namaPanjang'],
+                'email' => $data['email'],
+                'alamat' => $data['alamat'],
+                'rancangan_id' => 1,
+                'pemrakarsa_id' => 1,
+                'role_id' => $data['role'],
+                'tahun_id' => $tahun_id->id,
+            ]);
+        } else {
+            User::create([
+                'username' => $data['username'],
+                'password' => bcrypt($data['password']),
+                'namaPanjang' => $data['namaPanjang'],
+                'email' => $data['email'],
+                'alamat' => $data['alamat'],
+                'rancangan_id' => $data['rancangan'],
+                'pemrakarsa_id' => $data['pemrakarsa'],
+                'role_id' => $data['role'],
+                'tahun_id' => $tahun_id->id,
+            ]);
+        }
 
         return redirect('/users')->with('success', 'Berhasil Menambahkan Data');
     }
@@ -137,37 +166,89 @@ class userController extends Controller
             'namaPanjang' => 'required|max:70',
             'email' => 'required',
             'alamat' => 'required|max:80',
-            'rancangan' => 'required|exists:rancangan,id',
-            'pemrakarsa' => 'required|exists:pemrakarsa,id',
+            'rancangan' => 'nullable',
+            'pemrakarsa' => 'nullable',
             'role' => 'required|exists:role,id',
         ]);
         $data = $request->input();
 
         // password Check
         if ($data['password'] !== null) {
-            User::where('username', $username)
-            ->update([
-                'username' => $data['username'],
-                'password' => bcrypt($data['password']),
-                'namaPanjang' => $data['namaPanjang'],
-                'email' => $data['email'],
-                'alamat' => $data['alamat'],
-                'rancangan_id' => $data['rancangan'],
-                'pemrakarsa_id' => $data['pemrakarsa'],
-                'role_id' => $data['role']
-            ]);
+            if($data['role'] == 1 || $data['role'] == 2) {
+                User::where('username', $username)
+                ->update([
+                    'username' => $data['username'],
+                    'password' => bcrypt($data['password']),
+                    'namaPanjang' => $data['namaPanjang'],
+                    'email' => $data['email'],
+                    'alamat' => $data['alamat'],
+                    'role_id' => $data['role'],
+                    'rancangan_id' => 1,
+                    'pemrakarsa_id' => 1,
+                    'admin' => true
+                ]);
+            } elseif ($data['rancangan'] == 'semua' || $data['pemrakarsa'] == 'semua' && $data['role'] == 3 || $data['role'] == 4) {
+                User::where('username', $username)
+                ->update([
+                    'username' => $data['username'],
+                    'password' => bcrypt($data['password']),
+                    'namaPanjang' => $data['namaPanjang'],
+                    'email' => $data['email'],
+                    'alamat' => $data['alamat'],
+                    'role_id' => $data['role'],
+                    'rancangan_id' => 1,
+                    'pemrakarsa_id' => 1,
+                ]);
+            } else {
+                User::where('username', $username)
+                ->update([
+                    'username' => $data['username'],
+                    'password' => bcrypt($data['password']),
+                    'namaPanjang' => $data['namaPanjang'],
+                    'email' => $data['email'],
+                    'alamat' => $data['alamat'],
+                    'rancangan_id' => $data['rancangan'],
+                    'pemrakarsa_id' => $data['pemrakarsa'],
+                    'role_id' => $data['role']
+                ]);
+            }
             return redirect('/users')->with('success', 'Berhasil Update Data');
         } else {
-            User::where('username', $username)
-            ->update([
-                'username' => $data['username'],
-                'namaPanjang' => $data['namaPanjang'],
-                'email' => $data['email'],
-                'alamat' => $data['alamat'],
-                'rancangan_id' => $data['rancangan'],
-                'pemrakarsa_id' => $data['pemrakarsa'],
-                'role_id' => $data['role']
-            ]);
+            if($data['role'] == 1 || $data['role'] == 2) {
+                User::where('username', $username)
+                ->update([
+                    'username' => $data['username'],
+                    'namaPanjang' => $data['namaPanjang'],
+                    'email' => $data['email'],
+                    'alamat' => $data['alamat'],
+                    'role_id' => $data['role'],
+                    'rancangan_id' => 1,
+                    'pemrakarsa_id' => 1,
+                    'admin' => true
+                ]);
+            } elseif ($data['rancangan'] == 'semua' || $data['pemrakarsa'] == 'semua' && $data['role'] == 3 || $data['role'] == 4) {
+                User::where('username', $username)
+                ->update([
+                    'username' => $data['username'],
+                    'namaPanjang' => $data['namaPanjang'],
+                    'email' => $data['email'],
+                    'alamat' => $data['alamat'],
+                    'role_id' => $data['role'],
+                    'rancangan_id' => 1,
+                    'pemrakarsa_id' => 1,
+                ]);
+            } else {
+                User::where('username', $username)
+                ->update([
+                    'username' => $data['username'],
+                    'namaPanjang' => $data['namaPanjang'],
+                    'email' => $data['email'],
+                    'alamat' => $data['alamat'],
+                    'rancangan_id' => $data['rancangan'],
+                    'pemrakarsa_id' => $data['pemrakarsa'],
+                    'role_id' => $data['role']
+                ]);
+            }
             return redirect('/users')->with('success', 'Berhasil Update Data');
         }
     }

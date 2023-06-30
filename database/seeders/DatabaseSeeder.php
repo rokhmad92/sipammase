@@ -466,13 +466,23 @@ class DatabaseSeeder extends Seeder
                 'namaPanjang' => 'Pemerintah Daerah Kabupaten parepare',
                 'email' => 'pemda@kab-parepare.id'
             ]);
+            User::create([
+                'username' => 'pemprov.sulsel',
+                'password' => bcrypt('sulsel'),
+                'rancangan_id' => 1,
+                'pemrakarsa_id' => 47,
+                'role_id' => 3,
+                'tahun_id' => 1,
+                'namaPanjang' => 'Pemprov Sulsel',
+                'email' => 'pemprov@sulsel.id'
+            ]);
             // start dprd
             User::create([
                 'username' => 'dprd.bantaeng',
                 'password' => bcrypt('bantaeng'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 24,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten Bantaeng',
                 'email' => 'dprd@kab-bantaeng.id'
@@ -480,9 +490,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.barru',
                 'password' => bcrypt('barru'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 25,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten Barru',
                 'email' => 'dprd@kab-barru.id'
@@ -490,9 +500,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.bone',
                 'password' => bcrypt('bone'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 26,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten Bone',
                 'email' => 'dprd@kab-bone.id'
@@ -500,9 +510,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.bulukumba',
                 'password' => bcrypt('bulukumba'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 27,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten Bulukumba',
                 'email' => 'dprd@kab-bulukumba.id'
@@ -510,9 +520,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.enrekang',
                 'password' => bcrypt('enrekang'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 28,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten enrekang',
                 'email' => 'dprd@kab-enrekang.id'
@@ -520,9 +530,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.gowa',
                 'password' => bcrypt('gowa'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 29,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten gowa',
                 'email' => 'dprd@kab-gowa.id'
@@ -530,9 +540,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.jeneponto',
                 'password' => bcrypt('jeneponto'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 30,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten jeneponto',
                 'email' => 'dprd@kab-jeneponto.id'
@@ -540,9 +550,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.selayar',
                 'password' => bcrypt('selayar'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 31,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten selayar',
                 'email' => 'dprd@kab-selayar.id'
@@ -550,9 +560,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.luwu',
                 'password' => bcrypt('luwu'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 32,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten luwu',
                 'email' => 'dprd@kab-luwu.id'
@@ -560,9 +570,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.luwutimur',
                 'password' => bcrypt('luwutimur'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 33,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten luwutimur',
                 'email' => 'dprd@kab-luwutimur.id'
@@ -570,9 +580,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.luwuutara',
                 'password' => bcrypt('luwuutara'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 34,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten luwuutara',
                 'email' => 'dprd@kab-luwuutara.id'
@@ -580,9 +590,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.maros',
                 'password' => bcrypt('maros'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 35,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten maros',
                 'email' => 'dprd@kab-maros.id'
@@ -590,9 +600,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.pangkep',
                 'password' => bcrypt('pangkep'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 36,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten pangkep',
                 'email' => 'dprd@kab-pangkep.id'
@@ -600,9 +610,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.pinrang',
                 'password' => bcrypt('pinrang'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 37,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten pinrang',
                 'email' => 'dprd@kab-pinrang.id'
@@ -610,9 +620,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.sidrap',
                 'password' => bcrypt('sidrap'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 38,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten sidrap',
                 'email' => 'dprd@kab-sidrap.id'
@@ -620,9 +630,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.sinjai',
                 'password' => bcrypt('sinjai'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 39,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten sinjai',
                 'email' => 'dprd@kab-sinjai.id'
@@ -630,9 +640,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.soppeng',
                 'password' => bcrypt('soppeng'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 40,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten soppeng',
                 'email' => 'dprd@kab-soppeng.id'
@@ -640,9 +650,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.takalar',
                 'password' => bcrypt('takalar'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 50,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten takalar',
                 'email' => 'dprd@kab-takalar.id'
@@ -650,9 +660,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.tanatoraja',
                 'password' => bcrypt('tanatoraja'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 41,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten tanatoraja',
                 'email' => 'dprd@kab-tanatoraja.id'
@@ -660,9 +670,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.torajautara',
                 'password' => bcrypt('torajautara'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 42,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten torajautara',
                 'email' => 'dprd@kab-torajautara.id'
@@ -670,9 +680,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.wajo',
                 'password' => bcrypt('wajo'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 43,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten wajo',
                 'email' => 'dprd@kab-wajo.id'
@@ -680,9 +690,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.makassar',
                 'password' => bcrypt('makassar'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 44,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten makassar',
                 'email' => 'dprd@kab-makassar.id'
@@ -690,9 +700,9 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.palopo',
                 'password' => bcrypt('palopo'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 45,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten palopo',
                 'email' => 'dprd@kab-palopo.id'
@@ -700,33 +710,44 @@ class DatabaseSeeder extends Seeder
             User::create([
                 'username' => 'dprd.parepare',
                 'password' => bcrypt('parepare'),
-                'rancangan_id' => 1,
+                'rancangan_id' => 2,
                 'pemrakarsa_id' => 46,
-                'role_id' => 3,
+                'role_id' => 4,
                 'tahun_id' => 1,
                 'namaPanjang' => 'DPRD Kabupaten parepare',
                 'email' => 'dprd@kab-parepare.id'
             ]);
             User::create([
-                'username' => 'pokja1',
-                'password' => bcrypt('pokja'),
-                'rancangan_id' => 3,
-                'pemrakarsa_id' => 18,
-                'role_id' => 2,
-                'tahun_id' => 1,
-                'namaPanjang' => 'POKJA I',
-                'email' => 'pokja1@gmail.com'
-            ]);
-            User::create([
-                'username' => 'pokja2',
-                'password' => bcrypt('pokja'),
+                'username' => 'dprd.sulsel',
+                'password' => bcrypt('sulsel'),
                 'rancangan_id' => 2,
-                'pemrakarsa_id' => 1,
-                'role_id' => 2,
+                'pemrakarsa_id' => 48,
+                'role_id' => 4,
                 'tahun_id' => 1,
-                'namaPanjang' => 'POKJA II',
-                'email' => 'pokja2@gmail.com'
+                'namaPanjang' => 'DPRD Sulsel',
+                'email' => 'dprd@sulsel.id'
             ]);
+            // pokja
+            // User::create([
+            //     'username' => 'pokja1',
+            //     'password' => bcrypt('pokja'),
+            //     'rancangan_id' => 3,
+            //     'pemrakarsa_id' => 18,
+            //     'role_id' => 2,
+            //     'tahun_id' => 1,
+            //     'namaPanjang' => 'POKJA I',
+            //     'email' => 'pokja1@gmail.com'
+            // ]);
+            // User::create([
+            //     'username' => 'pokja2',
+            //     'password' => bcrypt('pokja'),
+            //     'rancangan_id' => 2,
+            //     'pemrakarsa_id' => 1,
+            //     'role_id' => 2,
+            //     'tahun_id' => 1,
+            //     'namaPanjang' => 'POKJA II',
+            //     'email' => 'pokja2@gmail.com'
+            // ]);
         // End users
 
         // keterangan pengajuan

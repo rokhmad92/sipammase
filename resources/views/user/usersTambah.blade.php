@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6 mt-3">
-                <h1 class="m-0">Profile Settings</h1>
+                <h1 class="m-0">Tambah User</h1>
             </div>
         </div>
     </div>
@@ -79,7 +79,9 @@
                                                 @foreach ($rancangan as $item)
                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                 @endforeach
+                                                <option value="semua">Semua Rancangan</option>
                                             </select>
+                                            <small>Note : Pilihan Semua Rancangan hanya untuk <b>Administrator & Pokja</b></small>
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="PEMRAKARSA">Pemrakarsa</label>
@@ -87,7 +89,9 @@
                                                 @foreach ($pemrakarsa as $item)
                                                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                                                 @endforeach
+                                                <option value="semua">Semua Pemrakarsa</option>
                                             </select>
+                                            <small>Note : Pilihan Semua Pemrakarsa hanya untuk <b>Administrator & Pokja</b></small>
                                         </div>
                                     </div>
                                 </div>

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('namaPanjang', 70)->unique();
             $table->string('alamat', 80)->default('Sulawesi Selatan');
             $table->string('email', 50)->unique();
+            $table->boolean('admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

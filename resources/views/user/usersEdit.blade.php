@@ -70,38 +70,44 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="form-group col-md-5">
-                                            <label for="rancangan">Rancangan Harmonisasi</label>
-                                            <select class="form-control" id="rancangan" name="rancangan">
-                                                <option value="{{ $users->rancangan->id }}" selected>{{ $users->rancangan->nama }}</option>
-                                                @foreach ($rancangan as $item)
-                                                    @if ($item->id == $users->rancangan->id)
-                                                        <option value="" style="display: none;"></option>
-                                                    @else
-                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label for="PEMRAKARSA">Pemrakarsa</label>
-                                            <select class="form-control" id="PEMRAKARSA" name="pemrakarsa">
-                                                <option value="{{ $users->pemrakarsa->id }}" selected>{{ $users->pemrakarsa->nama }}</option>
-                                                @foreach ($pemrakarsa as $item)
-                                                    @if ($item->id == $users->pemrakarsa->id)
-                                                        <option value="" style="display: none;"></option>
-                                                    @else
-                                                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
+                            @if ($users->admin == false)
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="form-group col-md-5">
+                                                <label for="rancangan">Rancangan Harmonisasi</label>
+                                                <select class="form-control" id="rancangan" name="rancangan">
+                                                    <option value="{{ $users->rancangan->id }}" selected>{{ $users->rancangan->nama }}</option>
+                                                    @foreach ($rancangan as $item)
+                                                        @if ($item->id == $users->rancangan->id)
+                                                            {{-- <option value="" style="display: none;"></option> --}}
+                                                        @else
+                                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                    <option value="semua">Semua Rancangan</option>
+                                                </select>
+                                                <small>Note : Pilihan Semua Rancangan hanya untuk <b>Administrator & Pokja</b></small>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="PEMRAKARSA">Pemrakarsa</label>
+                                                <select class="form-control" id="PEMRAKARSA" name="pemrakarsa">
+                                                    <option value="{{ $users->pemrakarsa->id }}" selected>{{ $users->pemrakarsa->nama }}</option>
+                                                    @foreach ($pemrakarsa as $item)
+                                                        @if ($item->id == $users->pemrakarsa->id)
+                                                            {{-- <option value="" style="display: none;"></option> --}}
+                                                        @else
+                                                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                    <option value="semua">Semua Pemrakarsa</option>
+                                                </select>
+                                                <small>Note : Pilihan Semua Rancangan hanya untuk <b>Administrator & Pokja</b></small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
 
                             <div class="row mt-3">
                                 <div class="col">
