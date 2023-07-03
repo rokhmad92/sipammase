@@ -99,7 +99,7 @@
                     <div class="icon">
                         <i class="fas fa-folder-open"></i>
                     </div>
-                        <a href="/show/Penyampaian" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/show/Penyampaian Harmonisasi" class="small-box-footer">Lihat Hasil <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
                 </div>
             </div>
