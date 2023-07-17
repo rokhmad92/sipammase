@@ -43,7 +43,7 @@
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->pemrakarsa->nama }}</td>
                                         <td>{{ $item->harmonisasi }}</td>
-                                        <td>{{ $item->tanggal }}</td>
+                                        <td>{{ date('d-M-Y', strtotime($item->tanggal)) }}</td>
                                         <td>{{ $item->lokasi }}</td>
                                         @if ($item->foto)
                                             <td><a href="{{ asset('storage') }}/{{ $item->foto }}" target="_blank"><p class="badge badge-success"><i class="fas fa-image"></i> Lihat Gambar</p></a></td>

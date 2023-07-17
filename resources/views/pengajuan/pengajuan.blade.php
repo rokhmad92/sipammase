@@ -1,7 +1,6 @@
 @extends('partviewAdmin.main')
 
 @section('content')
-{{-- @dd($harmonisasi) --}}
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -275,7 +274,16 @@
                                         @endif
 
                                         <td class="text-center">
-                                            <a href="/pengajuan/edit/{{ $item->judul }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> <br>
+                                            {{-- edit --}}
+                                            @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
+                                                <a href="/pengajuan/edit/{{ $item->judul }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a> <br>
+                                            @elseif($item->status_administrasi == 'Di Tolak' || $item->status_rapat == 'Di Tolak' || $item->status_penyampaian == 'Di Tolak')
+                                                <a href="/pengajuan/edit/{{ $item->judul }}" class="badge badge-info mb-2" style="cursor: pointer;"><i class="fas fa-edit"></i> Edit</a>
+                                            @else
+                                                <p class="badge badge-primary">Di Proses</p>
+                                            @endif
+
+                                            {{-- hapus --}}
                                             @admin(auth()->user())
                                                 <a href="/pengajuan/destroy/{{ $item->judul }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="badge badge-danger"><i class="fas fa-trash"></i> Hapus</a>
                                             @endadmin

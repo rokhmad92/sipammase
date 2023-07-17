@@ -53,7 +53,7 @@ class userController extends Controller
                 'pemrakarsa_id' => $pemrakarsa_id->id,
                 'tahun_id' => $tahun_id->id,
             ]);
-            return redirect('/users')->with('success', 'Berhasil Update Data');
+            return redirect('/profile/' . $data['username'])->with('success', 'Berhasil Update Data');
         } else {
             User::where('username', $username)
             ->update([
