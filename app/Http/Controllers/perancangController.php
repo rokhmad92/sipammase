@@ -22,7 +22,7 @@ class perancangController extends Controller
             'nama' => 'required|max:50|unique:perancang,nama',
             'nip' => 'required|unique:perancang,nip',
             'jabatan' => 'required|max:150',
-            'foto' => 'nullable|file|mimes:jpeg,jpg,png|max:5000'
+            'foto' => 'required|file|mimes:jpeg,jpg,png|max:5000'
         ]);
 
         $data = $request->input();
@@ -61,8 +61,7 @@ class perancangController extends Controller
             $foto = $perancang->foto;
         }
 
-        perancang::where('id', $perancang->id)->
-        update([
+        perancang::where('id', $perancang->id)->update([
             'nama' => $data['nama'],
             'nip' => $data['nip'],
             'jabatan' => $data['jabatan'],
