@@ -36,9 +36,8 @@
 
         {{-- Grafik --}}
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 d-flex flex-wrap">
-                    <div class="bd-highlight col">
+                <div class="d-flex flex-wrap">
+                    <div class="col-md">
                         <div class="card card-success">
                             <div class="card-header bg-success">
                                 <h3 class="card-title">{{ $pemrakarsa }}</h3>
@@ -49,7 +48,7 @@
                         </div>
                     </div>
 
-                    <div class="bd-highlight col">
+                    <div class="col-md">
                         <div class="card card-info">
                             <div class="card-header bg-info">
                                 <h3 class="card-title">Tabel {{ $pemrakarsa }}</h3>
@@ -78,7 +77,7 @@
                                                     <td><p class="badge badge-secondary p-1">{{ $item->padministrasi->nama }}</p></td>
                                                 @elseif ($item->padministrasi->nama == 'Rapat Harmonisasi')
                                                     <td><p class="badge badge-danger p-1">{{ $item->padministrasi->nama }}</p></td>
-                                                @elseif ($item->padministrasi->nama == 'Penyampaian' || $item->padministrasi->nama == 'Selesai Harmonisasi')
+                                                @elseif ($item->padministrasi->nama == 'Penyampaian Harmonisasi' || $item->padministrasi->nama == 'Selesai Harmonisasi')
                                                     <td><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
                                                 @endif
                                             </tr>
@@ -89,7 +88,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
         {{-- fooer --}}

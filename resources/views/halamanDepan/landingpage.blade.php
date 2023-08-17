@@ -249,7 +249,7 @@
                                                         <td class="text-center"><p class="badge badge-secondary p-1">{{ $item->padministrasi->nama }}</p></td>
                                                     @elseif ($item->padministrasi->nama == 'Rapat Harmonisasi')
                                                         <td class="text-center"><p class="badge badge-danger p-1">{{ $item->padministrasi->nama }}</p></td>
-                                                    @elseif ($item->padministrasi->nama == 'Penyampaian' || $item->padministrasi->nama == 'Selesai Harmonisasi')
+                                                    @elseif ($item->padministrasi->nama == 'Penyampaian Harmonisasi' || $item->padministrasi->nama == 'Selesai Harmonisasi')
                                                         <td class="text-center"><p class="badge badge-success p-1">{{ $item->padministrasi->nama }}</p></td>
                                                     @endif
 

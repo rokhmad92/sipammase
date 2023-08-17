@@ -137,7 +137,7 @@ class pengajuanController extends Controller
             $request->validate([
                 'tahun' => 'required|exists:tahun,no',
                 'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-                'judul' => 'required|unique:harmonisasi,judul',
+                'judul' => 'required',
                 'rancangan' => 'required',  
                 'permohonan' => 'required',
                 'status' => 'required|exists:kpengajuan,nama',
@@ -151,7 +151,7 @@ class pengajuanController extends Controller
             $request->validate([
                 'tahun' => 'required|exists:tahun,no',
                 'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-                'judul' => 'required|unique:harmonisasi,judul',
+                'judul' => 'required',
                 'rancangan' => 'required',  
                 'permohonan' => 'required',
                 'status' => 'required|exists:kpengajuan,nama',
@@ -167,7 +167,7 @@ class pengajuanController extends Controller
             $request->validate([
                 'tahun' => 'required|exists:tahun,no',
                 'pemrakarsa' => 'required|exists:pemrakarsa,nama',
-                'judul' => 'required|unique:harmonisasi,judul',
+                'judul' => 'required',
                 'rancangan' => 'required',  
                 'permohonan' => 'required',
                 'status' => 'required|exists:kpengajuan,nama',
